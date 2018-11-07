@@ -17,6 +17,7 @@ import { CwcrmHomeModule } from './home/home.module';
 import { CwcrmAccountModule } from './account/account.module';
 import { CwcrmEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
+import { CwcrmprimengModule } from './primeng/primeng.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
@@ -29,6 +30,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         CwcrmCoreModule,
         CwcrmHomeModule,
         CwcrmAccountModule,
+        CwcrmprimengModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
         CwcrmEntityModule
     ],
