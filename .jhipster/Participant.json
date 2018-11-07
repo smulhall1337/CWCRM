@@ -1,0 +1,151 @@
+{
+    "name": "Participant",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "registrationDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "address1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dob",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "zip",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "manNumber",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "deceased",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "created",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updated",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "altContactInfo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "contactStatus",
+            "otherEntityName": "contactStatus",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "contactSubStatus",
+            "otherEntityName": "contactSubStatus",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "waiver",
+            "otherEntityName": "waiver",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "mco",
+            "otherEntityName": "mCO",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "supportCoordinator",
+            "otherEntityName": "supportCoordinator",
+            "otherEntityField": "firstName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "primaryPhysician",
+            "otherEntityName": "physician",
+            "otherEntityField": "firstName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "referral",
+            "otherEntityName": "referral",
+            "otherEntityRelationshipName": "participant"
+        }
+    ],
+    "changelogDate": "20181107220259",
+    "entityTableName": "participant",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

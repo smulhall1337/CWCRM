@@ -1,0 +1,44 @@
+{
+    "name": "Action",
+    "fields": [
+        {
+            "fieldName": "dueDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "assignedTo",
+            "otherEntityName": "supportCoordinator",
+            "otherEntityField": "firstName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "action"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "participant",
+            "otherEntityName": "participant",
+            "otherEntityField": "firstName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "action"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "priority",
+            "otherEntityName": "priority",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "action"
+        }
+    ],
+    "changelogDate": "20181107220301",
+    "entityTableName": "action",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

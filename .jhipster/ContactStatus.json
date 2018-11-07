@@ -1,0 +1,30 @@
+{
+    "name": "ContactStatus",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "participant",
+            "otherEntityName": "participant",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "contactStatus"
+        }
+    ],
+    "changelogDate": "20181107220307",
+    "entityTableName": "contact_status",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

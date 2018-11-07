@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Participant.
+    -->
+    <changeSet id="20181107220259-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="contact_status_id"
+                                 baseTableName="participant"
+                                 constraintName="fk_participant_contact_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="contact_sub_status_id"
+                                 baseTableName="participant"
+                                 constraintName="fk_participant_contact_sub_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_sub_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="waiver_id"
+                                 baseTableName="participant"
+                                 constraintName="fk_participant_waiver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="waiver"/>
+
+        <addForeignKeyConstraint baseColumnNames="mco_id"
+                                 baseTableName="participant"
+                                 constraintName="fk_participant_mco_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mco"/>
+
+        <addForeignKeyConstraint baseColumnNames="support_coordinator_id"
+                                 baseTableName="participant"
+                                 constraintName="fk_participant_support_coordinator_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="support_coordinator"/>
+
+        <addForeignKeyConstraint baseColumnNames="primary_physician_id"
+                                 baseTableName="participant"
+                                 constraintName="fk_participant_primary_physician_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="physician"/>
+
+    </changeSet>
+</databaseChangeLog>

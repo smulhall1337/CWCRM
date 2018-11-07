@@ -1,0 +1,189 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-participant-heading" jhiTranslate="cwcrmApp.participant.home.createOrEditLabel">Create or edit a Participant</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!participant.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="participant.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.firstName" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                        [(ngModel)]="participant.firstName" required/>
+                    <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.firstName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.lastName" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                        [(ngModel)]="participant.lastName" required/>
+                    <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.lastName?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.registrationDate" for="field_registrationDate">Registration Date</label>
+                    <div class="input-group">
+                        <input id="field_registrationDate" type="text" class="form-control" name="registrationDate" ngbDatepicker  #registrationDateDp="ngbDatepicker" [(ngModel)]="participant.registrationDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="registrationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.address1" for="field_address1">Address 1</label>
+                    <input type="text" class="form-control" name="address1" id="field_address1"
+                        [(ngModel)]="participant.address1" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.address2" for="field_address2">Address 2</label>
+                    <input type="text" class="form-control" name="address2" id="field_address2"
+                        [(ngModel)]="participant.address2" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.city" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                        [(ngModel)]="participant.city" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.state" for="field_state">State</label>
+                    <input type="text" class="form-control" name="state" id="field_state"
+                        [(ngModel)]="participant.state" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.country" for="field_country">Country</label>
+                    <input type="text" class="form-control" name="country" id="field_country"
+                        [(ngModel)]="participant.country" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.dob" for="field_dob">Dob</label>
+                    <input type="text" class="form-control" name="dob" id="field_dob"
+                        [(ngModel)]="participant.dob" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="participant.phone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="participant.email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.zip" for="field_zip">Zip</label>
+                    <input type="text" class="form-control" name="zip" id="field_zip"
+                        [(ngModel)]="participant.zip" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.manNumber" for="field_manNumber">Man Number</label>
+                    <input type="number" class="form-control" name="manNumber" id="field_manNumber"
+                        [(ngModel)]="participant.manNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.deceased" for="field_deceased">Deceased</label>
+                    <input type="checkbox" class="form-control" name="deceased" id="field_deceased"
+                        [(ngModel)]="participant.deceased" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.created" for="field_created">Created</label>
+                    <div class="d-flex">
+                        <input id="field_created" type="datetime-local" class="form-control" name="created" [(ngModel)]="created"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.updated" for="field_updated">Updated</label>
+                    <div class="d-flex">
+                        <input id="field_updated" type="datetime-local" class="form-control" name="updated" [(ngModel)]="updated"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.isActive" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                        [(ngModel)]="participant.isActive" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.altContactInfo" for="field_altContactInfo">Alt Contact Info</label>
+                    <textarea class="form-control" name="altContactInfo" id="field_altContactInfo"
+                        [(ngModel)]="participant.altContactInfo" ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.contactStatus" for="field_contactStatus">Contact Status</label>
+                    <select class="form-control" id="field_contactStatus" name="contactStatus" [(ngModel)]="participant.contactStatusId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contactStatusOption.id" *ngFor="let contactStatusOption of contactstatuses; trackBy: trackContactStatusById">{{contactStatusOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.contactSubStatus" for="field_contactSubStatus">Contact Sub Status</label>
+                    <select class="form-control" id="field_contactSubStatus" name="contactSubStatus" [(ngModel)]="participant.contactSubStatusId" required>
+                        <option *ngIf="!editForm.value.contactSubStatus" [ngValue]="null" selected></option>
+                        <option [ngValue]="contactSubStatusOption.id" *ngFor="let contactSubStatusOption of contactsubstatuses; trackBy: trackContactSubStatusById">{{contactSubStatusOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.contactSubStatus?.dirty && editForm.controls.contactSubStatus?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.contactSubStatus?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.waiver" for="field_waiver">Waiver</label>
+                    <select class="form-control" id="field_waiver" name="waiver" [(ngModel)]="participant.waiverId" required>
+                        <option *ngIf="!editForm.value.waiver" [ngValue]="null" selected></option>
+                        <option [ngValue]="waiverOption.id" *ngFor="let waiverOption of waivers; trackBy: trackWaiverById">{{waiverOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.waiver?.dirty && editForm.controls.waiver?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.waiver?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.mco" for="field_mco">Mco</label>
+                    <select class="form-control" id="field_mco" name="mco" [(ngModel)]="participant.mcoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="mCOOption.id" *ngFor="let mCOOption of mcos; trackBy: trackMCOById">{{mCOOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.supportCoordinator" for="field_supportCoordinator">Support Coordinator</label>
+                    <select class="form-control" id="field_supportCoordinator" name="supportCoordinator" [(ngModel)]="participant.supportCoordinatorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="supportCoordinatorOption.id" *ngFor="let supportCoordinatorOption of supportcoordinators; trackBy: trackSupportCoordinatorById">{{supportCoordinatorOption.firstName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.primaryPhysician" for="field_primaryPhysician">Primary Physician</label>
+                    <select class="form-control" id="field_primaryPhysician" name="primaryPhysician" [(ngModel)]="participant.primaryPhysicianId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="physicianOption.id" *ngFor="let physicianOption of primaryphysicians; trackBy: trackPhysicianById">{{physicianOption.firstName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

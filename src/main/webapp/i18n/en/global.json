@@ -93,6 +93,20 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "participant": "Participant",
+                "referral": "Referral",
+                "action": "Action",
+                "supportCoordinator": "Support Coordinator",
+                "waiver": "Waiver",
+                "department": "Department",
+                "employeeType": "Employee Type",
+                "employeeSubType": "Employee Sub Type",
+                "contactStatus": "Contact Status",
+                "contactSubStatus": "Contact Sub Status",
+                "priority": "Priority",
+                "mco": "MCO",
+                "physician": "Physician",
+                "enrollmentAgency": "Enrollment Agency",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

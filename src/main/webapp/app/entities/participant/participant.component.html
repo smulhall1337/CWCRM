@@ -1,0 +1,139 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cwcrmApp.participant.home.title">Participants</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-participant" [routerLink]="['/participant/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="cwcrmApp.participant.home.createLabel">
+            Create new Participant
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'cwcrmApp.participant.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="participants">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="cwcrmApp.participant.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="cwcrmApp.participant.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="registrationDate"><span jhiTranslate="cwcrmApp.participant.registrationDate">Registration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="address1"><span jhiTranslate="cwcrmApp.participant.address1">Address 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="address2"><span jhiTranslate="cwcrmApp.participant.address2">Address 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="city"><span jhiTranslate="cwcrmApp.participant.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="state"><span jhiTranslate="cwcrmApp.participant.state">State</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="country"><span jhiTranslate="cwcrmApp.participant.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dob"><span jhiTranslate="cwcrmApp.participant.dob">Dob</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phone"><span jhiTranslate="cwcrmApp.participant.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="cwcrmApp.participant.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="zip"><span jhiTranslate="cwcrmApp.participant.zip">Zip</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="manNumber"><span jhiTranslate="cwcrmApp.participant.manNumber">Man Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="deceased"><span jhiTranslate="cwcrmApp.participant.deceased">Deceased</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="created"><span jhiTranslate="cwcrmApp.participant.created">Created</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="updated"><span jhiTranslate="cwcrmApp.participant.updated">Updated</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="isActive"><span jhiTranslate="cwcrmApp.participant.isActive">Is Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="altContactInfo"><span jhiTranslate="cwcrmApp.participant.altContactInfo">Alt Contact Info</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contactStatusId"><span jhiTranslate="cwcrmApp.participant.contactStatus">Contact Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contactSubStatusName"><span jhiTranslate="cwcrmApp.participant.contactSubStatus">Contact Sub Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="waiverName"><span jhiTranslate="cwcrmApp.participant.waiver">Waiver</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mcoName"><span jhiTranslate="cwcrmApp.participant.mco">Mco</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="supportCoordinatorFirstName"><span jhiTranslate="cwcrmApp.participant.supportCoordinator">Support Coordinator</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="primaryPhysicianFirstName"><span jhiTranslate="cwcrmApp.participant.primaryPhysician">Primary Physician</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let participant of participants ;trackBy: trackId">
+                <td><a [routerLink]="['/participant', participant.id, 'view' ]">{{participant.id}}</a></td>
+                <td>{{participant.firstName}}</td>
+                <td>{{participant.lastName}}</td>
+                <td>{{participant.registrationDate | date:'mediumDate'}}</td>
+                <td>{{participant.address1}}</td>
+                <td>{{participant.address2}}</td>
+                <td>{{participant.city}}</td>
+                <td>{{participant.state}}</td>
+                <td>{{participant.country}}</td>
+                <td>{{participant.dob}}</td>
+                <td>{{participant.phone}}</td>
+                <td>{{participant.email}}</td>
+                <td>{{participant.zip}}</td>
+                <td>{{participant.manNumber}}</td>
+                <td>{{participant.deceased}}</td>
+                <td>{{participant.created | date:'medium'}}</td>
+                <td>{{participant.updated | date:'medium'}}</td>
+                <td>{{participant.isActive}}</td>
+                <td>{{participant.altContactInfo}}</td>
+                <td>
+                    <div *ngIf="participant.contactStatusId">
+                        <a [routerLink]="['../contact-status', participant.contactStatusId , 'view' ]" >{{participant.contactStatusId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.contactSubStatusId">
+                        <a [routerLink]="['../contact-sub-status', participant.contactSubStatusId , 'view' ]" >{{participant.contactSubStatusName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.waiverId">
+                        <a [routerLink]="['../waiver', participant.waiverId , 'view' ]" >{{participant.waiverName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.mcoId">
+                        <a [routerLink]="['../mco', participant.mcoId , 'view' ]" >{{participant.mcoName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.supportCoordinatorId">
+                        <a [routerLink]="['../support-coordinator', participant.supportCoordinatorId , 'view' ]" >{{participant.supportCoordinatorFirstName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.primaryPhysicianId">
+                        <a [routerLink]="['../physician', participant.primaryPhysicianId , 'view' ]" >{{participant.primaryPhysicianFirstName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/participant', participant.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/participant', participant.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'participant/'+ participant.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
