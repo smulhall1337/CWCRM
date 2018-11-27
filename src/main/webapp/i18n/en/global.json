@@ -107,6 +107,10 @@
                 "mco": "MCO",
                 "physician": "Physician",
                 "enrollmentAgency": "Enrollment Agency",
+                "contactHistory": "Contact History",
+                "participantNotes": "Participant Notes",
+                "contactType": "Contact Type",
+                "extendedUser": "Extended User",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

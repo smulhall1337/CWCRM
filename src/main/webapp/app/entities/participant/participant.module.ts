@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CwcrmSharedModule } from 'app/shared';
+import { CwcrmAdminModule } from 'app/admin/admin.module';
 import {
     ParticipantComponent,
     ParticipantDetailComponent,
@@ -15,7 +16,7 @@ import {
 const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
 
 @NgModule({
-    imports: [CwcrmSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         ParticipantComponent,
         ParticipantDetailComponent,

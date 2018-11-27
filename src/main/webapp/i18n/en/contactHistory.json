@@ -1,0 +1,26 @@
+{
+    "cwcrmApp": {
+        "contactHistory": {
+            "home": {
+                "title": "Contact Histories",
+                "createLabel": "Create a new Contact History",
+                "createOrEditLabel": "Create or edit a Contact History",
+                "search": "Search for Contact History"
+            },
+            "created": "A new Contact History is created with identifier {{ param }}",
+            "updated": "A Contact History is updated with identifier {{ param }}",
+            "deleted": "A Contact History is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Contact History {{ id }}?"
+            },
+            "detail": {
+                "title": "Contact History"
+            },
+            "date": "Date",
+            "notes": "Notes",
+            "participant": "Participant",
+            "user": "User",
+            "contactType": "Contact Type"
+        }
+    }
+}

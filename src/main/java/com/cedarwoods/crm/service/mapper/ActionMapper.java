@@ -8,20 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Action and its DTO ActionDTO.
  */
-@Mapper(componentModel = "spring", uses = {SupportCoordinatorMapper.class, ParticipantMapper.class, PriorityMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, ParticipantMapper.class})
 public interface ActionMapper extends EntityMapper<ActionDTO, Action> {
 
-    @Mapping(source = "assignedTo.id", target = "assignedToId")
-    @Mapping(source = "assignedTo.firstName", target = "assignedToFirstName")
+    @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "participant.id", target = "participantId")
-    @Mapping(source = "participant.firstName", target = "participantFirstName")
-    @Mapping(source = "priority.id", target = "priorityId")
-    @Mapping(source = "priority.name", target = "priorityName")
     ActionDTO toDto(Action action);
 
-    @Mapping(source = "assignedToId", target = "assignedTo")
+    @Mapping(source = "userId", target = "user")
     @Mapping(source = "participantId", target = "participant")
-    @Mapping(source = "priorityId", target = "priority")
     Action toEntity(ActionDTO actionDTO);
 
     default Action fromId(Long id) {

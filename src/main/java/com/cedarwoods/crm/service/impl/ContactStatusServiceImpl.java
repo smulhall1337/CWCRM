@@ -73,21 +73,6 @@ public class ContactStatusServiceImpl implements ContactStatusService {
     }
 
 
-
-    /**
-     *  get all the contactStatuses where Participant is null.
-     *  @return the list of entities
-     */
-    @Transactional(readOnly = true) 
-    public List<ContactStatusDTO> findAllWhereParticipantIsNull() {
-        log.debug("Request to get all contactStatuses where Participant is null");
-        return StreamSupport
-            .stream(contactStatusRepository.findAll().spliterator(), false)
-            .filter(contactStatus -> contactStatus.getParticipant() == null)
-            .map(contactStatusMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
-    }
-
     /**
      * Get one contactStatus by id.
      *

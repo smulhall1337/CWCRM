@@ -25,8 +25,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 
@@ -47,9 +45,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CwcrmApp.class)
 public class ActionResourceIntTest {
-
-    private static final LocalDate DEFAULT_DUE_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DUE_DATE = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private ActionRepository actionRepository;
@@ -102,8 +97,7 @@ public class ActionResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static Action createEntity(EntityManager em) {
-        Action action = new Action()
-            .dueDate(DEFAULT_DUE_DATE);
+        Action action = new Action();
         return action;
     }
 
@@ -128,7 +122,6 @@ public class ActionResourceIntTest {
         List<Action> actionList = actionRepository.findAll();
         assertThat(actionList).hasSize(databaseSizeBeforeCreate + 1);
         Action testAction = actionList.get(actionList.size() - 1);
-        assertThat(testAction.getDueDate()).isEqualTo(DEFAULT_DUE_DATE);
 
         // Validate the Action in Elasticsearch
         verify(mockActionSearchRepository, times(1)).save(testAction);
@@ -167,8 +160,7 @@ public class ActionResourceIntTest {
         restActionMockMvc.perform(get("/api/actions?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(action.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(action.getId().intValue())));
     }
     
     @Test
@@ -181,8 +173,7 @@ public class ActionResourceIntTest {
         restActionMockMvc.perform(get("/api/actions/{id}", action.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(action.getId().intValue()))
-            .andExpect(jsonPath("$.dueDate").value(DEFAULT_DUE_DATE.toString()));
+            .andExpect(jsonPath("$.id").value(action.getId().intValue()));
     }
 
     @Test
@@ -205,8 +196,6 @@ public class ActionResourceIntTest {
         Action updatedAction = actionRepository.findById(action.getId()).get();
         // Disconnect from session so that the updates on updatedAction are not directly saved in db
         em.detach(updatedAction);
-        updatedAction
-            .dueDate(UPDATED_DUE_DATE);
         ActionDTO actionDTO = actionMapper.toDto(updatedAction);
 
         restActionMockMvc.perform(put("/api/actions")
@@ -218,7 +207,6 @@ public class ActionResourceIntTest {
         List<Action> actionList = actionRepository.findAll();
         assertThat(actionList).hasSize(databaseSizeBeforeUpdate);
         Action testAction = actionList.get(actionList.size() - 1);
-        assertThat(testAction.getDueDate()).isEqualTo(UPDATED_DUE_DATE);
 
         // Validate the Action in Elasticsearch
         verify(mockActionSearchRepository, times(1)).save(testAction);
@@ -278,8 +266,7 @@ public class ActionResourceIntTest {
         restActionMockMvc.perform(get("/api/_search/actions?query=id:" + action.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(action.getId().intValue())))
-            .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(action.getId().intValue())));
     }
 
     @Test

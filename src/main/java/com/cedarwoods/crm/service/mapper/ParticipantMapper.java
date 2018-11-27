@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Participant and its DTO ParticipantDTO.
  */
-@Mapper(componentModel = "spring", uses = {ContactStatusMapper.class, ContactSubStatusMapper.class, WaiverMapper.class, MCOMapper.class, SupportCoordinatorMapper.class, PhysicianMapper.class})
+@Mapper(componentModel = "spring", uses = {ContactStatusMapper.class, ContactSubStatusMapper.class, WaiverMapper.class, UserMapper.class})
 public interface ParticipantMapper extends EntityMapper<ParticipantDTO, Participant> {
 
     @Mapping(source = "contactStatus.id", target = "contactStatusId")
@@ -16,21 +16,16 @@ public interface ParticipantMapper extends EntityMapper<ParticipantDTO, Particip
     @Mapping(source = "contactSubStatus.name", target = "contactSubStatusName")
     @Mapping(source = "waiver.id", target = "waiverId")
     @Mapping(source = "waiver.name", target = "waiverName")
-    @Mapping(source = "mco.id", target = "mcoId")
-    @Mapping(source = "mco.name", target = "mcoName")
     @Mapping(source = "supportCoordinator.id", target = "supportCoordinatorId")
-    @Mapping(source = "supportCoordinator.firstName", target = "supportCoordinatorFirstName")
-    @Mapping(source = "primaryPhysician.id", target = "primaryPhysicianId")
-    @Mapping(source = "primaryPhysician.firstName", target = "primaryPhysicianFirstName")
     ParticipantDTO toDto(Participant participant);
 
     @Mapping(source = "contactStatusId", target = "contactStatus")
     @Mapping(source = "contactSubStatusId", target = "contactSubStatus")
     @Mapping(source = "waiverId", target = "waiver")
-    @Mapping(source = "mcoId", target = "mco")
     @Mapping(source = "supportCoordinatorId", target = "supportCoordinator")
-    @Mapping(source = "primaryPhysicianId", target = "primaryPhysician")
-    @Mapping(target = "referrals", ignore = true)
+    @Mapping(target = "action", ignore = true)
+    @Mapping(target = "contactHistory", ignore = true)
+    @Mapping(target = "participantNotes", ignore = true)
     Participant toEntity(ParticipantDTO participantDTO);
 
     default Participant fromId(Long id) {

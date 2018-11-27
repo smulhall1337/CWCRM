@@ -1,5 +1,5 @@
 import { Moment } from 'moment';
-import { IReferral } from 'app/shared/model//referral.model';
+import { IParticipantNotes } from 'app/shared/model//participant-notes.model';
 
 export interface IParticipant {
     id?: number;
@@ -15,24 +15,16 @@ export interface IParticipant {
     phone?: string;
     email?: string;
     zip?: string;
-    manNumber?: number;
-    deceased?: boolean;
-    created?: Moment;
-    updated?: Moment;
-    isActive?: boolean;
-    altContactInfo?: any;
+    mANNumber?: number;
     contactStatusId?: number;
     contactSubStatusName?: string;
     contactSubStatusId?: number;
     waiverName?: string;
     waiverId?: number;
-    mcoName?: string;
-    mcoId?: number;
-    supportCoordinatorFirstName?: string;
     supportCoordinatorId?: number;
-    primaryPhysicianFirstName?: string;
-    primaryPhysicianId?: number;
-    referrals?: IReferral[];
+    actionId?: number;
+    contactHistoryId?: number;
+    participantNotes?: IParticipantNotes[];
 }
 
 export class Participant implements IParticipant {
@@ -50,26 +42,15 @@ export class Participant implements IParticipant {
         public phone?: string,
         public email?: string,
         public zip?: string,
-        public manNumber?: number,
-        public deceased?: boolean,
-        public created?: Moment,
-        public updated?: Moment,
-        public isActive?: boolean,
-        public altContactInfo?: any,
+        public mANNumber?: number,
         public contactStatusId?: number,
         public contactSubStatusName?: string,
         public contactSubStatusId?: number,
         public waiverName?: string,
         public waiverId?: number,
-        public mcoName?: string,
-        public mcoId?: number,
-        public supportCoordinatorFirstName?: string,
         public supportCoordinatorId?: number,
-        public primaryPhysicianFirstName?: string,
-        public primaryPhysicianId?: number,
-        public referrals?: IReferral[]
-    ) {
-        this.deceased = this.deceased || false;
-        this.isActive = this.isActive || false;
-    }
+        public actionId?: number,
+        public contactHistoryId?: number,
+        public participantNotes?: IParticipantNotes[]
+    ) {}
 }

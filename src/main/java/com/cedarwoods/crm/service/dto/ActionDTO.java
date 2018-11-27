@@ -1,6 +1,5 @@
 package com.cedarwoods.crm.service.dto;
 
-import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,19 +10,9 @@ public class ActionDTO implements Serializable {
 
     private Long id;
 
-    private LocalDate dueDate;
-
-    private Long assignedToId;
-
-    private String assignedToFirstName;
+    private Long userId;
 
     private Long participantId;
-
-    private String participantFirstName;
-
-    private Long priorityId;
-
-    private String priorityName;
 
     public Long getId() {
         return id;
@@ -33,28 +22,12 @@ public class ActionDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public Long getAssignedToId() {
-        return assignedToId;
-    }
-
-    public void setAssignedToId(Long supportCoordinatorId) {
-        this.assignedToId = supportCoordinatorId;
-    }
-
-    public String getAssignedToFirstName() {
-        return assignedToFirstName;
-    }
-
-    public void setAssignedToFirstName(String supportCoordinatorFirstName) {
-        this.assignedToFirstName = supportCoordinatorFirstName;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getParticipantId() {
@@ -63,30 +36,6 @@ public class ActionDTO implements Serializable {
 
     public void setParticipantId(Long participantId) {
         this.participantId = participantId;
-    }
-
-    public String getParticipantFirstName() {
-        return participantFirstName;
-    }
-
-    public void setParticipantFirstName(String participantFirstName) {
-        this.participantFirstName = participantFirstName;
-    }
-
-    public Long getPriorityId() {
-        return priorityId;
-    }
-
-    public void setPriorityId(Long priorityId) {
-        this.priorityId = priorityId;
-    }
-
-    public String getPriorityName() {
-        return priorityName;
-    }
-
-    public void setPriorityName(String priorityName) {
-        this.priorityName = priorityName;
     }
 
     @Override
@@ -114,13 +63,8 @@ public class ActionDTO implements Serializable {
     public String toString() {
         return "ActionDTO{" +
             "id=" + getId() +
-            ", dueDate='" + getDueDate() + "'" +
-            ", assignedTo=" + getAssignedToId() +
-            ", assignedTo='" + getAssignedToFirstName() + "'" +
+            ", user=" + getUserId() +
             ", participant=" + getParticipantId() +
-            ", participant='" + getParticipantFirstName() + "'" +
-            ", priority=" + getPriorityId() +
-            ", priority='" + getPriorityName() + "'" +
             "}";
     }
 }

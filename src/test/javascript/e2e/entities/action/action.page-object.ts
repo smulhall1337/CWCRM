@@ -26,40 +26,30 @@ export class ActionUpdatePage {
     pageTitle = element(by.id('jhi-action-heading'));
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
-    dueDateInput = element(by.id('field_dueDate'));
-    assignedToSelect = element(by.id('field_assignedTo'));
+    userSelect = element(by.id('field_user'));
     participantSelect = element(by.id('field_participant'));
-    prioritySelect = element(by.id('field_priority'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
     }
 
-    async setDueDateInput(dueDate) {
-        await this.dueDateInput.sendKeys(dueDate);
-    }
-
-    async getDueDateInput() {
-        return this.dueDateInput.getAttribute('value');
-    }
-
-    async assignedToSelectLastOption() {
-        await this.assignedToSelect
+    async userSelectLastOption() {
+        await this.userSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    async assignedToSelectOption(option) {
-        await this.assignedToSelect.sendKeys(option);
+    async userSelectOption(option) {
+        await this.userSelect.sendKeys(option);
     }
 
-    getAssignedToSelect(): ElementFinder {
-        return this.assignedToSelect;
+    getUserSelect(): ElementFinder {
+        return this.userSelect;
     }
 
-    async getAssignedToSelectedOption() {
-        return this.assignedToSelect.element(by.css('option:checked')).getText();
+    async getUserSelectedOption() {
+        return this.userSelect.element(by.css('option:checked')).getText();
     }
 
     async participantSelectLastOption() {
@@ -79,25 +69,6 @@ export class ActionUpdatePage {
 
     async getParticipantSelectedOption() {
         return this.participantSelect.element(by.css('option:checked')).getText();
-    }
-
-    async prioritySelectLastOption() {
-        await this.prioritySelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async prioritySelectOption(option) {
-        await this.prioritySelect.sendKeys(option);
-    }
-
-    getPrioritySelect(): ElementFinder {
-        return this.prioritySelect;
-    }
-
-    async getPrioritySelectedOption() {
-        return this.prioritySelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

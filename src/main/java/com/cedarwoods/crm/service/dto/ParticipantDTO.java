@@ -1,11 +1,9 @@
 package com.cedarwoods.crm.service.dto;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Lob;
 
 /**
  * A DTO for the Participant entity.
@@ -40,18 +38,7 @@ public class ParticipantDTO implements Serializable {
 
     private String zip;
 
-    private Long manNumber;
-
-    private Boolean deceased;
-
-    private ZonedDateTime created;
-
-    private ZonedDateTime updated;
-
-    private Boolean isActive;
-
-    @Lob
-    private String altContactInfo;
+    private Long mANNumber;
 
     private Long contactStatusId;
 
@@ -63,17 +50,7 @@ public class ParticipantDTO implements Serializable {
 
     private String waiverName;
 
-    private Long mcoId;
-
-    private String mcoName;
-
     private Long supportCoordinatorId;
-
-    private String supportCoordinatorFirstName;
-
-    private Long primaryPhysicianId;
-
-    private String primaryPhysicianFirstName;
 
     public Long getId() {
         return id;
@@ -179,52 +156,12 @@ public class ParticipantDTO implements Serializable {
         this.zip = zip;
     }
 
-    public Long getManNumber() {
-        return manNumber;
+    public Long getmANNumber() {
+        return mANNumber;
     }
 
-    public void setManNumber(Long manNumber) {
-        this.manNumber = manNumber;
-    }
-
-    public Boolean isDeceased() {
-        return deceased;
-    }
-
-    public void setDeceased(Boolean deceased) {
-        this.deceased = deceased;
-    }
-
-    public ZonedDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(ZonedDateTime created) {
-        this.created = created;
-    }
-
-    public ZonedDateTime getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(ZonedDateTime updated) {
-        this.updated = updated;
-    }
-
-    public Boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    public String getAltContactInfo() {
-        return altContactInfo;
-    }
-
-    public void setAltContactInfo(String altContactInfo) {
-        this.altContactInfo = altContactInfo;
+    public void setmANNumber(Long mANNumber) {
+        this.mANNumber = mANNumber;
     }
 
     public Long getContactStatusId() {
@@ -267,52 +204,12 @@ public class ParticipantDTO implements Serializable {
         this.waiverName = waiverName;
     }
 
-    public Long getMcoId() {
-        return mcoId;
-    }
-
-    public void setMcoId(Long mCOId) {
-        this.mcoId = mCOId;
-    }
-
-    public String getMcoName() {
-        return mcoName;
-    }
-
-    public void setMcoName(String mCOName) {
-        this.mcoName = mCOName;
-    }
-
     public Long getSupportCoordinatorId() {
         return supportCoordinatorId;
     }
 
-    public void setSupportCoordinatorId(Long supportCoordinatorId) {
-        this.supportCoordinatorId = supportCoordinatorId;
-    }
-
-    public String getSupportCoordinatorFirstName() {
-        return supportCoordinatorFirstName;
-    }
-
-    public void setSupportCoordinatorFirstName(String supportCoordinatorFirstName) {
-        this.supportCoordinatorFirstName = supportCoordinatorFirstName;
-    }
-
-    public Long getPrimaryPhysicianId() {
-        return primaryPhysicianId;
-    }
-
-    public void setPrimaryPhysicianId(Long physicianId) {
-        this.primaryPhysicianId = physicianId;
-    }
-
-    public String getPrimaryPhysicianFirstName() {
-        return primaryPhysicianFirstName;
-    }
-
-    public void setPrimaryPhysicianFirstName(String physicianFirstName) {
-        this.primaryPhysicianFirstName = physicianFirstName;
+    public void setSupportCoordinatorId(Long userId) {
+        this.supportCoordinatorId = userId;
     }
 
     @Override
@@ -352,23 +249,13 @@ public class ParticipantDTO implements Serializable {
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
             ", zip='" + getZip() + "'" +
-            ", manNumber=" + getManNumber() +
-            ", deceased='" + isDeceased() + "'" +
-            ", created='" + getCreated() + "'" +
-            ", updated='" + getUpdated() + "'" +
-            ", isActive='" + isIsActive() + "'" +
-            ", altContactInfo='" + getAltContactInfo() + "'" +
+            ", mANNumber=" + getmANNumber() +
             ", contactStatus=" + getContactStatusId() +
             ", contactSubStatus=" + getContactSubStatusId() +
             ", contactSubStatus='" + getContactSubStatusName() + "'" +
             ", waiver=" + getWaiverId() +
             ", waiver='" + getWaiverName() + "'" +
-            ", mco=" + getMcoId() +
-            ", mco='" + getMcoName() + "'" +
             ", supportCoordinator=" + getSupportCoordinatorId() +
-            ", supportCoordinator='" + getSupportCoordinatorFirstName() + "'" +
-            ", primaryPhysician=" + getPrimaryPhysicianId() +
-            ", primaryPhysician='" + getPrimaryPhysicianFirstName() + "'" +
             "}";
     }
 }

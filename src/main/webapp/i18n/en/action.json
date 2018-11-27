@@ -16,10 +16,8 @@
             "detail": {
                 "title": "Action"
             },
-            "dueDate": "Due Date",
-            "assignedTo": "Assigned To",
-            "participant": "Participant",
-            "priority": "Priority"
+            "user": "User",
+            "participant": "Participant"
         }
     }
 }

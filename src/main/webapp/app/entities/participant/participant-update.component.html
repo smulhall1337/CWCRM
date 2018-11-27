@@ -87,38 +87,9 @@
                         [(ngModel)]="participant.zip" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.manNumber" for="field_manNumber">Man Number</label>
-                    <input type="number" class="form-control" name="manNumber" id="field_manNumber"
-                        [(ngModel)]="participant.manNumber" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.deceased" for="field_deceased">Deceased</label>
-                    <input type="checkbox" class="form-control" name="deceased" id="field_deceased"
-                        [(ngModel)]="participant.deceased" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.created" for="field_created">Created</label>
-                    <div class="d-flex">
-                        <input id="field_created" type="datetime-local" class="form-control" name="created" [(ngModel)]="created"
-                        />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.updated" for="field_updated">Updated</label>
-                    <div class="d-flex">
-                        <input id="field_updated" type="datetime-local" class="form-control" name="updated" [(ngModel)]="updated"
-                        />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.isActive" for="field_isActive">Is Active</label>
-                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
-                        [(ngModel)]="participant.isActive" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.altContactInfo" for="field_altContactInfo">Alt Contact Info</label>
-                    <textarea class="form-control" name="altContactInfo" id="field_altContactInfo"
-                        [(ngModel)]="participant.altContactInfo" ></textarea>
+                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.mANNumber" for="field_mANNumber">M AN Number</label>
+                    <input type="number" class="form-control" name="mANNumber" id="field_mANNumber"
+                        [(ngModel)]="participant.mANNumber" />
                 </div>
 
                 <div class="form-group">
@@ -130,49 +101,23 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.participant.contactSubStatus" for="field_contactSubStatus">Contact Sub Status</label>
-                    <select class="form-control" id="field_contactSubStatus" name="contactSubStatus" [(ngModel)]="participant.contactSubStatusId" required>
-                        <option *ngIf="!editForm.value.contactSubStatus" [ngValue]="null" selected></option>
+                    <select class="form-control" id="field_contactSubStatus" name="contactSubStatus" [(ngModel)]="participant.contactSubStatusId">
+                        <option [ngValue]="null"></option>
                         <option [ngValue]="contactSubStatusOption.id" *ngFor="let contactSubStatusOption of contactsubstatuses; trackBy: trackContactSubStatusById">{{contactSubStatusOption.name}}</option>
                     </select>
                 </div>
-                <div [hidden]="!(editForm.controls.contactSubStatus?.dirty && editForm.controls.contactSubStatus?.invalid)">
-                    <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.contactSubStatus?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                    </small>
-                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.participant.waiver" for="field_waiver">Waiver</label>
-                    <select class="form-control" id="field_waiver" name="waiver" [(ngModel)]="participant.waiverId" required>
-                        <option *ngIf="!editForm.value.waiver" [ngValue]="null" selected></option>
-                        <option [ngValue]="waiverOption.id" *ngFor="let waiverOption of waivers; trackBy: trackWaiverById">{{waiverOption.name}}</option>
-                    </select>
-                </div>
-                <div [hidden]="!(editForm.controls.waiver?.dirty && editForm.controls.waiver?.invalid)">
-                    <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.waiver?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                    </small>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.mco" for="field_mco">Mco</label>
-                    <select class="form-control" id="field_mco" name="mco" [(ngModel)]="participant.mcoId">
+                    <select class="form-control" id="field_waiver" name="waiver" [(ngModel)]="participant.waiverId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="mCOOption.id" *ngFor="let mCOOption of mcos; trackBy: trackMCOById">{{mCOOption.name}}</option>
+                        <option [ngValue]="waiverOption.id" *ngFor="let waiverOption of waivers; trackBy: trackWaiverById">{{waiverOption.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.participant.supportCoordinator" for="field_supportCoordinator">Support Coordinator</label>
-                    <select class="form-control" id="field_supportCoordinator" name="supportCoordinator" [(ngModel)]="participant.supportCoordinatorId">
+                    <select class="form-control" id="field_supportCoordinator" name="supportCoordinator" [(ngModel)]="participant.supportCoordinatorId" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="supportCoordinatorOption.id" *ngFor="let supportCoordinatorOption of supportcoordinators; trackBy: trackSupportCoordinatorById">{{supportCoordinatorOption.firstName}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.primaryPhysician" for="field_primaryPhysician">Primary Physician</label>
-                    <select class="form-control" id="field_primaryPhysician" name="primaryPhysician" [(ngModel)]="participant.primaryPhysicianId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="physicianOption.id" *ngFor="let physicianOption of primaryphysicians; trackBy: trackPhysicianById">{{physicianOption.firstName}}</option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
                     </select>
                 </div>
             </div>

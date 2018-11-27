@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { ParticipantService } from 'app/entities/participant/participant.service';
 import { IParticipant, Participant } from 'app/shared/model/participant.model';
 
@@ -39,12 +39,7 @@ describe('Service Tests', () => {
                 'AAAAAAA',
                 'AAAAAAA',
                 'AAAAAAA',
-                0,
-                false,
-                currentDate,
-                currentDate,
-                false,
-                'AAAAAAA'
+                0
             );
         });
 
@@ -52,9 +47,7 @@ describe('Service Tests', () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        registrationDate: currentDate.format(DATE_FORMAT),
-                        created: currentDate.format(DATE_TIME_FORMAT),
-                        updated: currentDate.format(DATE_TIME_FORMAT)
+                        registrationDate: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
@@ -71,17 +64,13 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        registrationDate: currentDate.format(DATE_FORMAT),
-                        created: currentDate.format(DATE_TIME_FORMAT),
-                        updated: currentDate.format(DATE_TIME_FORMAT)
+                        registrationDate: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate,
-                        created: currentDate,
-                        updated: currentDate
+                        registrationDate: currentDate
                     },
                     returnedFromService
                 );
@@ -108,21 +97,14 @@ describe('Service Tests', () => {
                         phone: 'BBBBBB',
                         email: 'BBBBBB',
                         zip: 'BBBBBB',
-                        manNumber: 1,
-                        deceased: true,
-                        created: currentDate.format(DATE_TIME_FORMAT),
-                        updated: currentDate.format(DATE_TIME_FORMAT),
-                        isActive: true,
-                        altContactInfo: 'BBBBBB'
+                        mANNumber: 1
                     },
                     elemDefault
                 );
 
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate,
-                        created: currentDate,
-                        updated: currentDate
+                        registrationDate: currentDate
                     },
                     returnedFromService
                 );
@@ -149,20 +131,13 @@ describe('Service Tests', () => {
                         phone: 'BBBBBB',
                         email: 'BBBBBB',
                         zip: 'BBBBBB',
-                        manNumber: 1,
-                        deceased: true,
-                        created: currentDate.format(DATE_TIME_FORMAT),
-                        updated: currentDate.format(DATE_TIME_FORMAT),
-                        isActive: true,
-                        altContactInfo: 'BBBBBB'
+                        mANNumber: 1
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate,
-                        created: currentDate,
-                        updated: currentDate
+                        registrationDate: currentDate
                     },
                     returnedFromService
                 );

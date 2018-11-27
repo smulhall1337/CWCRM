@@ -38,13 +38,7 @@ describe('Action e2e test', () => {
         const nbButtonsBeforeCreate = await actionComponentsPage.countDeleteButtons();
 
         await actionComponentsPage.clickOnCreateButton();
-        await promise.all([
-            actionUpdatePage.setDueDateInput('2000-12-31'),
-            actionUpdatePage.assignedToSelectLastOption(),
-            actionUpdatePage.participantSelectLastOption(),
-            actionUpdatePage.prioritySelectLastOption()
-        ]);
-        expect(await actionUpdatePage.getDueDateInput()).to.eq('2000-12-31');
+        await promise.all([actionUpdatePage.userSelectLastOption(), actionUpdatePage.participantSelectLastOption()]);
         await actionUpdatePage.save();
         expect(await actionUpdatePage.getSaveButton().isPresent()).to.be.false;
 

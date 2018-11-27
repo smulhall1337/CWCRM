@@ -5,26 +5,14 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="cwcrmApp.action.dueDate">Due Date</span></dt>
+                <dt><span jhiTranslate="cwcrmApp.action.user">User</span></dt>
                 <dd>
-                    <span>{{action.dueDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.action.assignedTo">Assigned To</span></dt>
-                <dd>
-                    <div *ngIf="action.assignedToId">
-                        <a [routerLink]="['/support-coordinator', action.assignedToId, 'view']">{{action.assignedToFirstName}}</a>
-                    </div>
+                    {{action.userId}}
                 </dd>
                 <dt><span jhiTranslate="cwcrmApp.action.participant">Participant</span></dt>
                 <dd>
                     <div *ngIf="action.participantId">
-                        <a [routerLink]="['/participant', action.participantId, 'view']">{{action.participantFirstName}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.action.priority">Priority</span></dt>
-                <dd>
-                    <div *ngIf="action.priorityId">
-                        <a [routerLink]="['/priority', action.priorityId, 'view']">{{action.priorityName}}</a>
+                        <a [routerLink]="['/participant', action.participantId, 'view']">{{action.participantId}}</a>
                     </div>
                 </dd>
             </dl>

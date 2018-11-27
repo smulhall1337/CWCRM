@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -26,17 +25,11 @@ public class Action implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "due_date")
-    private LocalDate dueDate;
-
     @OneToOne    @JoinColumn(unique = true)
-    private SupportCoordinator assignedTo;
+    private User user;
 
     @OneToOne    @JoinColumn(unique = true)
     private Participant participant;
-
-    @OneToOne    @JoinColumn(unique = true)
-    private Priority priority;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -47,30 +40,17 @@ public class Action implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
+    public User getUser() {
+        return user;
     }
 
-    public Action dueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
+    public Action user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public SupportCoordinator getAssignedTo() {
-        return assignedTo;
-    }
-
-    public Action assignedTo(SupportCoordinator supportCoordinator) {
-        this.assignedTo = supportCoordinator;
-        return this;
-    }
-
-    public void setAssignedTo(SupportCoordinator supportCoordinator) {
-        this.assignedTo = supportCoordinator;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Participant getParticipant() {
@@ -84,19 +64,6 @@ public class Action implements Serializable {
 
     public void setParticipant(Participant participant) {
         this.participant = participant;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public Action priority(Priority priority) {
-        this.priority = priority;
-        return this;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -124,7 +91,6 @@ public class Action implements Serializable {
     public String toString() {
         return "Action{" +
             "id=" + getId() +
-            ", dueDate='" + getDueDate() + "'" +
             "}";
     }
 }

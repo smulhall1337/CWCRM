@@ -26,23 +26,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="waiver"/>
 
-        <addForeignKeyConstraint baseColumnNames="mco_id"
-                                 baseTableName="participant"
-                                 constraintName="fk_participant_mco_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="mco"/>
-
         <addForeignKeyConstraint baseColumnNames="support_coordinator_id"
                                  baseTableName="participant"
                                  constraintName="fk_participant_support_coordinator_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="support_coordinator"/>
-
-        <addForeignKeyConstraint baseColumnNames="primary_physician_id"
-                                 baseTableName="participant"
-                                 constraintName="fk_participant_primary_physician_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="physician"/>
+                                 referencedTableName="jhi_user"/>
 
     </changeSet>
 </databaseChangeLog>

@@ -53,29 +53,9 @@
                 <dd>
                     <span>{{participant.zip}}</span>
                 </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.manNumber">Man Number</span></dt>
+                <dt><span jhiTranslate="cwcrmApp.participant.mANNumber">M AN Number</span></dt>
                 <dd>
-                    <span>{{participant.manNumber}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.deceased">Deceased</span></dt>
-                <dd>
-                    <span>{{participant.deceased}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.created">Created</span></dt>
-                <dd>
-                    <span>{{participant.created}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.updated">Updated</span></dt>
-                <dd>
-                    <span>{{participant.updated}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.isActive">Is Active</span></dt>
-                <dd>
-                    <span>{{participant.isActive}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.altContactInfo">Alt Contact Info</span></dt>
-                <dd>
-                    <span>{{participant.altContactInfo}}</span>
+                    <span>{{participant.mANNumber}}</span>
                 </dd>
                 <dt><span jhiTranslate="cwcrmApp.participant.contactStatus">Contact Status</span></dt>
                 <dd>
@@ -95,23 +75,9 @@
                         <a [routerLink]="['/waiver', participant.waiverId, 'view']">{{participant.waiverName}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.mco">Mco</span></dt>
-                <dd>
-                    <div *ngIf="participant.mcoId">
-                        <a [routerLink]="['/mco', participant.mcoId, 'view']">{{participant.mcoName}}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="cwcrmApp.participant.supportCoordinator">Support Coordinator</span></dt>
                 <dd>
-                    <div *ngIf="participant.supportCoordinatorId">
-                        <a [routerLink]="['/support-coordinator', participant.supportCoordinatorId, 'view']">{{participant.supportCoordinatorFirstName}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.primaryPhysician">Primary Physician</span></dt>
-                <dd>
-                    <div *ngIf="participant.primaryPhysicianId">
-                        <a [routerLink]="['/physician', participant.primaryPhysicianId, 'view']">{{participant.primaryPhysicianFirstName}}</a>
-                    </div>
+                    {{participant.supportCoordinatorId}}
                 </dd>
             </dl>
 

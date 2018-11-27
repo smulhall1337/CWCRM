@@ -83,16 +83,11 @@ public class ContactStatusResource {
     /**
      * GET  /contact-statuses : get all the contactStatuses.
      *
-     * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of contactStatuses in body
      */
     @GetMapping("/contact-statuses")
     @Timed
-    public List<ContactStatusDTO> getAllContactStatuses(@RequestParam(required = false) String filter) {
-        if ("participant-is-null".equals(filter)) {
-            log.debug("REST request to get all ContactStatuss where participant is null");
-            return contactStatusService.findAllWhereParticipantIsNull();
-        }
+    public List<ContactStatusDTO> getAllContactStatuses() {
         log.debug("REST request to get all ContactStatuses");
         return contactStatusService.findAll();
     }

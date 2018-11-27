@@ -3,8 +3,6 @@ package com.cedarwoods.crm.web.rest;
 import com.cedarwoods.crm.CwcrmApp;
 
 import com.cedarwoods.crm.domain.Participant;
-import com.cedarwoods.crm.domain.ContactSubStatus;
-import com.cedarwoods.crm.domain.Waiver;
 import com.cedarwoods.crm.repository.ParticipantRepository;
 import com.cedarwoods.crm.repository.search.ParticipantSearchRepository;
 import com.cedarwoods.crm.service.ParticipantService;
@@ -27,19 +25,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
 import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 
 
-import static com.cedarwoods.crm.web.rest.TestUtil.sameInstant;
 import static com.cedarwoods.crm.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
@@ -93,23 +86,8 @@ public class ParticipantResourceIntTest {
     private static final String DEFAULT_ZIP = "AAAAAAAAAA";
     private static final String UPDATED_ZIP = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_MAN_NUMBER = 1L;
-    private static final Long UPDATED_MAN_NUMBER = 2L;
-
-    private static final Boolean DEFAULT_DECEASED = false;
-    private static final Boolean UPDATED_DECEASED = true;
-
-    private static final ZonedDateTime DEFAULT_CREATED = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_CREATED = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_UPDATED = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_UPDATED = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final Boolean DEFAULT_IS_ACTIVE = false;
-    private static final Boolean UPDATED_IS_ACTIVE = true;
-
-    private static final String DEFAULT_ALT_CONTACT_INFO = "AAAAAAAAAA";
-    private static final String UPDATED_ALT_CONTACT_INFO = "BBBBBBBBBB";
+    private static final Long DEFAULT_M_AN_NUMBER = 1L;
+    private static final Long UPDATED_M_AN_NUMBER = 2L;
 
     @Autowired
     private ParticipantRepository participantRepository;
@@ -175,22 +153,7 @@ public class ParticipantResourceIntTest {
             .phone(DEFAULT_PHONE)
             .email(DEFAULT_EMAIL)
             .zip(DEFAULT_ZIP)
-            .manNumber(DEFAULT_MAN_NUMBER)
-            .deceased(DEFAULT_DECEASED)
-            .created(DEFAULT_CREATED)
-            .updated(DEFAULT_UPDATED)
-            .isActive(DEFAULT_IS_ACTIVE)
-            .altContactInfo(DEFAULT_ALT_CONTACT_INFO);
-        // Add required entity
-        ContactSubStatus contactSubStatus = ContactSubStatusResourceIntTest.createEntity(em);
-        em.persist(contactSubStatus);
-        em.flush();
-        participant.setContactSubStatus(contactSubStatus);
-        // Add required entity
-        Waiver waiver = WaiverResourceIntTest.createEntity(em);
-        em.persist(waiver);
-        em.flush();
-        participant.setWaiver(waiver);
+            .mANNumber(DEFAULT_M_AN_NUMBER);
         return participant;
     }
 
@@ -227,12 +190,7 @@ public class ParticipantResourceIntTest {
         assertThat(testParticipant.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testParticipant.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testParticipant.getZip()).isEqualTo(DEFAULT_ZIP);
-        assertThat(testParticipant.getManNumber()).isEqualTo(DEFAULT_MAN_NUMBER);
-        assertThat(testParticipant.isDeceased()).isEqualTo(DEFAULT_DECEASED);
-        assertThat(testParticipant.getCreated()).isEqualTo(DEFAULT_CREATED);
-        assertThat(testParticipant.getUpdated()).isEqualTo(DEFAULT_UPDATED);
-        assertThat(testParticipant.isIsActive()).isEqualTo(DEFAULT_IS_ACTIVE);
-        assertThat(testParticipant.getAltContactInfo()).isEqualTo(DEFAULT_ALT_CONTACT_INFO);
+        assertThat(testParticipant.getmANNumber()).isEqualTo(DEFAULT_M_AN_NUMBER);
 
         // Validate the Participant in Elasticsearch
         verify(mockParticipantSearchRepository, times(1)).save(testParticipant);
@@ -322,12 +280,7 @@ public class ParticipantResourceIntTest {
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP.toString())))
-            .andExpect(jsonPath("$.[*].manNumber").value(hasItem(DEFAULT_MAN_NUMBER.intValue())))
-            .andExpect(jsonPath("$.[*].deceased").value(hasItem(DEFAULT_DECEASED.booleanValue())))
-            .andExpect(jsonPath("$.[*].created").value(hasItem(sameInstant(DEFAULT_CREATED))))
-            .andExpect(jsonPath("$.[*].updated").value(hasItem(sameInstant(DEFAULT_UPDATED))))
-            .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())))
-            .andExpect(jsonPath("$.[*].altContactInfo").value(hasItem(DEFAULT_ALT_CONTACT_INFO.toString())));
+            .andExpect(jsonPath("$.[*].mANNumber").value(hasItem(DEFAULT_M_AN_NUMBER.intValue())));
     }
     
     @Test
@@ -353,12 +306,7 @@ public class ParticipantResourceIntTest {
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.zip").value(DEFAULT_ZIP.toString()))
-            .andExpect(jsonPath("$.manNumber").value(DEFAULT_MAN_NUMBER.intValue()))
-            .andExpect(jsonPath("$.deceased").value(DEFAULT_DECEASED.booleanValue()))
-            .andExpect(jsonPath("$.created").value(sameInstant(DEFAULT_CREATED)))
-            .andExpect(jsonPath("$.updated").value(sameInstant(DEFAULT_UPDATED)))
-            .andExpect(jsonPath("$.isActive").value(DEFAULT_IS_ACTIVE.booleanValue()))
-            .andExpect(jsonPath("$.altContactInfo").value(DEFAULT_ALT_CONTACT_INFO.toString()));
+            .andExpect(jsonPath("$.mANNumber").value(DEFAULT_M_AN_NUMBER.intValue()));
     }
 
     @Test
@@ -394,12 +342,7 @@ public class ParticipantResourceIntTest {
             .phone(UPDATED_PHONE)
             .email(UPDATED_EMAIL)
             .zip(UPDATED_ZIP)
-            .manNumber(UPDATED_MAN_NUMBER)
-            .deceased(UPDATED_DECEASED)
-            .created(UPDATED_CREATED)
-            .updated(UPDATED_UPDATED)
-            .isActive(UPDATED_IS_ACTIVE)
-            .altContactInfo(UPDATED_ALT_CONTACT_INFO);
+            .mANNumber(UPDATED_M_AN_NUMBER);
         ParticipantDTO participantDTO = participantMapper.toDto(updatedParticipant);
 
         restParticipantMockMvc.perform(put("/api/participants")
@@ -423,12 +366,7 @@ public class ParticipantResourceIntTest {
         assertThat(testParticipant.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testParticipant.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testParticipant.getZip()).isEqualTo(UPDATED_ZIP);
-        assertThat(testParticipant.getManNumber()).isEqualTo(UPDATED_MAN_NUMBER);
-        assertThat(testParticipant.isDeceased()).isEqualTo(UPDATED_DECEASED);
-        assertThat(testParticipant.getCreated()).isEqualTo(UPDATED_CREATED);
-        assertThat(testParticipant.getUpdated()).isEqualTo(UPDATED_UPDATED);
-        assertThat(testParticipant.isIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
-        assertThat(testParticipant.getAltContactInfo()).isEqualTo(UPDATED_ALT_CONTACT_INFO);
+        assertThat(testParticipant.getmANNumber()).isEqualTo(UPDATED_M_AN_NUMBER);
 
         // Validate the Participant in Elasticsearch
         verify(mockParticipantSearchRepository, times(1)).save(testParticipant);
@@ -501,12 +439,7 @@ public class ParticipantResourceIntTest {
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP)))
-            .andExpect(jsonPath("$.[*].manNumber").value(hasItem(DEFAULT_MAN_NUMBER.intValue())))
-            .andExpect(jsonPath("$.[*].deceased").value(hasItem(DEFAULT_DECEASED.booleanValue())))
-            .andExpect(jsonPath("$.[*].created").value(hasItem(sameInstant(DEFAULT_CREATED))))
-            .andExpect(jsonPath("$.[*].updated").value(hasItem(sameInstant(DEFAULT_UPDATED))))
-            .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())))
-            .andExpect(jsonPath("$.[*].altContactInfo").value(hasItem(DEFAULT_ALT_CONTACT_INFO.toString())));
+            .andExpect(jsonPath("$.[*].mANNumber").value(hasItem(DEFAULT_M_AN_NUMBER.intValue())));
     }
 
     @Test

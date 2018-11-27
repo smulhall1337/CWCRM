@@ -28,19 +28,14 @@
             "phone": "Phone",
             "email": "Email",
             "zip": "Zip",
-            "manNumber": "Man Number",
-            "deceased": "Deceased",
-            "created": "Created",
-            "updated": "Updated",
-            "isActive": "Is Active",
-            "altContactInfo": "Alt Contact Info",
+            "mANNumber": "M AN Number",
             "contactStatus": "Contact Status",
             "contactSubStatus": "Contact Sub Status",
             "waiver": "Waiver",
-            "mco": "Mco",
             "supportCoordinator": "Support Coordinator",
-            "primaryPhysician": "Primary Physician",
-            "referral": "Referral"
+            "action": "Action",
+            "contactHistory": "Contact History",
+            "participantNotes": "Participant Notes"
         }
     }
 }

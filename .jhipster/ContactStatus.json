@@ -9,15 +9,7 @@
             ]
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "participant",
-            "otherEntityName": "participant",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "contactStatus"
-        }
-    ],
+    "relationships": [],
     "changelogDate": "20181107220307",
     "entityTableName": "contact_status",
     "dto": "mapstruct",

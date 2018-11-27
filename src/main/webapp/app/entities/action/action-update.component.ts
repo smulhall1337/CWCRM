@@ -2,17 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
 
 import { IAction } from 'app/shared/model/action.model';
 import { ActionService } from './action.service';
-import { ISupportCoordinator } from 'app/shared/model/support-coordinator.model';
-import { SupportCoordinatorService } from 'app/entities/support-coordinator';
+import { IUser, UserService } from 'app/core';
 import { IParticipant } from 'app/shared/model/participant.model';
 import { ParticipantService } from 'app/entities/participant';
-import { IPriority } from 'app/shared/model/priority.model';
-import { PriorityService } from 'app/entities/priority';
 
 @Component({
     selector: 'jhi-action-update',
@@ -22,19 +18,15 @@ export class ActionUpdateComponent implements OnInit {
     action: IAction;
     isSaving: boolean;
 
-    assignedtos: ISupportCoordinator[];
+    users: IUser[];
 
     participants: IParticipant[];
-
-    priorities: IPriority[];
-    dueDateDp: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private actionService: ActionService,
-        private supportCoordinatorService: SupportCoordinatorService,
+        private userService: UserService,
         private participantService: ParticipantService,
-        private priorityService: PriorityService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -43,18 +35,9 @@ export class ActionUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ action }) => {
             this.action = action;
         });
-        this.supportCoordinatorService.query({ filter: 'action-is-null' }).subscribe(
-            (res: HttpResponse<ISupportCoordinator[]>) => {
-                if (!this.action.assignedToId) {
-                    this.assignedtos = res.body;
-                } else {
-                    this.supportCoordinatorService.find(this.action.assignedToId).subscribe(
-                        (subRes: HttpResponse<ISupportCoordinator>) => {
-                            this.assignedtos = [subRes.body].concat(res.body);
-                        },
-                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                    );
-                }
+        this.userService.query().subscribe(
+            (res: HttpResponse<IUser[]>) => {
+                this.users = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -66,21 +49,6 @@ export class ActionUpdateComponent implements OnInit {
                     this.participantService.find(this.action.participantId).subscribe(
                         (subRes: HttpResponse<IParticipant>) => {
                             this.participants = [subRes.body].concat(res.body);
-                        },
-                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                    );
-                }
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.priorityService.query({ filter: 'action-is-null' }).subscribe(
-            (res: HttpResponse<IPriority[]>) => {
-                if (!this.action.priorityId) {
-                    this.priorities = res.body;
-                } else {
-                    this.priorityService.find(this.action.priorityId).subscribe(
-                        (subRes: HttpResponse<IPriority>) => {
-                            this.priorities = [subRes.body].concat(res.body);
                         },
                         (subRes: HttpErrorResponse) => this.onError(subRes.message)
                     );
@@ -120,15 +88,11 @@ export class ActionUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackSupportCoordinatorById(index: number, item: ISupportCoordinator) {
+    trackUserById(index: number, item: IUser) {
         return item.id;
     }
 
     trackParticipantById(index: number, item: IParticipant) {
-        return item.id;
-    }
-
-    trackPriorityById(index: number, item: IPriority) {
         return item.id;
     }
 }

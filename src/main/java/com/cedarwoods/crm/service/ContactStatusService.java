@@ -24,12 +24,6 @@ public interface ContactStatusService {
      * @return the list of entities
      */
     List<ContactStatusDTO> findAll();
-    /**
-     * Get all the ContactStatusDTO where Participant is null.
-     *
-     * @return the list of entities
-     */
-    List<ContactStatusDTO> findAllWhereParticipantIsNull();
 
 
     /**

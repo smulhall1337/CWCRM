@@ -56,6 +56,11 @@ public class CacheConfiguration {
             cm.createCache(com.cedarwoods.crm.domain.MCO.class.getName(), jcacheConfiguration);
             cm.createCache(com.cedarwoods.crm.domain.Physician.class.getName(), jcacheConfiguration);
             cm.createCache(com.cedarwoods.crm.domain.EnrollmentAgency.class.getName(), jcacheConfiguration);
+            cm.createCache(com.cedarwoods.crm.domain.Participant.class.getName() + ".participantNotes", jcacheConfiguration);
+            cm.createCache(com.cedarwoods.crm.domain.ContactHistory.class.getName(), jcacheConfiguration);
+            cm.createCache(com.cedarwoods.crm.domain.ParticipantNotes.class.getName(), jcacheConfiguration);
+            cm.createCache(com.cedarwoods.crm.domain.ContactType.class.getName(), jcacheConfiguration);
+            cm.createCache(com.cedarwoods.crm.domain.ExtendedUser.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

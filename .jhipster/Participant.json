@@ -56,29 +56,8 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "manNumber",
+            "fieldName": "mANNumber",
             "fieldType": "Long"
-        },
-        {
-            "fieldName": "deceased",
-            "fieldType": "Boolean"
-        },
-        {
-            "fieldName": "created",
-            "fieldType": "ZonedDateTime"
-        },
-        {
-            "fieldName": "updated",
-            "fieldType": "ZonedDateTime"
-        },
-        {
-            "fieldName": "isActive",
-            "fieldType": "Boolean"
-        },
-        {
-            "fieldName": "altContactInfo",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text"
         }
     ],
     "relationships": [
@@ -92,7 +71,6 @@
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipValidateRules": "required",
             "relationshipName": "contactSubStatus",
             "otherEntityName": "contactSubStatus",
             "otherEntityField": "name",
@@ -101,7 +79,6 @@
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipValidateRules": "required",
             "relationshipName": "waiver",
             "otherEntityName": "waiver",
             "otherEntityField": "name",
@@ -109,33 +86,29 @@
             "otherEntityRelationshipName": "participant"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "mco",
-            "otherEntityName": "mCO",
-            "otherEntityField": "name",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "participant"
-        },
-        {
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "relationshipName": "supportCoordinator",
-            "otherEntityName": "supportCoordinator",
-            "otherEntityField": "firstName",
-            "ownerSide": true,
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "action",
+            "otherEntityName": "action",
+            "ownerSide": false,
             "otherEntityRelationshipName": "participant"
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "primaryPhysician",
-            "otherEntityName": "physician",
-            "otherEntityField": "firstName",
-            "ownerSide": true,
+            "relationshipName": "contactHistory",
+            "otherEntityName": "contactHistory",
+            "ownerSide": false,
             "otherEntityRelationshipName": "participant"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "referral",
-            "otherEntityName": "referral",
+            "relationshipName": "participantNotes",
+            "otherEntityName": "participantNotes",
             "otherEntityRelationshipName": "participant"
         }
     ],

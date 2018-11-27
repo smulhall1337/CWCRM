@@ -11,30 +11,31 @@ entity Participant {
     phone String
     email String
     zip String
-    manNumber Long
-    deceased Boolean
-    created ZonedDateTime 
-    updated ZonedDateTime
-    isActive Boolean
-    altContactInfo TextBlob
+    mANNumber Long
 }
 
-entity Referral {
-	name String 
+entity ContactHistory{
+	date LocalDate
+    notes TextBlob
+}
+
+entity ParticipantNotes{
+	notes TextBlob
+}
+
+entity ContactType{
+	name String required
+}
+
+entity ExtendedUser {
+
 }
 
 entity Action {
-	dueDate LocalDate
+
 }
 
-entity SupportCoordinator {
-    firstName String required
-    lastName String required
-    phone String required
-    emailId String required
-    dateHired LocalDate required
-    userName String required
-}
+
 
 entity Waiver{
 	name String required
@@ -60,56 +61,34 @@ entity ContactSubStatus{
 	name String required
 }
 
-entity Priority {
-	name String required
-}
-
-entity MCO {
-	name String required
-}
-
-entity Physician { 
-	firstName String
-    lastName String
-    phone String
-    fax String
-    address String
-    notes TextBlob
-    disability String
-}
-
-entity EnrollmentAgency {
-	name String
-    office String
-    recordNumber String
-    phone String
-}
-
-
-
 relationship OneToOne {
-	Participant to ContactStatus,
-	Participant{contactSubStatus(name) required} to ContactSubStatus,
-	Participant{waiver(name) required} to Waiver,
-    Participant{mco(name)} to MCO,
-    Participant{supportCoordinator(firstName)} to SupportCoordinator,
-    Participant{primaryPhysician(firstName)} to Physician,
-	SupportCoordinator{department(name) required} to Department,
-	SupportCoordinator{employeeType(name) required} to EmployeeType,
-	SupportCoordinator{employeeSubType(name) required} to EmployeeSubType,
-    Action{assignedTo(firstName)} to SupportCoordinator,
-    Action{participant(firstName)} to Participant,
-    Action{priority(name)} to Priority
+	Participant{contactStatus} to ContactStatus,
+	Participant{contactSubStatus(name) } to ContactSubStatus,
+	Participant{waiver(name) } to Waiver,
+
+	ExtendedUser{department(name) } to Department,
+	ExtendedUser{employeeType(name) } to EmployeeType,
+	ExtendedUser{employeeSubType(name) } to EmployeeSubType,
+    ExtendedUser to User
+
+    Action to User,
+	Action to Participant,
+
+    ContactHistory to Participant
+    ContactHistory to User
+    ContactHistory{contactType(name)} to ContactType
 }
 
-relationship OneToMany {
-    Participant{referral(name)} to Referral
+relationship ManyToOne {
+	Participant{supportCoordinator} to User
+   	ParticipantNotes to Participant
+    ParticipantNotes to User
 }
 
 
 
 // Set pagination options
-paginate Participant, SupportCoordinator with infinite-scroll
+paginate Participant with infinite-scroll
 
 
 dto * with mapstruct

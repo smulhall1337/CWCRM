@@ -1,6 +1,7 @@
 package com.cedarwoods.crm.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -10,7 +11,6 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -69,48 +69,33 @@ public class Participant implements Serializable {
     @Column(name = "zip")
     private String zip;
 
-    @Column(name = "man_number")
-    private Long manNumber;
-
-    @Column(name = "deceased")
-    private Boolean deceased;
-
-    @Column(name = "created")
-    private ZonedDateTime created;
-
-    @Column(name = "updated")
-    private ZonedDateTime updated;
-
-    @Column(name = "is_active")
-    private Boolean isActive;
-
-    @Lob
-    @Column(name = "alt_contact_info")
-    private String altContactInfo;
+    @Column(name = "m_an_number")
+    private Long mANNumber;
 
     @OneToOne    @JoinColumn(unique = true)
     private ContactStatus contactStatus;
 
-    @OneToOne(optional = false)    @NotNull
-    @JoinColumn(unique = true)
+    @OneToOne    @JoinColumn(unique = true)
     private ContactSubStatus contactSubStatus;
 
-    @OneToOne(optional = false)    @NotNull
-    @JoinColumn(unique = true)
+    @OneToOne    @JoinColumn(unique = true)
     private Waiver waiver;
 
-    @OneToOne    @JoinColumn(unique = true)
-    private MCO mco;
+    @ManyToOne
+    @JsonIgnoreProperties("")
+    private User supportCoordinator;
 
-    @OneToOne    @JoinColumn(unique = true)
-    private SupportCoordinator supportCoordinator;
+    @OneToOne(mappedBy = "participant")
+    @JsonIgnore
+    private Action action;
 
-    @OneToOne    @JoinColumn(unique = true)
-    private Physician primaryPhysician;
+    @OneToOne(mappedBy = "participant")
+    @JsonIgnore
+    private ContactHistory contactHistory;
 
     @OneToMany(mappedBy = "participant")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Referral> referrals = new HashSet<>();
+    private Set<ParticipantNotes> participantNotes = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -276,82 +261,17 @@ public class Participant implements Serializable {
         this.zip = zip;
     }
 
-    public Long getManNumber() {
-        return manNumber;
+    public Long getmANNumber() {
+        return mANNumber;
     }
 
-    public Participant manNumber(Long manNumber) {
-        this.manNumber = manNumber;
+    public Participant mANNumber(Long mANNumber) {
+        this.mANNumber = mANNumber;
         return this;
     }
 
-    public void setManNumber(Long manNumber) {
-        this.manNumber = manNumber;
-    }
-
-    public Boolean isDeceased() {
-        return deceased;
-    }
-
-    public Participant deceased(Boolean deceased) {
-        this.deceased = deceased;
-        return this;
-    }
-
-    public void setDeceased(Boolean deceased) {
-        this.deceased = deceased;
-    }
-
-    public ZonedDateTime getCreated() {
-        return created;
-    }
-
-    public Participant created(ZonedDateTime created) {
-        this.created = created;
-        return this;
-    }
-
-    public void setCreated(ZonedDateTime created) {
-        this.created = created;
-    }
-
-    public ZonedDateTime getUpdated() {
-        return updated;
-    }
-
-    public Participant updated(ZonedDateTime updated) {
-        this.updated = updated;
-        return this;
-    }
-
-    public void setUpdated(ZonedDateTime updated) {
-        this.updated = updated;
-    }
-
-    public Boolean isIsActive() {
-        return isActive;
-    }
-
-    public Participant isActive(Boolean isActive) {
-        this.isActive = isActive;
-        return this;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    public String getAltContactInfo() {
-        return altContactInfo;
-    }
-
-    public Participant altContactInfo(String altContactInfo) {
-        this.altContactInfo = altContactInfo;
-        return this;
-    }
-
-    public void setAltContactInfo(String altContactInfo) {
-        this.altContactInfo = altContactInfo;
+    public void setmANNumber(Long mANNumber) {
+        this.mANNumber = mANNumber;
     }
 
     public ContactStatus getContactStatus() {
@@ -393,68 +313,68 @@ public class Participant implements Serializable {
         this.waiver = waiver;
     }
 
-    public MCO getMco() {
-        return mco;
-    }
-
-    public Participant mco(MCO mCO) {
-        this.mco = mCO;
-        return this;
-    }
-
-    public void setMco(MCO mCO) {
-        this.mco = mCO;
-    }
-
-    public SupportCoordinator getSupportCoordinator() {
+    public User getSupportCoordinator() {
         return supportCoordinator;
     }
 
-    public Participant supportCoordinator(SupportCoordinator supportCoordinator) {
-        this.supportCoordinator = supportCoordinator;
+    public Participant supportCoordinator(User user) {
+        this.supportCoordinator = user;
         return this;
     }
 
-    public void setSupportCoordinator(SupportCoordinator supportCoordinator) {
-        this.supportCoordinator = supportCoordinator;
+    public void setSupportCoordinator(User user) {
+        this.supportCoordinator = user;
     }
 
-    public Physician getPrimaryPhysician() {
-        return primaryPhysician;
+    public Action getAction() {
+        return action;
     }
 
-    public Participant primaryPhysician(Physician physician) {
-        this.primaryPhysician = physician;
+    public Participant action(Action action) {
+        this.action = action;
         return this;
     }
 
-    public void setPrimaryPhysician(Physician physician) {
-        this.primaryPhysician = physician;
+    public void setAction(Action action) {
+        this.action = action;
     }
 
-    public Set<Referral> getReferrals() {
-        return referrals;
+    public ContactHistory getContactHistory() {
+        return contactHistory;
     }
 
-    public Participant referrals(Set<Referral> referrals) {
-        this.referrals = referrals;
+    public Participant contactHistory(ContactHistory contactHistory) {
+        this.contactHistory = contactHistory;
         return this;
     }
 
-    public Participant addReferral(Referral referral) {
-        this.referrals.add(referral);
-        referral.setParticipant(this);
+    public void setContactHistory(ContactHistory contactHistory) {
+        this.contactHistory = contactHistory;
+    }
+
+    public Set<ParticipantNotes> getParticipantNotes() {
+        return participantNotes;
+    }
+
+    public Participant participantNotes(Set<ParticipantNotes> participantNotes) {
+        this.participantNotes = participantNotes;
         return this;
     }
 
-    public Participant removeReferral(Referral referral) {
-        this.referrals.remove(referral);
-        referral.setParticipant(null);
+    public Participant addParticipantNotes(ParticipantNotes participantNotes) {
+        this.participantNotes.add(participantNotes);
+        participantNotes.setParticipant(this);
         return this;
     }
 
-    public void setReferrals(Set<Referral> referrals) {
-        this.referrals = referrals;
+    public Participant removeParticipantNotes(ParticipantNotes participantNotes) {
+        this.participantNotes.remove(participantNotes);
+        participantNotes.setParticipant(null);
+        return this;
+    }
+
+    public void setParticipantNotes(Set<ParticipantNotes> participantNotes) {
+        this.participantNotes = participantNotes;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -494,12 +414,7 @@ public class Participant implements Serializable {
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
             ", zip='" + getZip() + "'" +
-            ", manNumber=" + getManNumber() +
-            ", deceased='" + isDeceased() + "'" +
-            ", created='" + getCreated() + "'" +
-            ", updated='" + getUpdated() + "'" +
-            ", isActive='" + isIsActive() + "'" +
-            ", altContactInfo='" + getAltContactInfo() + "'" +
+            ", mANNumber=" + getmANNumber() +
             "}";
     }
 }

@@ -69,46 +69,22 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="man_number" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="deceased" type="boolean">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="created" type="datetime">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="updated" type="datetime">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="is_active" type="boolean">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="alt_contact_info" type="clob">
+            <column name="m_an_number" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="contact_status_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_contact_status_id" />
             </column>            <column name="contact_sub_status_id" type="bigint">
-                <constraints unique="true" nullable="false" uniqueConstraintName="ux_participant_contact_sub_status_id" />
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_contact_sub_status_id" />
             </column>            <column name="waiver_id" type="bigint">
-                <constraints unique="true" nullable="false" uniqueConstraintName="ux_participant_waiver_id" />
-            </column>            <column name="mco_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_mco_id" />
-            </column>            <column name="support_coordinator_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_support_coordinator_id" />
-            </column>            <column name="primary_physician_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_primary_physician_id" />
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_waiver_id" />
             </column>
+            <column name="support_coordinator_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="participant" columnName="created" columnDataType="datetime"/>
-        <dropDefaultValue tableName="participant" columnName="updated" columnDataType="datetime"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

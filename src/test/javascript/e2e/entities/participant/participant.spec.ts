@@ -1,5 +1,5 @@
 /* tslint:disable no-unused-expression */
-import { browser, ExpectedConditions as ec, protractor, promise } from 'protractor';
+import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 import { ParticipantComponentsPage, ParticipantDeleteDialog, ParticipantUpdatePage } from './participant.page-object';
@@ -11,7 +11,7 @@ describe('Participant e2e test', () => {
     let signInPage: SignInPage;
     let participantUpdatePage: ParticipantUpdatePage;
     let participantComponentsPage: ParticipantComponentsPage;
-    /*let participantDeleteDialog: ParticipantDeleteDialog;*/
+    let participantDeleteDialog: ParticipantDeleteDialog;
 
     before(async () => {
         await browser.get('/');
@@ -34,7 +34,7 @@ describe('Participant e2e test', () => {
         await participantUpdatePage.cancel();
     });
 
-    /* it('should create and save Participants', async () => {
+    it('should create and save Participants', async () => {
         const nbButtonsBeforeCreate = await participantComponentsPage.countDeleteButtons();
 
         await participantComponentsPage.clickOnCreateButton();
@@ -51,16 +51,11 @@ describe('Participant e2e test', () => {
             participantUpdatePage.setPhoneInput('phone'),
             participantUpdatePage.setEmailInput('email'),
             participantUpdatePage.setZipInput('zip'),
-            participantUpdatePage.setManNumberInput('5'),
-            participantUpdatePage.setCreatedInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
-            participantUpdatePage.setUpdatedInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
-            participantUpdatePage.setAltContactInfoInput('altContactInfo'),
+            participantUpdatePage.setMANNumberInput('5'),
             participantUpdatePage.contactStatusSelectLastOption(),
             participantUpdatePage.contactSubStatusSelectLastOption(),
             participantUpdatePage.waiverSelectLastOption(),
-            participantUpdatePage.mcoSelectLastOption(),
-            participantUpdatePage.supportCoordinatorSelectLastOption(),
-            participantUpdatePage.primaryPhysicianSelectLastOption(),
+            participantUpdatePage.supportCoordinatorSelectLastOption()
         ]);
         expect(await participantUpdatePage.getFirstNameInput()).to.eq('firstName');
         expect(await participantUpdatePage.getLastNameInput()).to.eq('lastName');
@@ -74,43 +69,23 @@ describe('Participant e2e test', () => {
         expect(await participantUpdatePage.getPhoneInput()).to.eq('phone');
         expect(await participantUpdatePage.getEmailInput()).to.eq('email');
         expect(await participantUpdatePage.getZipInput()).to.eq('zip');
-        expect(await participantUpdatePage.getManNumberInput()).to.eq('5');
-        const selectedDeceased = participantUpdatePage.getDeceasedInput();
-        if (await selectedDeceased.isSelected()) {
-            await participantUpdatePage.getDeceasedInput().click();
-            expect(await participantUpdatePage.getDeceasedInput().isSelected()).to.be.false;
-        } else {
-            await participantUpdatePage.getDeceasedInput().click();
-            expect(await participantUpdatePage.getDeceasedInput().isSelected()).to.be.true;
-        }
-        expect(await participantUpdatePage.getCreatedInput()).to.contain('2001-01-01T02:30');
-        expect(await participantUpdatePage.getUpdatedInput()).to.contain('2001-01-01T02:30');
-        const selectedIsActive = participantUpdatePage.getIsActiveInput();
-        if (await selectedIsActive.isSelected()) {
-            await participantUpdatePage.getIsActiveInput().click();
-            expect(await participantUpdatePage.getIsActiveInput().isSelected()).to.be.false;
-        } else {
-            await participantUpdatePage.getIsActiveInput().click();
-            expect(await participantUpdatePage.getIsActiveInput().isSelected()).to.be.true;
-        }
-        expect(await participantUpdatePage.getAltContactInfoInput()).to.eq('altContactInfo');
+        expect(await participantUpdatePage.getMANNumberInput()).to.eq('5');
         await participantUpdatePage.save();
         expect(await participantUpdatePage.getSaveButton().isPresent()).to.be.false;
 
         expect(await participantComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1);
-    });*/
+    });
 
-    /* it('should delete last Participant', async () => {
+    it('should delete last Participant', async () => {
         const nbButtonsBeforeDelete = await participantComponentsPage.countDeleteButtons();
         await participantComponentsPage.clickOnLastDeleteButton();
 
         participantDeleteDialog = new ParticipantDeleteDialog();
-        expect(await participantDeleteDialog.getDialogTitle())
-            .to.eq('cwcrmApp.participant.delete.question');
+        expect(await participantDeleteDialog.getDialogTitle()).to.eq('cwcrmApp.participant.delete.question');
         await participantDeleteDialog.clickOnConfirmButton();
 
         expect(await participantComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-    });*/
+    });
 
     after(async () => {
         await navBarPage.autoSignOut();

@@ -30,30 +30,20 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="cwcrmApp.action.dueDate">Due Date</span></th>
-            <th><span jhiTranslate="cwcrmApp.action.assignedTo">Assigned To</span></th>
+            <th><span jhiTranslate="cwcrmApp.action.user">User</span></th>
             <th><span jhiTranslate="cwcrmApp.action.participant">Participant</span></th>
-            <th><span jhiTranslate="cwcrmApp.action.priority">Priority</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let action of actions ;trackBy: trackId">
                 <td><a [routerLink]="['/action', action.id, 'view' ]">{{action.id}}</a></td>
-                <td>{{action.dueDate | date:'mediumDate'}}</td>
                 <td>
-                    <div *ngIf="action.assignedToId">
-                        <a [routerLink]="['../support-coordinator', action.assignedToId , 'view' ]" >{{action.assignedToFirstName}}</a>
-                    </div>
+                    {{action.userId}}
                 </td>
                 <td>
                     <div *ngIf="action.participantId">
-                        <a [routerLink]="['../participant', action.participantId , 'view' ]" >{{action.participantFirstName}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="action.priorityId">
-                        <a [routerLink]="['../priority', action.priorityId , 'view' ]" >{{action.priorityName}}</a>
+                        <a [routerLink]="['../participant', action.participantId , 'view' ]" >{{action.participantId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

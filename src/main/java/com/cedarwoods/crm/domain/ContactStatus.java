@@ -1,6 +1,5 @@
 package com.cedarwoods.crm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -31,10 +30,6 @@ public class ContactStatus implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "contactStatus")
-    @JsonIgnore
-    private Participant participant;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -55,19 +50,6 @@ public class ContactStatus implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Participant getParticipant() {
-        return participant;
-    }
-
-    public ContactStatus participant(Participant participant) {
-        this.participant = participant;
-        return this;
-    }
-
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

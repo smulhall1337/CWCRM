@@ -38,18 +38,11 @@ export class ParticipantUpdatePage {
     phoneInput = element(by.id('field_phone'));
     emailInput = element(by.id('field_email'));
     zipInput = element(by.id('field_zip'));
-    manNumberInput = element(by.id('field_manNumber'));
-    deceasedInput = element(by.id('field_deceased'));
-    createdInput = element(by.id('field_created'));
-    updatedInput = element(by.id('field_updated'));
-    isActiveInput = element(by.id('field_isActive'));
-    altContactInfoInput = element(by.id('field_altContactInfo'));
+    mANNumberInput = element(by.id('field_mANNumber'));
     contactStatusSelect = element(by.id('field_contactStatus'));
     contactSubStatusSelect = element(by.id('field_contactSubStatus'));
     waiverSelect = element(by.id('field_waiver'));
-    mcoSelect = element(by.id('field_mco'));
     supportCoordinatorSelect = element(by.id('field_supportCoordinator'));
-    primaryPhysicianSelect = element(by.id('field_primaryPhysician'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -151,42 +144,12 @@ export class ParticipantUpdatePage {
         return this.zipInput.getAttribute('value');
     }
 
-    async setManNumberInput(manNumber) {
-        await this.manNumberInput.sendKeys(manNumber);
+    async setMANNumberInput(mANNumber) {
+        await this.mANNumberInput.sendKeys(mANNumber);
     }
 
-    async getManNumberInput() {
-        return this.manNumberInput.getAttribute('value');
-    }
-
-    getDeceasedInput() {
-        return this.deceasedInput;
-    }
-    async setCreatedInput(created) {
-        await this.createdInput.sendKeys(created);
-    }
-
-    async getCreatedInput() {
-        return this.createdInput.getAttribute('value');
-    }
-
-    async setUpdatedInput(updated) {
-        await this.updatedInput.sendKeys(updated);
-    }
-
-    async getUpdatedInput() {
-        return this.updatedInput.getAttribute('value');
-    }
-
-    getIsActiveInput() {
-        return this.isActiveInput;
-    }
-    async setAltContactInfoInput(altContactInfo) {
-        await this.altContactInfoInput.sendKeys(altContactInfo);
-    }
-
-    async getAltContactInfoInput() {
-        return this.altContactInfoInput.getAttribute('value');
+    async getMANNumberInput() {
+        return this.mANNumberInput.getAttribute('value');
     }
 
     async contactStatusSelectLastOption() {
@@ -246,25 +209,6 @@ export class ParticipantUpdatePage {
         return this.waiverSelect.element(by.css('option:checked')).getText();
     }
 
-    async mcoSelectLastOption() {
-        await this.mcoSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async mcoSelectOption(option) {
-        await this.mcoSelect.sendKeys(option);
-    }
-
-    getMcoSelect(): ElementFinder {
-        return this.mcoSelect;
-    }
-
-    async getMcoSelectedOption() {
-        return this.mcoSelect.element(by.css('option:checked')).getText();
-    }
-
     async supportCoordinatorSelectLastOption() {
         await this.supportCoordinatorSelect
             .all(by.tagName('option'))
@@ -282,25 +226,6 @@ export class ParticipantUpdatePage {
 
     async getSupportCoordinatorSelectedOption() {
         return this.supportCoordinatorSelect.element(by.css('option:checked')).getText();
-    }
-
-    async primaryPhysicianSelectLastOption() {
-        await this.primaryPhysicianSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async primaryPhysicianSelectOption(option) {
-        await this.primaryPhysicianSelect.sendKeys(option);
-    }
-
-    getPrimaryPhysicianSelect(): ElementFinder {
-        return this.primaryPhysicianSelect;
-    }
-
-    async getPrimaryPhysicianSelectedOption() {
-        return this.primaryPhysicianSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

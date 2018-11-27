@@ -14,7 +14,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -70,6 +74,36 @@ public class ParticipantServiceImpl implements ParticipantService {
             .map(participantMapper::toDto);
     }
 
+
+
+    /**
+     *  get all the participants where Action is null.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<ParticipantDTO> findAllWhereActionIsNull() {
+        log.debug("Request to get all participants where Action is null");
+        return StreamSupport
+            .stream(participantRepository.findAll().spliterator(), false)
+            .filter(participant -> participant.getAction() == null)
+            .map(participantMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+
+    /**
+     *  get all the participants where ContactHistory is null.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<ParticipantDTO> findAllWhereContactHistoryIsNull() {
+        log.debug("Request to get all participants where ContactHistory is null");
+        return StreamSupport
+            .stream(participantRepository.findAll().spliterator(), false)
+            .filter(participant -> participant.getContactHistory() == null)
+            .map(participantMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
 
     /**
      * Get one participant by id.

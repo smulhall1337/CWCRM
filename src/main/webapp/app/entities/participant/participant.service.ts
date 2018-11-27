@@ -62,9 +62,7 @@ export class ParticipantService {
             registrationDate:
                 participant.registrationDate != null && participant.registrationDate.isValid()
                     ? participant.registrationDate.format(DATE_FORMAT)
-                    : null,
-            created: participant.created != null && participant.created.isValid() ? participant.created.toJSON() : null,
-            updated: participant.updated != null && participant.updated.isValid() ? participant.updated.toJSON() : null
+                    : null
         });
         return copy;
     }
@@ -72,8 +70,6 @@ export class ParticipantService {
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
         if (res.body) {
             res.body.registrationDate = res.body.registrationDate != null ? moment(res.body.registrationDate) : null;
-            res.body.created = res.body.created != null ? moment(res.body.created) : null;
-            res.body.updated = res.body.updated != null ? moment(res.body.updated) : null;
         }
         return res;
     }
@@ -82,8 +78,6 @@ export class ParticipantService {
         if (res.body) {
             res.body.forEach((participant: IParticipant) => {
                 participant.registrationDate = participant.registrationDate != null ? moment(participant.registrationDate) : null;
-                participant.created = participant.created != null ? moment(participant.created) : null;
-                participant.updated = participant.updated != null ? moment(participant.updated) : null;
             });
         }
         return res;

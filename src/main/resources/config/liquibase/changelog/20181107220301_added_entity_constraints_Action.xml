@@ -8,23 +8,17 @@
     -->
     <changeSet id="20181107220301-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="assigned_to_id"
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="action"
-                                 constraintName="fk_action_assigned_to_id"
+                                 constraintName="fk_action_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="support_coordinator"/>
+                                 referencedTableName="jhi_user"/>
 
         <addForeignKeyConstraint baseColumnNames="participant_id"
                                  baseTableName="action"
                                  constraintName="fk_action_participant_id"
                                  referencedColumnNames="id"
                                  referencedTableName="participant"/>
-
-        <addForeignKeyConstraint baseColumnNames="priority_id"
-                                 baseTableName="action"
-                                 constraintName="fk_action_priority_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="priority"/>
 
     </changeSet>
 </databaseChangeLog>

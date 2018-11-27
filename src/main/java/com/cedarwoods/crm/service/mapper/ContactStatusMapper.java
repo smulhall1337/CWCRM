@@ -12,8 +12,6 @@ import org.mapstruct.*;
 public interface ContactStatusMapper extends EntityMapper<ContactStatusDTO, ContactStatus> {
 
 
-    @Mapping(target = "participant", ignore = true)
-    ContactStatus toEntity(ContactStatusDTO contactStatusDTO);
 
     default ContactStatus fromId(Long id) {
         if (id == null) {

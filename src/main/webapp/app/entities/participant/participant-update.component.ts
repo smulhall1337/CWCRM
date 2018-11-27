@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { IParticipant } from 'app/shared/model/participant.model';
 import { ParticipantService } from './participant.service';
@@ -14,12 +13,11 @@ import { IContactSubStatus } from 'app/shared/model/contact-sub-status.model';
 import { ContactSubStatusService } from 'app/entities/contact-sub-status';
 import { IWaiver } from 'app/shared/model/waiver.model';
 import { WaiverService } from 'app/entities/waiver';
-import { IMCO } from 'app/shared/model/mco.model';
-import { MCOService } from 'app/entities/mco';
-import { ISupportCoordinator } from 'app/shared/model/support-coordinator.model';
-import { SupportCoordinatorService } from 'app/entities/support-coordinator';
-import { IPhysician } from 'app/shared/model/physician.model';
-import { PhysicianService } from 'app/entities/physician';
+import { IUser, UserService } from 'app/core';
+import { IAction } from 'app/shared/model/action.model';
+import { ActionService } from 'app/entities/action';
+import { IContactHistory } from 'app/shared/model/contact-history.model';
+import { ContactHistoryService } from 'app/entities/contact-history';
 
 @Component({
     selector: 'jhi-participant-update',
@@ -35,25 +33,22 @@ export class ParticipantUpdateComponent implements OnInit {
 
     waivers: IWaiver[];
 
-    mcos: IMCO[];
+    users: IUser[];
 
-    supportcoordinators: ISupportCoordinator[];
+    actions: IAction[];
 
-    primaryphysicians: IPhysician[];
+    contacthistories: IContactHistory[];
     registrationDateDp: any;
-    created: string;
-    updated: string;
 
     constructor(
-        private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
         private participantService: ParticipantService,
         private contactStatusService: ContactStatusService,
         private contactSubStatusService: ContactSubStatusService,
         private waiverService: WaiverService,
-        private mCOService: MCOService,
-        private supportCoordinatorService: SupportCoordinatorService,
-        private physicianService: PhysicianService,
+        private userService: UserService,
+        private actionService: ActionService,
+        private contactHistoryService: ContactHistoryService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -61,8 +56,6 @@ export class ParticipantUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ participant }) => {
             this.participant = participant;
-            this.created = this.participant.created != null ? this.participant.created.format(DATE_TIME_FORMAT) : null;
-            this.updated = this.participant.updated != null ? this.participant.updated.format(DATE_TIME_FORMAT) : null;
         });
         this.contactStatusService.query({ filter: 'participant-is-null' }).subscribe(
             (res: HttpResponse<IContactStatus[]>) => {
@@ -109,63 +102,24 @@ export class ParticipantUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.mCOService.query({ filter: 'participant-is-null' }).subscribe(
-            (res: HttpResponse<IMCO[]>) => {
-                if (!this.participant.mcoId) {
-                    this.mcos = res.body;
-                } else {
-                    this.mCOService.find(this.participant.mcoId).subscribe(
-                        (subRes: HttpResponse<IMCO>) => {
-                            this.mcos = [subRes.body].concat(res.body);
-                        },
-                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                    );
-                }
+        this.userService.query().subscribe(
+            (res: HttpResponse<IUser[]>) => {
+                this.users = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.supportCoordinatorService.query({ filter: 'participant-is-null' }).subscribe(
-            (res: HttpResponse<ISupportCoordinator[]>) => {
-                if (!this.participant.supportCoordinatorId) {
-                    this.supportcoordinators = res.body;
-                } else {
-                    this.supportCoordinatorService.find(this.participant.supportCoordinatorId).subscribe(
-                        (subRes: HttpResponse<ISupportCoordinator>) => {
-                            this.supportcoordinators = [subRes.body].concat(res.body);
-                        },
-                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                    );
-                }
+        this.actionService.query().subscribe(
+            (res: HttpResponse<IAction[]>) => {
+                this.actions = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.physicianService.query({ filter: 'participant-is-null' }).subscribe(
-            (res: HttpResponse<IPhysician[]>) => {
-                if (!this.participant.primaryPhysicianId) {
-                    this.primaryphysicians = res.body;
-                } else {
-                    this.physicianService.find(this.participant.primaryPhysicianId).subscribe(
-                        (subRes: HttpResponse<IPhysician>) => {
-                            this.primaryphysicians = [subRes.body].concat(res.body);
-                        },
-                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                    );
-                }
+        this.contactHistoryService.query().subscribe(
+            (res: HttpResponse<IContactHistory[]>) => {
+                this.contacthistories = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-    }
-
-    byteSize(field) {
-        return this.dataUtils.byteSize(field);
-    }
-
-    openFile(contentType, field) {
-        return this.dataUtils.openFile(contentType, field);
-    }
-
-    setFileData(event, entity, field, isImage) {
-        this.dataUtils.setFileData(event, entity, field, isImage);
     }
 
     previousState() {
@@ -174,8 +128,6 @@ export class ParticipantUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        this.participant.created = this.created != null ? moment(this.created, DATE_TIME_FORMAT) : null;
-        this.participant.updated = this.updated != null ? moment(this.updated, DATE_TIME_FORMAT) : null;
         if (this.participant.id !== undefined) {
             this.subscribeToSaveResponse(this.participantService.update(this.participant));
         } else {
@@ -212,15 +164,15 @@ export class ParticipantUpdateComponent implements OnInit {
         return item.id;
     }
 
-    trackMCOById(index: number, item: IMCO) {
+    trackUserById(index: number, item: IUser) {
         return item.id;
     }
 
-    trackSupportCoordinatorById(index: number, item: ISupportCoordinator) {
+    trackActionById(index: number, item: IAction) {
         return item.id;
     }
 
-    trackPhysicianById(index: number, item: IPhysician) {
+    trackContactHistoryById(index: number, item: IContactHistory) {
         return item.id;
     }
 }
