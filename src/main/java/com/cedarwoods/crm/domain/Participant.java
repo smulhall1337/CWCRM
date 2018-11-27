@@ -85,17 +85,15 @@ public class Participant implements Serializable {
     @JsonIgnoreProperties("")
     private User supportCoordinator;
 
-    @OneToOne(mappedBy = "participant")
-    @JsonIgnore
-    private Action action;
-
-    @OneToOne(mappedBy = "participant")
-    @JsonIgnore
-    private ContactHistory contactHistory;
-
     @OneToMany(mappedBy = "participant")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ParticipantNotes> participantNotes = new HashSet<>();
+    @OneToMany(mappedBy = "participant")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ContactHistory> contactHistories = new HashSet<>();
+    @OneToMany(mappedBy = "participant")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Action> actions = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -326,32 +324,6 @@ public class Participant implements Serializable {
         this.supportCoordinator = user;
     }
 
-    public Action getAction() {
-        return action;
-    }
-
-    public Participant action(Action action) {
-        this.action = action;
-        return this;
-    }
-
-    public void setAction(Action action) {
-        this.action = action;
-    }
-
-    public ContactHistory getContactHistory() {
-        return contactHistory;
-    }
-
-    public Participant contactHistory(ContactHistory contactHistory) {
-        this.contactHistory = contactHistory;
-        return this;
-    }
-
-    public void setContactHistory(ContactHistory contactHistory) {
-        this.contactHistory = contactHistory;
-    }
-
     public Set<ParticipantNotes> getParticipantNotes() {
         return participantNotes;
     }
@@ -375,6 +347,56 @@ public class Participant implements Serializable {
 
     public void setParticipantNotes(Set<ParticipantNotes> participantNotes) {
         this.participantNotes = participantNotes;
+    }
+
+    public Set<ContactHistory> getContactHistories() {
+        return contactHistories;
+    }
+
+    public Participant contactHistories(Set<ContactHistory> contactHistories) {
+        this.contactHistories = contactHistories;
+        return this;
+    }
+
+    public Participant addContactHistory(ContactHistory contactHistory) {
+        this.contactHistories.add(contactHistory);
+        contactHistory.setParticipant(this);
+        return this;
+    }
+
+    public Participant removeContactHistory(ContactHistory contactHistory) {
+        this.contactHistories.remove(contactHistory);
+        contactHistory.setParticipant(null);
+        return this;
+    }
+
+    public void setContactHistories(Set<ContactHistory> contactHistories) {
+        this.contactHistories = contactHistories;
+    }
+
+    public Set<Action> getActions() {
+        return actions;
+    }
+
+    public Participant actions(Set<Action> actions) {
+        this.actions = actions;
+        return this;
+    }
+
+    public Participant addAction(Action action) {
+        this.actions.add(action);
+        action.setParticipant(this);
+        return this;
+    }
+
+    public Participant removeAction(Action action) {
+        this.actions.remove(action);
+        action.setParticipant(null);
+        return this;
+    }
+
+    public void setActions(Set<Action> actions) {
+        this.actions = actions;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

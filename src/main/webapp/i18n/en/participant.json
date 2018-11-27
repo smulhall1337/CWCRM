@@ -33,9 +33,9 @@
             "contactSubStatus": "Contact Sub Status",
             "waiver": "Waiver",
             "supportCoordinator": "Support Coordinator",
-            "action": "Action",
+            "participantNotes": "Participant Notes",
             "contactHistory": "Contact History",
-            "participantNotes": "Participant Notes"
+            "action": "Action"
         }
     }
 }

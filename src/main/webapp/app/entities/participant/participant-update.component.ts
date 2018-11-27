@@ -14,10 +14,6 @@ import { ContactSubStatusService } from 'app/entities/contact-sub-status';
 import { IWaiver } from 'app/shared/model/waiver.model';
 import { WaiverService } from 'app/entities/waiver';
 import { IUser, UserService } from 'app/core';
-import { IAction } from 'app/shared/model/action.model';
-import { ActionService } from 'app/entities/action';
-import { IContactHistory } from 'app/shared/model/contact-history.model';
-import { ContactHistoryService } from 'app/entities/contact-history';
 
 @Component({
     selector: 'jhi-participant-update',
@@ -34,10 +30,6 @@ export class ParticipantUpdateComponent implements OnInit {
     waivers: IWaiver[];
 
     users: IUser[];
-
-    actions: IAction[];
-
-    contacthistories: IContactHistory[];
     registrationDateDp: any;
 
     constructor(
@@ -47,8 +39,6 @@ export class ParticipantUpdateComponent implements OnInit {
         private contactSubStatusService: ContactSubStatusService,
         private waiverService: WaiverService,
         private userService: UserService,
-        private actionService: ActionService,
-        private contactHistoryService: ContactHistoryService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -108,18 +98,6 @@ export class ParticipantUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.actionService.query().subscribe(
-            (res: HttpResponse<IAction[]>) => {
-                this.actions = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.contactHistoryService.query().subscribe(
-            (res: HttpResponse<IContactHistory[]>) => {
-                this.contacthistories = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
     }
 
     previousState() {
@@ -165,14 +143,6 @@ export class ParticipantUpdateComponent implements OnInit {
     }
 
     trackUserById(index: number, item: IUser) {
-        return item.id;
-    }
-
-    trackActionById(index: number, item: IAction) {
-        return item.id;
-    }
-
-    trackContactHistoryById(index: number, item: IContactHistory) {
         return item.id;
     }
 }

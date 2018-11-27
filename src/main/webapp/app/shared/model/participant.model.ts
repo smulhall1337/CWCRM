@@ -1,5 +1,7 @@
 import { Moment } from 'moment';
 import { IParticipantNotes } from 'app/shared/model//participant-notes.model';
+import { IContactHistory } from 'app/shared/model//contact-history.model';
+import { IAction } from 'app/shared/model//action.model';
 
 export interface IParticipant {
     id?: number;
@@ -22,9 +24,9 @@ export interface IParticipant {
     waiverName?: string;
     waiverId?: number;
     supportCoordinatorId?: number;
-    actionId?: number;
-    contactHistoryId?: number;
     participantNotes?: IParticipantNotes[];
+    contactHistories?: IContactHistory[];
+    actions?: IAction[];
 }
 
 export class Participant implements IParticipant {
@@ -49,8 +51,8 @@ export class Participant implements IParticipant {
         public waiverName?: string,
         public waiverId?: number,
         public supportCoordinatorId?: number,
-        public actionId?: number,
-        public contactHistoryId?: number,
-        public participantNotes?: IParticipantNotes[]
+        public participantNotes?: IParticipantNotes[],
+        public contactHistories?: IContactHistory[],
+        public actions?: IAction[]
     ) {}
 }

@@ -5,7 +5,6 @@ import com.cedarwoods.crm.service.dto.ParticipantDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,18 +27,6 @@ public interface ParticipantService {
      * @return the list of entities
      */
     Page<ParticipantDTO> findAll(Pageable pageable);
-    /**
-     * Get all the ParticipantDTO where Action is null.
-     *
-     * @return the list of entities
-     */
-    List<ParticipantDTO> findAllWhereActionIsNull();
-    /**
-     * Get all the ParticipantDTO where ContactHistory is null.
-     *
-     * @return the list of entities
-     */
-    List<ParticipantDTO> findAllWhereContactHistoryIsNull();
 
 
     /**

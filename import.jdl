@@ -71,11 +71,6 @@ relationship OneToOne {
 	ExtendedUser{employeeSubType(name) } to EmployeeSubType,
     ExtendedUser to User
 
-    Action to User,
-	Action to Participant,
-
-    ContactHistory to Participant
-    ContactHistory to User
     ContactHistory{contactType(name)} to ContactType
 }
 
@@ -83,6 +78,10 @@ relationship ManyToOne {
 	Participant{supportCoordinator} to User
    	ParticipantNotes to Participant
     ParticipantNotes to User
+    ContactHistory to Participant
+    ContactHistory to User
+    Action to User
+	Action to Participant
 }
 
 

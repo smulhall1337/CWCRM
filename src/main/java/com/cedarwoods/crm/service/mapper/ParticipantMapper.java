@@ -23,9 +23,9 @@ public interface ParticipantMapper extends EntityMapper<ParticipantDTO, Particip
     @Mapping(source = "contactSubStatusId", target = "contactSubStatus")
     @Mapping(source = "waiverId", target = "waiver")
     @Mapping(source = "supportCoordinatorId", target = "supportCoordinator")
-    @Mapping(target = "action", ignore = true)
-    @Mapping(target = "contactHistory", ignore = true)
     @Mapping(target = "participantNotes", ignore = true)
+    @Mapping(target = "contactHistories", ignore = true)
+    @Mapping(target = "actions", ignore = true)
     Participant toEntity(ParticipantDTO participantDTO);
 
     default Participant fromId(Long id) {

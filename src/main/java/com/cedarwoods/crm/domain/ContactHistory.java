@@ -1,5 +1,6 @@
 package com.cedarwoods.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -34,13 +35,15 @@ public class ContactHistory implements Serializable {
     private String notes;
 
     @OneToOne    @JoinColumn(unique = true)
+    private ContactType contactType;
+
+    @ManyToOne
+    @JsonIgnoreProperties("contactHistories")
     private Participant participant;
 
-    @OneToOne    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("")
     private User user;
-
-    @OneToOne    @JoinColumn(unique = true)
-    private ContactType contactType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -77,6 +80,19 @@ public class ContactHistory implements Serializable {
         this.notes = notes;
     }
 
+    public ContactType getContactType() {
+        return contactType;
+    }
+
+    public ContactHistory contactType(ContactType contactType) {
+        this.contactType = contactType;
+        return this;
+    }
+
+    public void setContactType(ContactType contactType) {
+        this.contactType = contactType;
+    }
+
     public Participant getParticipant() {
         return participant;
     }
@@ -101,19 +117,6 @@ public class ContactHistory implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public ContactType getContactType() {
-        return contactType;
-    }
-
-    public ContactHistory contactType(ContactType contactType) {
-        this.contactType = contactType;
-        return this;
-    }
-
-    public void setContactType(ContactType contactType) {
-        this.contactType = contactType;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

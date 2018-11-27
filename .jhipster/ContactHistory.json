@@ -14,27 +14,23 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "participant",
-            "otherEntityName": "participant",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "contactHistory"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "user",
-            "otherEntityName": "user",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "contactHistory"
-        },
-        {
-            "relationshipType": "one-to-one",
             "relationshipName": "contactType",
             "otherEntityName": "contactType",
             "otherEntityField": "name",
             "ownerSide": true,
             "otherEntityRelationshipName": "contactHistory"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "participant",
+            "otherEntityName": "participant",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20181127160220",

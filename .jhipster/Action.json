@@ -3,20 +3,16 @@
     "fields": [],
     "relationships": [
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "relationshipName": "user",
             "otherEntityName": "user",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "action"
+            "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "relationshipName": "participant",
             "otherEntityName": "participant",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "action"
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20181107220301",

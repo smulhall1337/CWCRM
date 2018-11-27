@@ -17,13 +17,13 @@ public class ContactHistoryDTO implements Serializable {
     @Lob
     private String notes;
 
-    private Long participantId;
-
-    private Long userId;
-
     private Long contactTypeId;
 
     private String contactTypeName;
+
+    private Long participantId;
+
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -49,22 +49,6 @@ public class ContactHistoryDTO implements Serializable {
         this.notes = notes;
     }
 
-    public Long getParticipantId() {
-        return participantId;
-    }
-
-    public void setParticipantId(Long participantId) {
-        this.participantId = participantId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public Long getContactTypeId() {
         return contactTypeId;
     }
@@ -79,6 +63,22 @@ public class ContactHistoryDTO implements Serializable {
 
     public void setContactTypeName(String contactTypeName) {
         this.contactTypeName = contactTypeName;
+    }
+
+    public Long getParticipantId() {
+        return participantId;
+    }
+
+    public void setParticipantId(Long participantId) {
+        this.participantId = participantId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -108,10 +108,10 @@ public class ContactHistoryDTO implements Serializable {
             "id=" + getId() +
             ", date='" + getDate() + "'" +
             ", notes='" + getNotes() + "'" +
-            ", participant=" + getParticipantId() +
-            ", user=" + getUserId() +
             ", contactType=" + getContactTypeId() +
             ", contactType='" + getContactTypeName() + "'" +
+            ", participant=" + getParticipantId() +
+            ", user=" + getUserId() +
             "}";
     }
 }
