@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * A DTO for the Priority entity.
  */
-public class PriorityDTO implements Serializable {
+public class PriorityDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

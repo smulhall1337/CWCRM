@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * A DTO for the EnrollmentAgency entity.
  */
-public class EnrollmentAgencyDTO implements Serializable {
+public class EnrollmentAgencyDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

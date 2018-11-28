@@ -8,7 +8,7 @@ import javax.persistence.Lob;
 /**
  * A DTO for the ContactHistory entity.
  */
-public class ContactHistoryDTO implements Serializable {
+public class ContactHistoryDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

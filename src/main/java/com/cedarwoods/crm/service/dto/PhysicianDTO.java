@@ -7,7 +7,7 @@ import javax.persistence.Lob;
 /**
  * A DTO for the Physician entity.
  */
-public class PhysicianDTO implements Serializable {
+public class PhysicianDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

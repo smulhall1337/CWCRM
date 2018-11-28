@@ -16,7 +16,7 @@ import java.util.Objects;
 @Table(name = "enrollment_agency")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "enrollmentagency")
-public class EnrollmentAgency implements Serializable {
+public class EnrollmentAgency extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

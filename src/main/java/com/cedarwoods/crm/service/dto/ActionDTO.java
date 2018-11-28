@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * A DTO for the Action entity.
  */
-public class ActionDTO implements Serializable {
+public class ActionDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

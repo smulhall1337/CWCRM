@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * A DTO for the MCO entity.
  */
-public class MCODTO implements Serializable {
+public class MCODTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

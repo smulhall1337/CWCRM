@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * A DTO for the Referral entity.
  */
-public class ReferralDTO implements Serializable {
+public class ReferralDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

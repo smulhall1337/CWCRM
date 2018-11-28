@@ -17,7 +17,7 @@ import java.util.Objects;
 @Table(name = "waiver")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "waiver")
-public class Waiver implements Serializable {
+public class Waiver extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

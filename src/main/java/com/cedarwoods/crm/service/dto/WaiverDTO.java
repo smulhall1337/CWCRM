@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * A DTO for the Waiver entity.
  */
-public class WaiverDTO implements Serializable {
+public class WaiverDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

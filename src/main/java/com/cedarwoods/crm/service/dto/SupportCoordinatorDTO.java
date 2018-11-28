@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A DTO for the SupportCoordinator entity.
  */
-public class SupportCoordinatorDTO implements Serializable {
+public class SupportCoordinatorDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

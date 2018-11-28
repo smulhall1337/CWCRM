@@ -36,5 +36,8 @@
   },
   "git-provider": "GitHub",
   "git-company": "smulhall1337",
-  "repository-name": "CWCRM"
+  "repository-name": "CWCRM",
+  "generator-jhipster-entity-audit": {
+    "auditFramework": "custom"
+  }
 }

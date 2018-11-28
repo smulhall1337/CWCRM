@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * A DTO for the ContactStatus entity.
  */
-public class ContactStatusDTO implements Serializable {
+public class ContactStatusDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

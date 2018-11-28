@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * A DTO for the ExtendedUser entity.
  */
-public class ExtendedUserDTO implements Serializable {
+public class ExtendedUserDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

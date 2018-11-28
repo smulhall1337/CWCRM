@@ -17,7 +17,7 @@ import java.util.Objects;
 @Table(name = "referral")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "referral")
-public class Referral implements Serializable {
+public class Referral extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

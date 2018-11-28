@@ -7,7 +7,7 @@ import javax.persistence.Lob;
 /**
  * A DTO for the ParticipantNotes entity.
  */
-public class ParticipantNotesDTO implements Serializable {
+public class ParticipantNotesDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

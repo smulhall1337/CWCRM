@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * A DTO for the ContactType entity.
  */
-public class ContactTypeDTO implements Serializable {
+public class ContactTypeDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

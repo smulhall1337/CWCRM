@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * A DTO for the EmployeeType entity.
  */
-public class EmployeeTypeDTO implements Serializable {
+public class EmployeeTypeDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

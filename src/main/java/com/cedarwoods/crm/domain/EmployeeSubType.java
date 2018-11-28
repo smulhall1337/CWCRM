@@ -17,7 +17,7 @@ import java.util.Objects;
 @Table(name = "employee_sub_type")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "employeesubtype")
-public class EmployeeSubType implements Serializable {
+public class EmployeeSubType extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

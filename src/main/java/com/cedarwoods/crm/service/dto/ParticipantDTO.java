@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A DTO for the Participant entity.
  */
-public class ParticipantDTO implements Serializable {
+public class ParticipantDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

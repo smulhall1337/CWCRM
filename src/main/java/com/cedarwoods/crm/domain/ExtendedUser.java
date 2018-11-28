@@ -16,7 +16,7 @@ import java.util.Objects;
 @Table(name = "extended_user")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "extendeduser")
-public class ExtendedUser implements Serializable {
+public class ExtendedUser extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
