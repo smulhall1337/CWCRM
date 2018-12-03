@@ -41,22 +41,7 @@ const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
         ParticipantDetailComponent,
         ParticipantUpdateComponent,
         ParticipantDeleteDialogComponent,
-        ParticipantDeletePopupComponent,
-        ContactHistoryComponent,
-        ContactHistoryDetailComponent,
-        ContactHistoryDeleteDialogComponent,
-        ContactHistoryDeletePopupComponent,
-        contactHistoryRoute,
-        contactHistoryPopupRoute,
-        participantNotesPopupRoute,
-        participantNotesRoute,
-        ParticipantNotesComponent,
-        ParticipantNotesDeleteDialogComponent,
-        ParticipantNotesDeletePopupComponent,
-        ParticipantNotesDetailComponent,
-        ParticipantNotesResolve,
-        ParticipantNotesService,
-        ParticipantNotesUpdateComponent
+        ParticipantDeletePopupComponent
     ],
     entryComponents: [ParticipantComponent, ParticipantUpdateComponent, ParticipantDeleteDialogComponent, ParticipantDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
