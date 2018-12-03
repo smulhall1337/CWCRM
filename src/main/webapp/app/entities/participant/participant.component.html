@@ -34,15 +34,10 @@
             <th jhiSortBy="lastName"><span jhiTranslate="cwcrmApp.participant.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="registrationDate"><span jhiTranslate="cwcrmApp.participant.registrationDate">Registration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="address1"><span jhiTranslate="cwcrmApp.participant.address1">Address 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="address2"><span jhiTranslate="cwcrmApp.participant.address2">Address 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="city"><span jhiTranslate="cwcrmApp.participant.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="state"><span jhiTranslate="cwcrmApp.participant.state">State</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="country"><span jhiTranslate="cwcrmApp.participant.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="dob"><span jhiTranslate="cwcrmApp.participant.dob">Dob</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="phone"><span jhiTranslate="cwcrmApp.participant.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="email"><span jhiTranslate="cwcrmApp.participant.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="zip"><span jhiTranslate="cwcrmApp.participant.zip">Zip</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="mANNumber"><span jhiTranslate="cwcrmApp.participant.mANNumber">M AN Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="contactStatusId"><span jhiTranslate="cwcrmApp.participant.contactStatus">Contact Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="contactSubStatusName"><span jhiTranslate="cwcrmApp.participant.contactSubStatus">Contact Sub Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="waiverName"><span jhiTranslate="cwcrmApp.participant.waiver">Waiver</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -57,15 +52,10 @@
                 <td>{{participant.lastName}}</td>
                 <td>{{participant.registrationDate | date:'mediumDate'}}</td>
                 <td>{{participant.address1}}</td>
-                <td>{{participant.address2}}</td>
                 <td>{{participant.city}}</td>
                 <td>{{participant.state}}</td>
-                <td>{{participant.country}}</td>
                 <td>{{participant.dob}}</td>
                 <td>{{participant.phone}}</td>
-                <td>{{participant.email}}</td>
-                <td>{{participant.zip}}</td>
-                <td>{{participant.mANNumber}}</td>
                 <td>
                     <div *ngIf="participant.contactStatusId">
                         <a [routerLink]="['../contact-status', participant.contactStatusId , 'view' ]" >{{participant.contactStatusId}}</a>

@@ -2,6 +2,7 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <h2 id="jhi-participant-heading" jhiTranslate="cwcrmApp.participant.home.createOrEditLabel">Create or edit a Participant</h2>
+            <mat-tab label="Demographics">
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!participant.id">
@@ -121,6 +122,22 @@
                     </select>
                 </div>
             </div>
+            </mat-tab>
+            <mat-tab label="Primary Physician">
+                PP Goes here (lol)
+            </mat-tab>
+            <mat-tab label="Contact History">
+                <jhi-contact-history [participant]="participant"></jhi-contact-history>
+            </mat-tab>
+            <mat-tab label="Documents">
+                Documents goes here!
+            </mat-tab>
+            <mat-tab label="Transportation">
+                Transportation goes here!
+            </mat-tab>
+             <mat-tab label="Notes">
+                <jhi-participant-notes-detail></jhi-participant-notes-detail>
+            </mat-tab>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>

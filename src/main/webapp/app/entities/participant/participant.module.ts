@@ -12,6 +12,25 @@ import {
     participantRoute,
     participantPopupRoute
 } from './';
+import {
+    ContactHistoryComponent,
+    ContactHistoryDetailComponent,
+    ContactHistoryDeleteDialogComponent,
+    ContactHistoryDeletePopupComponent,
+    contactHistoryRoute,
+    contactHistoryPopupRoute
+} from 'app/entities/contact-history';
+import {
+    participantNotesPopupRoute,
+    participantNotesRoute,
+    ParticipantNotesComponent,
+    ParticipantNotesDeleteDialogComponent,
+    ParticipantNotesDeletePopupComponent,
+    ParticipantNotesDetailComponent,
+    ParticipantNotesResolve,
+    ParticipantNotesService,
+    ParticipantNotesUpdateComponent
+} from 'app/entities/participant-notes';
 
 const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
 
@@ -22,7 +41,22 @@ const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
         ParticipantDetailComponent,
         ParticipantUpdateComponent,
         ParticipantDeleteDialogComponent,
-        ParticipantDeletePopupComponent
+        ParticipantDeletePopupComponent,
+        ContactHistoryComponent,
+        ContactHistoryDetailComponent,
+        ContactHistoryDeleteDialogComponent,
+        ContactHistoryDeletePopupComponent,
+        contactHistoryRoute,
+        contactHistoryPopupRoute,
+        participantNotesPopupRoute,
+        participantNotesRoute,
+        ParticipantNotesComponent,
+        ParticipantNotesDeleteDialogComponent,
+        ParticipantNotesDeletePopupComponent,
+        ParticipantNotesDetailComponent,
+        ParticipantNotesResolve,
+        ParticipantNotesService,
+        ParticipantNotesUpdateComponent
     ],
     entryComponents: [ParticipantComponent, ParticipantUpdateComponent, ParticipantDeleteDialogComponent, ParticipantDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
