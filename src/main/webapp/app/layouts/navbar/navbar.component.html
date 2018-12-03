@@ -470,6 +470,183 @@
             </li>
                 </ul>
             </li>
+            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="primeng-menu">
+                    <span>
+                        <i class="fa fa-area-chart" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.primeng.main">primeng</span>
+                        <b class="caret"></b>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu style="max-height:500px;overflow: scroll">
+                      <li uiSrefActive="active">
+                                        <a class="dropdown-item" routerLink="autocomplete" routerLinkActive="active" (click)="collapseNavbar()">
+                                            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+                                            <span jhiTranslate="global.menu.primeng.autocomplete">AutoComplete</span>
+                                        </a>
+                                      </li><li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="calendar" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.primeng.calendar">Calendar</span>
+                        </a>
+                    </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="button" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.button">Button</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="splitbutton" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.splitbutton">SplitButton</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="datagrid" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.datagrid">Datagrid</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="datalist" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.datalist">DataList</span>
+            </a>
+            </li><li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="datatable" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.primeng.datatable">Datatable</span>
+                        </a>
+                    </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="datalist" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.dataview">DataView</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="schedule" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.schedule">Schedule</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="grid" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.grid">grid</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="panel" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.panel">Panel</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="scrollpanel" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.scrollpanel">ScrollPanel</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="tabview" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.tabview">TabView</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="toolbar" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.toolbar">ToolBar</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="confirmdialog" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.confirmdialog">ConfirmDialog</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="dialog" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.dialog">Dialog</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="lightbox" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.lightbox">Lightbox</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="overlaypanel" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.overlaypanel">OverlayPanel</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="sidebar" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.sidebar">SideBar</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="tooltip" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.tooltip">Tooltip</span>
+            </a>
+            </li><li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="fileupload" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.primeng.fileupload">FileUpload</span>
+                        </a>
+                    </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="megamenu" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.megamenu">Megamenu</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="menu" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.menu">Menu</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="menubar" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.menubar">Menubar</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="panelmenu" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.panelmenu">Panelmenu</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="slidemenu" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.slidemenu">Slidemenu</span>
+            </a>
+            </li><li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="growl" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.primeng.growl">Growl</span>
+                        </a>
+                    </li><li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="messages" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.primeng.messages">Messages</span>
+                        </a>
+                    </li><li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="toast" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.primeng.toast">Toast</span>
+                        </a>
+                    </li><li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="dragdrop" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.primeng.dragdrop">DragDrop</span>
+                        </a>
+                    </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="progressbar" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.progressbar">ProgressBar</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="validation" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.validation">Validation</span>
+            </a>
+            </li><li uiSrefActive="active">
+            <a class="dropdown-item" routerLink="progressspinner" routerLinkActive="active" (click)="collapseNavbar()">
+            <i class="fa fa-fw fa-circle-o" aria-hidden="true"></i>
+            <span jhiTranslate="global.menu.primeng.progressspinner">Progress Spinner</span>
+            </a>
+            </li>
+                </ul>
+            </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
