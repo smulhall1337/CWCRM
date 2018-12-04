@@ -4,82 +4,101 @@
             <h2><span jhiTranslate="cwcrmApp.participant.detail.title">Participant</span> {{participant.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="cwcrmApp.participant.firstName">First Name</span></dt>
-                <dd>
-                    <span>{{participant.firstName}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.lastName">Last Name</span></dt>
-                <dd>
-                    <span>{{participant.lastName}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.registrationDate">Registration Date</span></dt>
-                <dd>
-                    <span>{{participant.registrationDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.address1">Address 1</span></dt>
-                <dd>
-                    <span>{{participant.address1}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.address2">Address 2</span></dt>
-                <dd>
-                    <span>{{participant.address2}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.city">City</span></dt>
-                <dd>
-                    <span>{{participant.city}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.state">State</span></dt>
-                <dd>
-                    <span>{{participant.state}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.country">Country</span></dt>
-                <dd>
-                    <span>{{participant.country}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.dob">Dob</span></dt>
-                <dd>
-                    <span>{{participant.dob}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.phone">Phone</span></dt>
-                <dd>
-                    <span>{{participant.phone}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.email">Email</span></dt>
-                <dd>
-                    <span>{{participant.email}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.zip">Zip</span></dt>
-                <dd>
-                    <span>{{participant.zip}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.mANNumber">M AN Number</span></dt>
-                <dd>
-                    <span>{{participant.mANNumber}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.contactStatus">Contact Status</span></dt>
-                <dd>
-                    <div *ngIf="participant.contactStatusId">
-                        <a [routerLink]="['/contact-status', participant.contactStatusId, 'view']">{{participant.contactStatusId}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.contactSubStatus">Contact Sub Status</span></dt>
-                <dd>
-                    <div *ngIf="participant.contactSubStatusId">
-                        <a [routerLink]="['/contact-sub-status', participant.contactSubStatusId, 'view']">{{participant.contactSubStatusName}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.waiver">Waiver</span></dt>
-                <dd>
-                    <div *ngIf="participant.waiverId">
-                        <a [routerLink]="['/waiver', participant.waiverId, 'view']">{{participant.waiverName}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.supportCoordinator">Support Coordinator</span></dt>
-                <dd>
-                    {{participant.supportCoordinatorId}}
-                </dd>
-            </dl>
+            <mat-tab-group>
+                <mat-tab label="Demographics">
+                    <dl class="row-md jh-entity-details">
+                        <dt><span jhiTranslate="cwcrmApp.participant.firstName">First Name</span></dt>
+                        <dd>
+                            <span>{{participant.firstName}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.lastName">Last Name</span></dt>
+                        <dd>
+                            <span>{{participant.lastName}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.registrationDate">Registration Date</span></dt>
+                        <dd>
+                            <span>{{participant.registrationDate}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.address1">Address 1</span></dt>
+                        <dd>
+                            <span>{{participant.address1}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.address2">Address 2</span></dt>
+                        <dd>
+                            <span>{{participant.address2}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.city">City</span></dt>
+                        <dd>
+                            <span>{{participant.city}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.state">State</span></dt>
+                        <dd>
+                            <span>{{participant.state}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.country">Country</span></dt>
+                        <dd>
+                            <span>{{participant.country}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.dob">Dob</span></dt>
+                        <dd>
+                            <span>{{participant.dob}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.phone">Phone</span></dt>
+                        <dd>
+                            <span>{{participant.phone}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.email">Email</span></dt>
+                        <dd>
+                            <span>{{participant.email}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.zip">Zip</span></dt>
+                        <dd>
+                            <span>{{participant.zip}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.mANNumber">MAN Number</span></dt>
+                        <dd>
+                            <span>{{participant.mANNumber}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.contactStatus">Contact Status</span></dt>
+                        <dd>
+                            <div *ngIf="participant.contactStatusId">
+                                <a [routerLink]="['/contact-status', participant.contactStatusId, 'view']">{{participant.contactStatusId}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.contactSubStatus">Contact Sub Status</span></dt>
+                        <dd>
+                            <div *ngIf="participant.contactSubStatusId">
+                                <a [routerLink]="['/contact-sub-status', participant.contactSubStatusId, 'view']">{{participant.contactSubStatusName}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.waiver">Waiver</span></dt>
+                        <dd>
+                            <div *ngIf="participant.waiverId">
+                                <a [routerLink]="['/waiver', participant.waiverId, 'view']">{{participant.waiverName}}</a>
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="cwcrmApp.participant.supportCoordinator">Support Coordinator</span></dt>
+                        <dd>
+                            {{participant.supportCoordinatorId}}
+                        </dd>
+                    </dl>
+                </mat-tab>
+                <mat-tab label="Primary Physician">
+                    test goes here!
+                </mat-tab>
+                <mat-tab label="Contact History">
+                    <jhi-contact-history></jhi-contact-history>
+                </mat-tab>
+                <mat-tab label="Documents">
+                    documents goes here!
+                </mat-tab>
+                <mat-tab label="Transportation">
+                    transportation goes here!
+                </mat-tab>
+                <mat-tab label="Notes">
+                    notes goes here!
+                </mat-tab>
+            </mat-tab-group>
 
             <button type="submit"
                     (click)="previousState()"

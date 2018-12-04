@@ -18,7 +18,8 @@ import { CwcrmAccountModule } from './account/account.module';
 import { CwcrmEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 import { CwcrmprimengModule } from './primeng/primeng.module';
-import { MaterialModule } from './material-module';
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
@@ -33,6 +34,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         CwcrmAccountModule,
         CwcrmprimengModule,
         MaterialModule,
+        BrowserAnimationsModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
         CwcrmEntityModule
     ],

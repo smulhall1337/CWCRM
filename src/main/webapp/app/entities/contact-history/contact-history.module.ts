@@ -18,7 +18,7 @@ const ENTITY_STATES = [...contactHistoryRoute, ...contactHistoryPopupRoute];
 @NgModule({
     imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
-        ContactHistoryComponent,
+        // ContactHistoryComponent,
         ContactHistoryDetailComponent,
         ContactHistoryUpdateComponent,
         ContactHistoryDeleteDialogComponent,

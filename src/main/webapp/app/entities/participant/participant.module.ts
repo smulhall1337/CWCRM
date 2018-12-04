@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { CwcrmSharedModule } from 'app/shared';
 import { CwcrmAdminModule } from 'app/admin/admin.module';
@@ -18,6 +19,7 @@ import {
     ContactHistoryDeleteDialogComponent,
     ContactHistoryDeletePopupComponent,
     contactHistoryRoute,
+    ContactHistoryUpdateComponent,
     contactHistoryPopupRoute
 } from 'app/entities/contact-history';
 import {
@@ -32,16 +34,17 @@ import {
     ParticipantNotesUpdateComponent
 } from 'app/entities/participant-notes';
 
-const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
+const ENTITY_STATES = [...participantRoute, ...participantPopupRoute, ...contactHistoryRoute, ...contactHistoryPopupRoute];
 
 @NgModule({
-    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES), MatTabsModule],
     declarations: [
         ParticipantComponent,
         ParticipantDetailComponent,
         ParticipantUpdateComponent,
         ParticipantDeleteDialogComponent,
-        ParticipantDeletePopupComponent
+        ParticipantDeletePopupComponent,
+        ContactHistoryComponent
     ],
     entryComponents: [ParticipantComponent, ParticipantUpdateComponent, ParticipantDeleteDialogComponent, ParticipantDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

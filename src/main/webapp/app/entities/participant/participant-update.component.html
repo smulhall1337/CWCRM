@@ -2,6 +2,7 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <h2 id="jhi-participant-heading" jhiTranslate="cwcrmApp.participant.home.createOrEditLabel">Create or edit a Participant</h2>
+            <mat-tab-group>
             <mat-tab label="Demographics">
             <div>
                 <jhi-alert-error></jhi-alert-error>
@@ -146,6 +147,7 @@
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
+            </mat-tab-group>
         </form>
     </div>
 </div>
