@@ -33,18 +33,20 @@ import {
     ParticipantNotesService,
     ParticipantNotesUpdateComponent
 } from 'app/entities/participant-notes';
+import { CwcrmContactHistoryModule } from 'app/entities/contact-history/contact-history.module';
 
 const ENTITY_STATES = [...participantRoute, ...participantPopupRoute, ...contactHistoryRoute, ...contactHistoryPopupRoute];
 
 @NgModule({
-    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES), MatTabsModule],
+    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES), MatTabsModule, CwcrmContactHistoryModule],
+
     declarations: [
         ParticipantComponent,
         ParticipantDetailComponent,
         ParticipantUpdateComponent,
         ParticipantDeleteDialogComponent,
-        ParticipantDeletePopupComponent,
-        ContactHistoryComponent
+        ParticipantDeletePopupComponent // ,
+        //ContactHistoryComponent
     ],
     entryComponents: [ParticipantComponent, ParticipantUpdateComponent, ParticipantDeleteDialogComponent, ParticipantDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

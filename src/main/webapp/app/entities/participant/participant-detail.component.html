@@ -87,7 +87,9 @@
                     test goes here!
                 </mat-tab>
                 <mat-tab label="Contact History">
-                    <jhi-contact-history></jhi-contact-history>
+                    <div *ngIf="participant">
+                        <jhi-contact-history [participantId]="participant.id"></jhi-contact-history>
+                    </div>
                 </mat-tab>
                 <mat-tab label="Documents">
                     documents goes here!

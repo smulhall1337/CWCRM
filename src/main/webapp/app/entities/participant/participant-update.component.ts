@@ -98,6 +98,7 @@ export class ParticipantUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+        console.log(this.participant.id);
     }
 
     previousState() {
