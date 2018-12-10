@@ -17,6 +17,7 @@ import {
     ContactHistoryResolve,
     ContactHistoryUpdateComponent
 } from 'app/entities/contact-history';
+import { ParticipantViewBaseComponent } from 'app/entities/participant/participant-view-base.component';
 
 @Injectable({ providedIn: 'root' })
 export class ParticipantResolve implements Resolve<IParticipant> {
@@ -70,8 +71,25 @@ export const participantRoute: Routes = [
     },
     {
         path: 'participant/:id/edit',
-        component: ParticipantUpdateComponent,
+        component: ParticipantViewBaseComponent,
         children: [
+            {
+                path: '',
+                redirectTo: 'demographics',
+                pathMatch: 'full'
+            },
+            {
+                path: 'demographics',
+                component: ParticipantUpdateComponent,
+                resolve: {
+                    participant: ParticipantResolve
+                },
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'cwcrmApp.participant.home.title'
+                },
+                canActivate: [UserRouteAccessService]
+            },
             {
                 path: 'contact-history',
                 component: ContactHistoryComponent,

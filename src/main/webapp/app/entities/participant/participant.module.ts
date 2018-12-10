@@ -33,6 +33,7 @@ import {
     ParticipantNotesService,
     ParticipantNotesUpdateComponent
 } from 'app/entities/participant-notes';
+import { ParticipantViewBaseComponent } from 'app/entities/participant/participant-view-base.component';
 // import { CwcrmContactHistoryModule } from 'app/entities/contact-history/contact-history.module';
 
 const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
@@ -52,6 +53,7 @@ const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
         ParticipantUpdateComponent,
         ParticipantDeleteDialogComponent,
         ParticipantDeletePopupComponent,
+        ParticipantViewBaseComponent,
         ContactHistoryComponent,
         ContactHistoryDetailComponent,
         ContactHistoryDeleteDialogComponent,

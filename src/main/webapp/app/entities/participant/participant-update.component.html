@@ -2,8 +2,7 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <h2 id="jhi-participant-heading" jhiTranslate="cwcrmApp.participant.home.createOrEditLabel">Create or edit a Participant</h2>
-            <mat-tab-group>
-            <mat-tab label="Demographics">
+            <nav mat-tab-nav-bar>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!participant.id">
@@ -123,33 +122,39 @@
                     </select>
                 </div>
             </div>
-            </mat-tab>
-            <mat-tab label="Primary Physician">
+<!--            <mat-tab label="Primary Physician">
                 PP Goes here (lol)
-            </mat-tab>
-                <mat-tab label="ContactHistory">
-                <div *ngIf="participant.id">
-                    <jhi-contact-history [participantId]="participant.id"></jhi-contact-history>
-                </div>
-                </mat-tab>
-            <mat-tab label="Documents">
+            </mat-tab>-->
+
+                <a mat-tab-link
+                   [routerLink]="['contact-history']"
+                   routerLinkActive #rla="routerLinkActive"
+                   [active]="rla.isActive">
+                    Contact-History
+                </a>
+                <!--<div *ngIf="participant.id">-->
+                    <!--<jhi-contact-history [participantId]="participant.id"></jhi-contact-history>-->
+                <!--</div>-->
+
+<!--            <mat-tab label="Documents">
                 Documents goes here!
-            </mat-tab>
-            <mat-tab label="Transportation">
+            </mat-tab>-->
+<!--            <mat-tab label="Transportation">
                 Transportation goes here!
             </mat-tab>
              <mat-tab label="Notes">
                 <jhi-participant-notes-detail></jhi-participant-notes-detail>
-            </mat-tab>
-            <div>
+            </mat-tab>-->
+            </nav>
+            <router-outlet></router-outlet>
+<!--            <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
                 <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
-            </div>
-            </mat-tab-group>
+            </div>-->
         </form>
     </div>
 </div>
