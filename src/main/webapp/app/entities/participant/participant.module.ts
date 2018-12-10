@@ -18,9 +18,9 @@ import {
     ContactHistoryDetailComponent,
     ContactHistoryDeleteDialogComponent,
     ContactHistoryDeletePopupComponent,
-    contactHistoryRoute,
-    ContactHistoryUpdateComponent,
-    contactHistoryPopupRoute
+    // contactHistoryRoute,
+    ContactHistoryUpdateComponent
+    // contactHistoryPopupRoute
 } from 'app/entities/contact-history';
 import {
     participantNotesPopupRoute,
@@ -33,20 +33,30 @@ import {
     ParticipantNotesService,
     ParticipantNotesUpdateComponent
 } from 'app/entities/participant-notes';
-import { CwcrmContactHistoryModule } from 'app/entities/contact-history/contact-history.module';
+// import { CwcrmContactHistoryModule } from 'app/entities/contact-history/contact-history.module';
 
-const ENTITY_STATES = [...participantRoute, ...participantPopupRoute, ...contactHistoryRoute, ...contactHistoryPopupRoute];
+const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
 
 @NgModule({
-    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES), MatTabsModule, CwcrmContactHistoryModule],
+    imports: [
+        CwcrmSharedModule,
+        CwcrmAdminModule,
+        RouterModule.forChild(ENTITY_STATES),
+        MatTabsModule
+        // CwcrmContactHistoryModule
+    ],
 
     declarations: [
         ParticipantComponent,
         ParticipantDetailComponent,
         ParticipantUpdateComponent,
         ParticipantDeleteDialogComponent,
-        ParticipantDeletePopupComponent // ,
-        //ContactHistoryComponent
+        ParticipantDeletePopupComponent,
+        ContactHistoryComponent,
+        ContactHistoryDetailComponent,
+        ContactHistoryDeleteDialogComponent,
+        ContactHistoryDeletePopupComponent,
+        ContactHistoryUpdateComponent
     ],
     entryComponents: [ParticipantComponent, ParticipantUpdateComponent, ParticipantDeleteDialogComponent, ParticipantDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

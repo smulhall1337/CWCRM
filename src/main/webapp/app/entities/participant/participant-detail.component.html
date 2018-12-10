@@ -4,8 +4,6 @@
             <h2><span jhiTranslate="cwcrmApp.participant.detail.title">Participant</span> {{participant.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <mat-tab-group>
-                <mat-tab label="Demographics">
                     <dl class="row-md jh-entity-details">
                         <dt><span jhiTranslate="cwcrmApp.participant.firstName">First Name</span></dt>
                         <dd>
@@ -82,15 +80,13 @@
                             {{participant.supportCoordinatorId}}
                         </dd>
                     </dl>
-                </mat-tab>
                 <mat-tab label="Primary Physician">
                     test goes here!
                 </mat-tab>
-                <mat-tab label="Contact History">
-                    <div *ngIf="participant">
-                        <jhi-contact-history [participantId]="participant.id"></jhi-contact-history>
-                    </div>
-                </mat-tab>
+                <a [routerLink]="['contact-history']">
+                        <!--<jhi-contact-history [participantId]="participant.id"></jhi-contact-history>-->
+                    Contact History
+                </a>
                 <mat-tab label="Documents">
                     documents goes here!
                 </mat-tab>
@@ -100,8 +96,7 @@
                 <mat-tab label="Notes">
                     notes goes here!
                 </mat-tab>
-            </mat-tab-group>
-
+                <router-outlet></router-outlet>
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">

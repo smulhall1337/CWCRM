@@ -1,7 +1,8 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="cwcrmApp.contactHistory.home.title">Contact Histories</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-contact-history" [routerLink]="['/contact-history/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-contact-history" [routerLink]="[ 'contact-history/new' ]">
+            <router-outlet></router-outlet>
             <fa-icon [icon]="'plus'"></fa-icon>
             <span class="hidden-sm-down"  jhiTranslate="cwcrmApp.contactHistory.home.createLabel">
             Create new Contact History
