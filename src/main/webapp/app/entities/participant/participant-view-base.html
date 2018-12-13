@@ -2,6 +2,11 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <h2 id="jhi-participant-heading" jhiTranslate="cwcrmApp.participant.home.createOrEditLabel">Create or edit a Participant</h2>
+            <a routerLink="/participant">
+                <button type="button" id="cancel-save" class="btn btn-secondary">
+                    Back
+                </button>
+            </a>
             <nav mat-tab-nav-bar>
                 <div>
                     <jhi-alert-error></jhi-alert-error>
@@ -12,17 +17,19 @@
                         <a [routerLink]="['contact-history']">
                             Contact History
                         </a>
-                        <router-outlet></router-outlet>
+
                     </div>
                 </div>
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
+            </nav>
+            <router-outlet></router-outlet>
         </form>
+<!--        <div>
+            <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+            <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>-->
     </div>
 </div>

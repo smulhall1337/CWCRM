@@ -44,7 +44,7 @@ export class ParticipantUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ participant }) => {
+        this.activatedRoute.parent.data.subscribe(({ participant }) => {
             this.participant = participant;
         });
         this.contactStatusService.query({ filter: 'participant-is-null' }).subscribe(
@@ -120,7 +120,7 @@ export class ParticipantUpdateComponent implements OnInit {
 
     private onSaveSuccess() {
         this.isSaving = false;
-        this.previousState();
+        //this.previousState();
     }
 
     private onSaveError() {
