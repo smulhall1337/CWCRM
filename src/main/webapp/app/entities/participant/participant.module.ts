@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
+import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
 
 import { CwcrmSharedModule } from 'app/shared';
 import { CwcrmAdminModule } from 'app/admin/admin.module';
@@ -43,7 +44,8 @@ const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
         CwcrmSharedModule,
         CwcrmAdminModule,
         RouterModule.forChild(ENTITY_STATES),
-        MatTabsModule
+        MatTabsModule,
+        I18nCountrySelectModule.forRoot()
         // CwcrmContactHistoryModule
     ],
 

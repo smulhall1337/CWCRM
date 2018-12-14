@@ -31,6 +31,9 @@ export class ParticipantUpdateComponent implements OnInit {
 
     users: IUser[];
     registrationDateDp: any;
+    item = {
+        isocode: 'us'
+    };
 
     constructor(
         private jhiAlertService: JhiAlertService,

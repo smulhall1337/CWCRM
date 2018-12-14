@@ -1,94 +1,117 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!participant.id">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="participant.id" readonly />
+                           [(ngModel)]="participant.id" readonly />
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.firstName" for="field_firstName">First Name</label>
-                    <input type="text" class="form-control" name="firstName" id="field_firstName"
-                        [(ngModel)]="participant.firstName" required/>
-                    <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.firstName?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="cwcrmApp.participant.firstName" for="field_firstName">First Name</label>
+                            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                                   [(ngModel)]="participant.firstName" required/>
+                            <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.controls.firstName?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.lastName" for="field_lastName">Last Name</label>
-                    <input type="text" class="form-control" name="lastName" id="field_lastName"
-                        [(ngModel)]="participant.lastName" required/>
-                    <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.lastName?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="cwcrmApp.participant.lastName" for="field_lastName">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" id="field_lastName"
+                                   [(ngModel)]="participant.lastName" required/>
+                            <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.controls.lastName?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.registrationDate" for="field_registrationDate">Registration Date</label>
-                    <div class="input-group">
-                        <input id="field_registrationDate" type="text" class="form-control" name="registrationDate" ngbDatepicker  #registrationDateDp="ngbDatepicker" [(ngModel)]="participant.registrationDate"
-                        />
-                        <span class="input-group-append">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="cwcrmApp.participant.registrationDate" for="field_registrationDate">Registration Date</label>
+                            <div class="input-group">
+                                <input id="field_registrationDate" type="text" class="form-control" name="registrationDate" ngbDatepicker  #registrationDateDp="ngbDatepicker" [(ngModel)]="participant.registrationDate"
+                                />
+                                <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="registrationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.address1" for="field_address1">Address 1</label>
-                    <input type="text" class="form-control" name="address1" id="field_address1"
-                        [(ngModel)]="participant.address1" />
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="cwcrmApp.participant.address1" for="field_address1">Address 1</label>
+                            <input type="text" class="form-control" name="address1" id="field_address1"
+                                   [(ngModel)]="participant.address1" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="cwcrmApp.participant.address2" for="field_address2">Address 2</label>
+                            <input type="text" class="form-control" name="address2" id="field_address2"
+                                   [(ngModel)]="participant.address2" />
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.address2" for="field_address2">Address 2</label>
-                    <input type="text" class="form-control" name="address2" id="field_address2"
-                        [(ngModel)]="participant.address2" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.city" for="field_city">City</label>
-                    <input type="text" class="form-control" name="city" id="field_city"
-                        [(ngModel)]="participant.city" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.state" for="field_state">State</label>
-                    <input type="text" class="form-control" name="state" id="field_state"
-                        [(ngModel)]="participant.state" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cwcrmApp.participant.country" for="field_country">Country</label>
-                    <input type="text" class="form-control" name="country" id="field_country"
-                        [(ngModel)]="participant.country" />
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="cwcrmApp.participant.city" for="field_city">City</label>
+                            <input type="text" class="form-control" name="city" id="field_city"
+                                   [(ngModel)]="participant.city" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="cwcrmApp.participant.state" for="field_state">State</label>
+                            <input type="text" class="form-control" name="state" id="field_state"
+                                   [(ngModel)]="participant.state" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="form-control-label" jhiTranslate="cwcrmApp.participant.country">Country</label>
+                            <i18n-country-select [(iso3166Alpha2)]="item.isocode" size="lg"></i18n-country-select>
+                            <!--<input type="text" class="form-control" name="country" id="field_country"
+                                   [(ngModel)]="participant.country" />-->
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.participant.dob" for="field_dob">Dob</label>
                     <input type="text" class="form-control" name="dob" id="field_dob"
-                        [(ngModel)]="participant.dob" />
+                           [(ngModel)]="participant.dob" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.participant.phone" for="field_phone">Phone</label>
                     <input type="text" class="form-control" name="phone" id="field_phone"
-                        [(ngModel)]="participant.phone" />
+                           [(ngModel)]="participant.phone" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.participant.email" for="field_email">Email</label>
                     <input type="text" class="form-control" name="email" id="field_email"
-                        [(ngModel)]="participant.email" />
+                           [(ngModel)]="participant.email" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.participant.zip" for="field_zip">Zip</label>
                     <input type="text" class="form-control" name="zip" id="field_zip"
-                        [(ngModel)]="participant.zip" />
+                           [(ngModel)]="participant.zip" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.participant.mANNumber" for="field_mANNumber">M AN Number</label>
                     <input type="number" class="form-control" name="mANNumber" id="field_mANNumber"
-                        [(ngModel)]="participant.mANNumber" />
+                           [(ngModel)]="participant.mANNumber" />
                 </div>
 
                 <div class="form-group">
@@ -121,9 +144,9 @@
                 </div>
             </div>
             <a routerLink="/participant">
-            <button type="button" id="cancel-save" class="btn btn-secondary">
-                <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-            </button>
+                <button type="button" id="cancel-save" class="btn btn-secondary">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
             </a>
             <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
                 <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>

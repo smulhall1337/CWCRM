@@ -36,8 +36,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         MaterialModule,
         BrowserAnimationsModule,
         NgbModule,
-        // jhipster-needle-angular-add-module JHipster will add new module here
         CwcrmEntityModule
+        // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
     providers: [
