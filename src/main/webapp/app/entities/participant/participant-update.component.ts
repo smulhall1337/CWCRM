@@ -34,6 +34,7 @@ export class ParticipantUpdateComponent implements OnInit {
     item = {
         isocode: 'us'
     };
+    dobDp: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,

@@ -13,7 +13,7 @@ export interface IParticipant {
     city?: string;
     state?: string;
     country?: string;
-    dob?: string;
+    dob?: Moment;
     phone?: string;
     email?: string;
     zip?: string;
@@ -40,7 +40,7 @@ export class Participant implements IParticipant {
         public city?: string,
         public state?: string,
         public country?: string,
-        public dob?: string,
+        public dob?: Moment,
         public phone?: string,
         public email?: string,
         public zip?: string,

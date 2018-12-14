@@ -7,7 +7,7 @@ entity Participant {
     city String
     state String
     country String
-    dob String
+    dob LocalDate
     phone String
     email String
     zip String

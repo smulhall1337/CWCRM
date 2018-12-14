@@ -54,7 +54,7 @@
                 <td>{{participant.address1}}</td>
                 <td>{{participant.city}}</td>
                 <td>{{participant.state}}</td>
-                <td>{{participant.dob}}</td>
+                <td>{{participant.dob | date:'mediumDate'}}</td>
                 <td>{{participant.phone}}</td>
                 <td>
                     <div *ngIf="participant.contactStatusId">

@@ -22,7 +22,7 @@ import java.util.Objects;
 @Table(name = "participant")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "participant")
-public class Participant extends AbstractAuditingEntity implements Serializable {
+public class Participant implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -58,7 +58,7 @@ public class Participant extends AbstractAuditingEntity implements Serializable 
     private String country;
 
     @Column(name = "dob")
-    private String dob;
+    private LocalDate dob;
 
     @Column(name = "phone")
     private String phone;
@@ -207,16 +207,16 @@ public class Participant extends AbstractAuditingEntity implements Serializable 
         this.country = country;
     }
 
-    public String getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public Participant dob(String dob) {
+    public Participant dob(LocalDate dob) {
         this.dob = dob;
         return this;
     }
 
-    public void setDob(String dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

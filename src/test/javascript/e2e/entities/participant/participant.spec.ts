@@ -47,7 +47,7 @@ describe('Participant e2e test', () => {
             participantUpdatePage.setCityInput('city'),
             participantUpdatePage.setStateInput('state'),
             participantUpdatePage.setCountryInput('country'),
-            participantUpdatePage.setDobInput('dob'),
+            participantUpdatePage.setDobInput('2000-12-31'),
             participantUpdatePage.setPhoneInput('phone'),
             participantUpdatePage.setEmailInput('email'),
             participantUpdatePage.setZipInput('zip'),
@@ -65,7 +65,7 @@ describe('Participant e2e test', () => {
         expect(await participantUpdatePage.getCityInput()).to.eq('city');
         expect(await participantUpdatePage.getStateInput()).to.eq('state');
         expect(await participantUpdatePage.getCountryInput()).to.eq('country');
-        expect(await participantUpdatePage.getDobInput()).to.eq('dob');
+        expect(await participantUpdatePage.getDobInput()).to.eq('2000-12-31');
         expect(await participantUpdatePage.getPhoneInput()).to.eq('phone');
         expect(await participantUpdatePage.getEmailInput()).to.eq('email');
         expect(await participantUpdatePage.getZipInput()).to.eq('zip');

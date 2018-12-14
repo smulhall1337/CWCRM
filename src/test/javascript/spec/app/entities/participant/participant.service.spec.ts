@@ -35,7 +35,7 @@ describe('Service Tests', () => {
                 'AAAAAAA',
                 'AAAAAAA',
                 'AAAAAAA',
-                'AAAAAAA',
+                currentDate,
                 'AAAAAAA',
                 'AAAAAAA',
                 'AAAAAAA',
@@ -47,7 +47,8 @@ describe('Service Tests', () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        registrationDate: currentDate.format(DATE_FORMAT)
+                        registrationDate: currentDate.format(DATE_FORMAT),
+                        dob: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
@@ -64,13 +65,15 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        registrationDate: currentDate.format(DATE_FORMAT)
+                        registrationDate: currentDate.format(DATE_FORMAT),
+                        dob: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate
+                        registrationDate: currentDate,
+                        dob: currentDate
                     },
                     returnedFromService
                 );
@@ -93,7 +96,7 @@ describe('Service Tests', () => {
                         city: 'BBBBBB',
                         state: 'BBBBBB',
                         country: 'BBBBBB',
-                        dob: 'BBBBBB',
+                        dob: currentDate.format(DATE_FORMAT),
                         phone: 'BBBBBB',
                         email: 'BBBBBB',
                         zip: 'BBBBBB',
@@ -104,7 +107,8 @@ describe('Service Tests', () => {
 
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate
+                        registrationDate: currentDate,
+                        dob: currentDate
                     },
                     returnedFromService
                 );
@@ -127,7 +131,7 @@ describe('Service Tests', () => {
                         city: 'BBBBBB',
                         state: 'BBBBBB',
                         country: 'BBBBBB',
-                        dob: 'BBBBBB',
+                        dob: currentDate.format(DATE_FORMAT),
                         phone: 'BBBBBB',
                         email: 'BBBBBB',
                         zip: 'BBBBBB',
@@ -137,7 +141,8 @@ describe('Service Tests', () => {
                 );
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate
+                        registrationDate: currentDate,
+                        dob: currentDate
                     },
                     returnedFromService
                 );

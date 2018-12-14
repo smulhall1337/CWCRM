@@ -41,7 +41,7 @@
         },
         {
             "fieldName": "dob",
-            "fieldType": "String"
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "phone",
@@ -118,6 +118,5 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*",
-    "enableEntityAudit": true
+    "applications": "*"
 }

@@ -74,8 +74,8 @@ public class ParticipantResourceIntTest {
     private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
     private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
 
-    private static final String DEFAULT_DOB = "AAAAAAAAAA";
-    private static final String UPDATED_DOB = "BBBBBBBBBB";
+    private static final LocalDate DEFAULT_DOB = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DOB = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
@@ -435,7 +435,7 @@ public class ParticipantResourceIntTest {
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
             .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE)))
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY)))
-            .andExpect(jsonPath("$.[*].dob").value(hasItem(DEFAULT_DOB)))
+            .andExpect(jsonPath("$.[*].dob").value(hasItem(DEFAULT_DOB.toString())))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP)))

@@ -53,7 +53,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="dob" type="varchar(255)">
+            <column name="dob" type="date">
                 <constraints nullable="true" />
             </column>
 
@@ -86,20 +86,6 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
-    </changeSet>
-    
-    <!-- Added the entity audit columns -->
-    <changeSet id="20181128160002-audit-1" author="jhipster-entity-audit">
-        <addColumn tableName="participant">
-            <column name="created_by" type="varchar(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_date" type="timestamp" defaultValueDate="${now}">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_modified_by" type="varchar(50)"/>
-            <column name="last_modified_date" type="timestamp"/>
-        </addColumn>
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

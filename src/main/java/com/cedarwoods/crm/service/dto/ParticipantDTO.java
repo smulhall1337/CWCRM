@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A DTO for the Participant entity.
  */
-public class ParticipantDTO extends AbstractAuditingDTO implements Serializable {
+public class ParticipantDTO implements Serializable {
 
     private Long id;
 
@@ -30,7 +30,7 @@ public class ParticipantDTO extends AbstractAuditingDTO implements Serializable 
 
     private String country;
 
-    private String dob;
+    private LocalDate dob;
 
     private String phone;
 
@@ -124,11 +124,11 @@ public class ParticipantDTO extends AbstractAuditingDTO implements Serializable 
         this.country = country;
     }
 
-    public String getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
