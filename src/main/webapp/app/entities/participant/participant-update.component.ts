@@ -35,6 +35,7 @@ export class ParticipantUpdateComponent implements OnInit {
         isocode: 'us'
     };
     dobDp: any;
+    public phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
     constructor(
         private jhiAlertService: JhiAlertService,

@@ -2,6 +2,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
+import { TextMaskModule } from 'angular2-text-mask';
+import { FormsModule } from '@angular/forms';
 
 import { CwcrmSharedModule } from 'app/shared';
 import { CwcrmAdminModule } from 'app/admin/admin.module';
@@ -45,7 +47,9 @@ const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
         CwcrmAdminModule,
         RouterModule.forChild(ENTITY_STATES),
         MatTabsModule,
-        I18nCountrySelectModule.forRoot()
+        I18nCountrySelectModule.forRoot(),
+        FormsModule,
+        TextMaskModule
         // CwcrmContactHistoryModule
     ],
 
