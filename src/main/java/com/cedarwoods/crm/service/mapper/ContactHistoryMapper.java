@@ -8,18 +8,18 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity ContactHistory and its DTO ContactHistoryDTO.
  */
-@Mapper(componentModel = "spring", uses = {ContactTypeMapper.class, ParticipantMapper.class, UserMapper.class})
+@Mapper(componentModel = "spring", uses = {ParticipantMapper.class, UserMapper.class, ContactTypeMapper.class})
 public interface ContactHistoryMapper extends EntityMapper<ContactHistoryDTO, ContactHistory> {
 
-    @Mapping(source = "contactType.id", target = "contactTypeId")
-    @Mapping(source = "contactType.name", target = "contactTypeName")
     @Mapping(source = "participant.id", target = "participantId")
     @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "contactType.id", target = "contactTypeId")
+    @Mapping(source = "contactType.name", target = "contactTypeName")
     ContactHistoryDTO toDto(ContactHistory contactHistory);
 
-    @Mapping(source = "contactTypeId", target = "contactType")
     @Mapping(source = "participantId", target = "participant")
     @Mapping(source = "userId", target = "user")
+    @Mapping(source = "contactTypeId", target = "contactType")
     ContactHistory toEntity(ContactHistoryDTO contactHistoryDTO);
 
     default ContactHistory fromId(Long id) {

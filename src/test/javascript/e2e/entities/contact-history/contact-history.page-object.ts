@@ -28,9 +28,9 @@ export class ContactHistoryUpdatePage {
     cancelButton = element(by.id('cancel-save'));
     dateInput = element(by.id('field_date'));
     notesInput = element(by.id('field_notes'));
-    contactTypeSelect = element(by.id('field_contactType'));
     participantSelect = element(by.id('field_participant'));
     userSelect = element(by.id('field_user'));
+    contactTypeSelect = element(by.id('field_contactType'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -50,25 +50,6 @@ export class ContactHistoryUpdatePage {
 
     async getNotesInput() {
         return this.notesInput.getAttribute('value');
-    }
-
-    async contactTypeSelectLastOption() {
-        await this.contactTypeSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async contactTypeSelectOption(option) {
-        await this.contactTypeSelect.sendKeys(option);
-    }
-
-    getContactTypeSelect(): ElementFinder {
-        return this.contactTypeSelect;
-    }
-
-    async getContactTypeSelectedOption() {
-        return this.contactTypeSelect.element(by.css('option:checked')).getText();
     }
 
     async participantSelectLastOption() {
@@ -107,6 +88,25 @@ export class ContactHistoryUpdatePage {
 
     async getUserSelectedOption() {
         return this.userSelect.element(by.css('option:checked')).getText();
+    }
+
+    async contactTypeSelectLastOption() {
+        await this.contactTypeSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async contactTypeSelectOption(option) {
+        await this.contactTypeSelect.sendKeys(option);
+    }
+
+    getContactTypeSelect(): ElementFinder {
+        return this.contactTypeSelect;
+    }
+
+    async getContactTypeSelectedOption() {
+        return this.contactTypeSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

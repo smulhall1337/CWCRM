@@ -8,12 +8,6 @@
     -->
     <changeSet id="20181127160220-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="contact_type_id"
-                                 baseTableName="contact_history"
-                                 constraintName="fk_contact_history_contact_type_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="contact_type"/>
-
         <addForeignKeyConstraint baseColumnNames="participant_id"
                                  baseTableName="contact_history"
                                  constraintName="fk_contact_history_participant_id"
@@ -25,6 +19,12 @@
                                  constraintName="fk_contact_history_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="contact_type_id"
+                                 baseTableName="contact_history"
+                                 constraintName="fk_contact_history_contact_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_type"/>
 
     </changeSet>
 </databaseChangeLog>

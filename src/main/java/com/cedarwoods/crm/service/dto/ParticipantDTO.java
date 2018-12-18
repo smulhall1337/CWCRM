@@ -15,14 +15,16 @@ public class ParticipantDTO implements Serializable {
     @NotNull
     private String firstName;
 
+    private String middleInitial;
+
     @NotNull
     private String lastName;
 
+    private String title;
+
     private LocalDate registrationDate;
 
-    private String address1;
-
-    private String address2;
+    private String address;
 
     private String city;
 
@@ -30,15 +32,25 @@ public class ParticipantDTO implements Serializable {
 
     private String country;
 
-    private String dob;
+    private LocalDate dob;
 
-    private String phone;
+    private String primaryPhone;
+
+    private String primaryPhoneType;
+
+    private String secondaryPhone;
+
+    private String secondaryPhoneType;
 
     private String email;
 
     private String zip;
 
-    private Long mANNumber;
+    private String medicareIdNumber;
+
+    private String medicaidIdNumber;
+
+    private String gender;
 
     private Long contactStatusId;
 
@@ -46,11 +58,19 @@ public class ParticipantDTO implements Serializable {
 
     private String contactSubStatusName;
 
-    private Long waiverId;
+    private Long mcoId;
 
-    private String waiverName;
+    private String mcoName;
 
-    private Long supportCoordinatorId;
+    private Long referralTypeId;
+
+    private String referralTypeName;
+
+    private Long referralSourceId;
+
+    private String referralSourceName;
+
+    private Long assignedToId;
 
     public Long getId() {
         return id;
@@ -68,12 +88,28 @@ public class ParticipantDTO implements Serializable {
         this.firstName = firstName;
     }
 
+    public String getMiddleInitial() {
+        return middleInitial;
+    }
+
+    public void setMiddleInitial(String middleInitial) {
+        this.middleInitial = middleInitial;
+    }
+
     public String getLastName() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public LocalDate getRegistrationDate() {
@@ -84,20 +120,12 @@ public class ParticipantDTO implements Serializable {
         this.registrationDate = registrationDate;
     }
 
-    public String getAddress1() {
-        return address1;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
@@ -124,20 +152,44 @@ public class ParticipantDTO implements Serializable {
         this.country = country;
     }
 
-    public String getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPrimaryPhone() {
+        return primaryPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPrimaryPhone(String primaryPhone) {
+        this.primaryPhone = primaryPhone;
+    }
+
+    public String getPrimaryPhoneType() {
+        return primaryPhoneType;
+    }
+
+    public void setPrimaryPhoneType(String primaryPhoneType) {
+        this.primaryPhoneType = primaryPhoneType;
+    }
+
+    public String getSecondaryPhone() {
+        return secondaryPhone;
+    }
+
+    public void setSecondaryPhone(String secondaryPhone) {
+        this.secondaryPhone = secondaryPhone;
+    }
+
+    public String getSecondaryPhoneType() {
+        return secondaryPhoneType;
+    }
+
+    public void setSecondaryPhoneType(String secondaryPhoneType) {
+        this.secondaryPhoneType = secondaryPhoneType;
     }
 
     public String getEmail() {
@@ -156,12 +208,28 @@ public class ParticipantDTO implements Serializable {
         this.zip = zip;
     }
 
-    public Long getmANNumber() {
-        return mANNumber;
+    public String getMedicareIdNumber() {
+        return medicareIdNumber;
     }
 
-    public void setmANNumber(Long mANNumber) {
-        this.mANNumber = mANNumber;
+    public void setMedicareIdNumber(String medicareIdNumber) {
+        this.medicareIdNumber = medicareIdNumber;
+    }
+
+    public String getMedicaidIdNumber() {
+        return medicaidIdNumber;
+    }
+
+    public void setMedicaidIdNumber(String medicaidIdNumber) {
+        this.medicaidIdNumber = medicaidIdNumber;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Long getContactStatusId() {
@@ -188,28 +256,60 @@ public class ParticipantDTO implements Serializable {
         this.contactSubStatusName = contactSubStatusName;
     }
 
-    public Long getWaiverId() {
-        return waiverId;
+    public Long getMcoId() {
+        return mcoId;
     }
 
-    public void setWaiverId(Long waiverId) {
-        this.waiverId = waiverId;
+    public void setMcoId(Long mCOId) {
+        this.mcoId = mCOId;
     }
 
-    public String getWaiverName() {
-        return waiverName;
+    public String getMcoName() {
+        return mcoName;
     }
 
-    public void setWaiverName(String waiverName) {
-        this.waiverName = waiverName;
+    public void setMcoName(String mCOName) {
+        this.mcoName = mCOName;
     }
 
-    public Long getSupportCoordinatorId() {
-        return supportCoordinatorId;
+    public Long getReferralTypeId() {
+        return referralTypeId;
     }
 
-    public void setSupportCoordinatorId(Long userId) {
-        this.supportCoordinatorId = userId;
+    public void setReferralTypeId(Long referralTypeId) {
+        this.referralTypeId = referralTypeId;
+    }
+
+    public String getReferralTypeName() {
+        return referralTypeName;
+    }
+
+    public void setReferralTypeName(String referralTypeName) {
+        this.referralTypeName = referralTypeName;
+    }
+
+    public Long getReferralSourceId() {
+        return referralSourceId;
+    }
+
+    public void setReferralSourceId(Long referralSourceId) {
+        this.referralSourceId = referralSourceId;
+    }
+
+    public String getReferralSourceName() {
+        return referralSourceName;
+    }
+
+    public void setReferralSourceName(String referralSourceName) {
+        this.referralSourceName = referralSourceName;
+    }
+
+    public Long getAssignedToId() {
+        return assignedToId;
+    }
+
+    public void setAssignedToId(Long userId) {
+        this.assignedToId = userId;
     }
 
     @Override
@@ -238,24 +338,34 @@ public class ParticipantDTO implements Serializable {
         return "ParticipantDTO{" +
             "id=" + getId() +
             ", firstName='" + getFirstName() + "'" +
+            ", middleInitial='" + getMiddleInitial() + "'" +
             ", lastName='" + getLastName() + "'" +
+            ", title='" + getTitle() + "'" +
             ", registrationDate='" + getRegistrationDate() + "'" +
-            ", address1='" + getAddress1() + "'" +
-            ", address2='" + getAddress2() + "'" +
+            ", address='" + getAddress() + "'" +
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +
             ", country='" + getCountry() + "'" +
             ", dob='" + getDob() + "'" +
-            ", phone='" + getPhone() + "'" +
+            ", primaryPhone='" + getPrimaryPhone() + "'" +
+            ", primaryPhoneType='" + getPrimaryPhoneType() + "'" +
+            ", secondaryPhone='" + getSecondaryPhone() + "'" +
+            ", secondaryPhoneType='" + getSecondaryPhoneType() + "'" +
             ", email='" + getEmail() + "'" +
             ", zip='" + getZip() + "'" +
-            ", mANNumber=" + getmANNumber() +
+            ", medicareIdNumber='" + getMedicareIdNumber() + "'" +
+            ", medicaidIdNumber='" + getMedicaidIdNumber() + "'" +
+            ", gender='" + getGender() + "'" +
             ", contactStatus=" + getContactStatusId() +
             ", contactSubStatus=" + getContactSubStatusId() +
             ", contactSubStatus='" + getContactSubStatusName() + "'" +
-            ", waiver=" + getWaiverId() +
-            ", waiver='" + getWaiverName() + "'" +
-            ", supportCoordinator=" + getSupportCoordinatorId() +
+            ", mco=" + getMcoId() +
+            ", mco='" + getMcoName() + "'" +
+            ", referralType=" + getReferralTypeId() +
+            ", referralType='" + getReferralTypeName() + "'" +
+            ", referralSource=" + getReferralSourceId() +
+            ", referralSource='" + getReferralSourceName() + "'" +
+            ", assignedTo=" + getAssignedToId() +
             "}";
     }
 }

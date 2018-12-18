@@ -53,17 +53,20 @@ public class ParticipantResourceIntTest {
     private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
     private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_MIDDLE_INITIAL = "AAAAAAAAAA";
+    private static final String UPDATED_MIDDLE_INITIAL = "BBBBBBBBBB";
+
     private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
     private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String UPDATED_TITLE = "BBBBBBBBBB";
 
     private static final LocalDate DEFAULT_REGISTRATION_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_REGISTRATION_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final String DEFAULT_ADDRESS_1 = "AAAAAAAAAA";
-    private static final String UPDATED_ADDRESS_1 = "BBBBBBBBBB";
-
-    private static final String DEFAULT_ADDRESS_2 = "AAAAAAAAAA";
-    private static final String UPDATED_ADDRESS_2 = "BBBBBBBBBB";
+    private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
+    private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
 
     private static final String DEFAULT_CITY = "AAAAAAAAAA";
     private static final String UPDATED_CITY = "BBBBBBBBBB";
@@ -74,11 +77,20 @@ public class ParticipantResourceIntTest {
     private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
     private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
 
-    private static final String DEFAULT_DOB = "AAAAAAAAAA";
-    private static final String UPDATED_DOB = "BBBBBBBBBB";
+    private static final LocalDate DEFAULT_DOB = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DOB = LocalDate.now(ZoneId.systemDefault());
 
-    private static final String DEFAULT_PHONE = "AAAAAAAAAA";
-    private static final String UPDATED_PHONE = "BBBBBBBBBB";
+    private static final String DEFAULT_PRIMARY_PHONE = "AAAAAAAAAA";
+    private static final String UPDATED_PRIMARY_PHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PRIMARY_PHONE_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_PRIMARY_PHONE_TYPE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_SECONDARY_PHONE = "AAAAAAAAAA";
+    private static final String UPDATED_SECONDARY_PHONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_SECONDARY_PHONE_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_SECONDARY_PHONE_TYPE = "BBBBBBBBBB";
 
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
@@ -86,8 +98,14 @@ public class ParticipantResourceIntTest {
     private static final String DEFAULT_ZIP = "AAAAAAAAAA";
     private static final String UPDATED_ZIP = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_M_AN_NUMBER = 1L;
-    private static final Long UPDATED_M_AN_NUMBER = 2L;
+    private static final String DEFAULT_MEDICARE_ID_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_MEDICARE_ID_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MEDICAID_ID_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_MEDICAID_ID_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_GENDER = "AAAAAAAAAA";
+    private static final String UPDATED_GENDER = "BBBBBBBBBB";
 
     @Autowired
     private ParticipantRepository participantRepository;
@@ -142,18 +160,24 @@ public class ParticipantResourceIntTest {
     public static Participant createEntity(EntityManager em) {
         Participant participant = new Participant()
             .firstName(DEFAULT_FIRST_NAME)
+            .middleInitial(DEFAULT_MIDDLE_INITIAL)
             .lastName(DEFAULT_LAST_NAME)
+            .title(DEFAULT_TITLE)
             .registrationDate(DEFAULT_REGISTRATION_DATE)
-            .address1(DEFAULT_ADDRESS_1)
-            .address2(DEFAULT_ADDRESS_2)
+            .address(DEFAULT_ADDRESS)
             .city(DEFAULT_CITY)
             .state(DEFAULT_STATE)
             .country(DEFAULT_COUNTRY)
             .dob(DEFAULT_DOB)
-            .phone(DEFAULT_PHONE)
+            .primaryPhone(DEFAULT_PRIMARY_PHONE)
+            .primaryPhoneType(DEFAULT_PRIMARY_PHONE_TYPE)
+            .secondaryPhone(DEFAULT_SECONDARY_PHONE)
+            .secondaryPhoneType(DEFAULT_SECONDARY_PHONE_TYPE)
             .email(DEFAULT_EMAIL)
             .zip(DEFAULT_ZIP)
-            .mANNumber(DEFAULT_M_AN_NUMBER);
+            .medicareIdNumber(DEFAULT_MEDICARE_ID_NUMBER)
+            .medicaidIdNumber(DEFAULT_MEDICAID_ID_NUMBER)
+            .gender(DEFAULT_GENDER);
         return participant;
     }
 
@@ -179,18 +203,24 @@ public class ParticipantResourceIntTest {
         assertThat(participantList).hasSize(databaseSizeBeforeCreate + 1);
         Participant testParticipant = participantList.get(participantList.size() - 1);
         assertThat(testParticipant.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
+        assertThat(testParticipant.getMiddleInitial()).isEqualTo(DEFAULT_MIDDLE_INITIAL);
         assertThat(testParticipant.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
+        assertThat(testParticipant.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testParticipant.getRegistrationDate()).isEqualTo(DEFAULT_REGISTRATION_DATE);
-        assertThat(testParticipant.getAddress1()).isEqualTo(DEFAULT_ADDRESS_1);
-        assertThat(testParticipant.getAddress2()).isEqualTo(DEFAULT_ADDRESS_2);
+        assertThat(testParticipant.getAddress()).isEqualTo(DEFAULT_ADDRESS);
         assertThat(testParticipant.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testParticipant.getState()).isEqualTo(DEFAULT_STATE);
         assertThat(testParticipant.getCountry()).isEqualTo(DEFAULT_COUNTRY);
         assertThat(testParticipant.getDob()).isEqualTo(DEFAULT_DOB);
-        assertThat(testParticipant.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testParticipant.getPrimaryPhone()).isEqualTo(DEFAULT_PRIMARY_PHONE);
+        assertThat(testParticipant.getPrimaryPhoneType()).isEqualTo(DEFAULT_PRIMARY_PHONE_TYPE);
+        assertThat(testParticipant.getSecondaryPhone()).isEqualTo(DEFAULT_SECONDARY_PHONE);
+        assertThat(testParticipant.getSecondaryPhoneType()).isEqualTo(DEFAULT_SECONDARY_PHONE_TYPE);
         assertThat(testParticipant.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testParticipant.getZip()).isEqualTo(DEFAULT_ZIP);
-        assertThat(testParticipant.getmANNumber()).isEqualTo(DEFAULT_M_AN_NUMBER);
+        assertThat(testParticipant.getMedicareIdNumber()).isEqualTo(DEFAULT_MEDICARE_ID_NUMBER);
+        assertThat(testParticipant.getMedicaidIdNumber()).isEqualTo(DEFAULT_MEDICAID_ID_NUMBER);
+        assertThat(testParticipant.getGender()).isEqualTo(DEFAULT_GENDER);
 
         // Validate the Participant in Elasticsearch
         verify(mockParticipantSearchRepository, times(1)).save(testParticipant);
@@ -269,18 +299,24 @@ public class ParticipantResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(participant.getId().intValue())))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
+            .andExpect(jsonPath("$.[*].middleInitial").value(hasItem(DEFAULT_MIDDLE_INITIAL.toString())))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
             .andExpect(jsonPath("$.[*].registrationDate").value(hasItem(DEFAULT_REGISTRATION_DATE.toString())))
-            .andExpect(jsonPath("$.[*].address1").value(hasItem(DEFAULT_ADDRESS_1.toString())))
-            .andExpect(jsonPath("$.[*].address2").value(hasItem(DEFAULT_ADDRESS_2.toString())))
+            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
             .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE.toString())))
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())))
             .andExpect(jsonPath("$.[*].dob").value(hasItem(DEFAULT_DOB.toString())))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].primaryPhone").value(hasItem(DEFAULT_PRIMARY_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].primaryPhoneType").value(hasItem(DEFAULT_PRIMARY_PHONE_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].secondaryPhone").value(hasItem(DEFAULT_SECONDARY_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].secondaryPhoneType").value(hasItem(DEFAULT_SECONDARY_PHONE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP.toString())))
-            .andExpect(jsonPath("$.[*].mANNumber").value(hasItem(DEFAULT_M_AN_NUMBER.intValue())));
+            .andExpect(jsonPath("$.[*].medicareIdNumber").value(hasItem(DEFAULT_MEDICARE_ID_NUMBER.toString())))
+            .andExpect(jsonPath("$.[*].medicaidIdNumber").value(hasItem(DEFAULT_MEDICAID_ID_NUMBER.toString())))
+            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())));
     }
     
     @Test
@@ -295,18 +331,24 @@ public class ParticipantResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(participant.getId().intValue()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
+            .andExpect(jsonPath("$.middleInitial").value(DEFAULT_MIDDLE_INITIAL.toString()))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
             .andExpect(jsonPath("$.registrationDate").value(DEFAULT_REGISTRATION_DATE.toString()))
-            .andExpect(jsonPath("$.address1").value(DEFAULT_ADDRESS_1.toString()))
-            .andExpect(jsonPath("$.address2").value(DEFAULT_ADDRESS_2.toString()))
+            .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
             .andExpect(jsonPath("$.state").value(DEFAULT_STATE.toString()))
             .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()))
             .andExpect(jsonPath("$.dob").value(DEFAULT_DOB.toString()))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.primaryPhone").value(DEFAULT_PRIMARY_PHONE.toString()))
+            .andExpect(jsonPath("$.primaryPhoneType").value(DEFAULT_PRIMARY_PHONE_TYPE.toString()))
+            .andExpect(jsonPath("$.secondaryPhone").value(DEFAULT_SECONDARY_PHONE.toString()))
+            .andExpect(jsonPath("$.secondaryPhoneType").value(DEFAULT_SECONDARY_PHONE_TYPE.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.zip").value(DEFAULT_ZIP.toString()))
-            .andExpect(jsonPath("$.mANNumber").value(DEFAULT_M_AN_NUMBER.intValue()));
+            .andExpect(jsonPath("$.medicareIdNumber").value(DEFAULT_MEDICARE_ID_NUMBER.toString()))
+            .andExpect(jsonPath("$.medicaidIdNumber").value(DEFAULT_MEDICAID_ID_NUMBER.toString()))
+            .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()));
     }
 
     @Test
@@ -331,18 +373,24 @@ public class ParticipantResourceIntTest {
         em.detach(updatedParticipant);
         updatedParticipant
             .firstName(UPDATED_FIRST_NAME)
+            .middleInitial(UPDATED_MIDDLE_INITIAL)
             .lastName(UPDATED_LAST_NAME)
+            .title(UPDATED_TITLE)
             .registrationDate(UPDATED_REGISTRATION_DATE)
-            .address1(UPDATED_ADDRESS_1)
-            .address2(UPDATED_ADDRESS_2)
+            .address(UPDATED_ADDRESS)
             .city(UPDATED_CITY)
             .state(UPDATED_STATE)
             .country(UPDATED_COUNTRY)
             .dob(UPDATED_DOB)
-            .phone(UPDATED_PHONE)
+            .primaryPhone(UPDATED_PRIMARY_PHONE)
+            .primaryPhoneType(UPDATED_PRIMARY_PHONE_TYPE)
+            .secondaryPhone(UPDATED_SECONDARY_PHONE)
+            .secondaryPhoneType(UPDATED_SECONDARY_PHONE_TYPE)
             .email(UPDATED_EMAIL)
             .zip(UPDATED_ZIP)
-            .mANNumber(UPDATED_M_AN_NUMBER);
+            .medicareIdNumber(UPDATED_MEDICARE_ID_NUMBER)
+            .medicaidIdNumber(UPDATED_MEDICAID_ID_NUMBER)
+            .gender(UPDATED_GENDER);
         ParticipantDTO participantDTO = participantMapper.toDto(updatedParticipant);
 
         restParticipantMockMvc.perform(put("/api/participants")
@@ -355,18 +403,24 @@ public class ParticipantResourceIntTest {
         assertThat(participantList).hasSize(databaseSizeBeforeUpdate);
         Participant testParticipant = participantList.get(participantList.size() - 1);
         assertThat(testParticipant.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
+        assertThat(testParticipant.getMiddleInitial()).isEqualTo(UPDATED_MIDDLE_INITIAL);
         assertThat(testParticipant.getLastName()).isEqualTo(UPDATED_LAST_NAME);
+        assertThat(testParticipant.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testParticipant.getRegistrationDate()).isEqualTo(UPDATED_REGISTRATION_DATE);
-        assertThat(testParticipant.getAddress1()).isEqualTo(UPDATED_ADDRESS_1);
-        assertThat(testParticipant.getAddress2()).isEqualTo(UPDATED_ADDRESS_2);
+        assertThat(testParticipant.getAddress()).isEqualTo(UPDATED_ADDRESS);
         assertThat(testParticipant.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testParticipant.getState()).isEqualTo(UPDATED_STATE);
         assertThat(testParticipant.getCountry()).isEqualTo(UPDATED_COUNTRY);
         assertThat(testParticipant.getDob()).isEqualTo(UPDATED_DOB);
-        assertThat(testParticipant.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testParticipant.getPrimaryPhone()).isEqualTo(UPDATED_PRIMARY_PHONE);
+        assertThat(testParticipant.getPrimaryPhoneType()).isEqualTo(UPDATED_PRIMARY_PHONE_TYPE);
+        assertThat(testParticipant.getSecondaryPhone()).isEqualTo(UPDATED_SECONDARY_PHONE);
+        assertThat(testParticipant.getSecondaryPhoneType()).isEqualTo(UPDATED_SECONDARY_PHONE_TYPE);
         assertThat(testParticipant.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testParticipant.getZip()).isEqualTo(UPDATED_ZIP);
-        assertThat(testParticipant.getmANNumber()).isEqualTo(UPDATED_M_AN_NUMBER);
+        assertThat(testParticipant.getMedicareIdNumber()).isEqualTo(UPDATED_MEDICARE_ID_NUMBER);
+        assertThat(testParticipant.getMedicaidIdNumber()).isEqualTo(UPDATED_MEDICAID_ID_NUMBER);
+        assertThat(testParticipant.getGender()).isEqualTo(UPDATED_GENDER);
 
         // Validate the Participant in Elasticsearch
         verify(mockParticipantSearchRepository, times(1)).save(testParticipant);
@@ -428,18 +482,24 @@ public class ParticipantResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(participant.getId().intValue())))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
+            .andExpect(jsonPath("$.[*].middleInitial").value(hasItem(DEFAULT_MIDDLE_INITIAL)))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].registrationDate").value(hasItem(DEFAULT_REGISTRATION_DATE.toString())))
-            .andExpect(jsonPath("$.[*].address1").value(hasItem(DEFAULT_ADDRESS_1)))
-            .andExpect(jsonPath("$.[*].address2").value(hasItem(DEFAULT_ADDRESS_2)))
+            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS)))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
             .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE)))
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY)))
-            .andExpect(jsonPath("$.[*].dob").value(hasItem(DEFAULT_DOB)))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
+            .andExpect(jsonPath("$.[*].dob").value(hasItem(DEFAULT_DOB.toString())))
+            .andExpect(jsonPath("$.[*].primaryPhone").value(hasItem(DEFAULT_PRIMARY_PHONE)))
+            .andExpect(jsonPath("$.[*].primaryPhoneType").value(hasItem(DEFAULT_PRIMARY_PHONE_TYPE)))
+            .andExpect(jsonPath("$.[*].secondaryPhone").value(hasItem(DEFAULT_SECONDARY_PHONE)))
+            .andExpect(jsonPath("$.[*].secondaryPhoneType").value(hasItem(DEFAULT_SECONDARY_PHONE_TYPE)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].zip").value(hasItem(DEFAULT_ZIP)))
-            .andExpect(jsonPath("$.[*].mANNumber").value(hasItem(DEFAULT_M_AN_NUMBER.intValue())));
+            .andExpect(jsonPath("$.[*].medicareIdNumber").value(hasItem(DEFAULT_MEDICARE_ID_NUMBER)))
+            .andExpect(jsonPath("$.[*].medicaidIdNumber").value(hasItem(DEFAULT_MEDICAID_ID_NUMBER)))
+            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER)));
     }
 
     @Test

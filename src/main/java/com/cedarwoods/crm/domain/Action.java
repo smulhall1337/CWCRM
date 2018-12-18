@@ -1,6 +1,5 @@
 package com.cedarwoods.crm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -26,12 +25,10 @@ public class Action implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @ManyToOne
-    @JsonIgnoreProperties("")
+    @OneToOne    @JoinColumn(unique = true)
     private User user;
 
-    @ManyToOne
-    @JsonIgnoreProperties("actions")
+    @OneToOne    @JoinColumn(unique = true)
     private Participant participant;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

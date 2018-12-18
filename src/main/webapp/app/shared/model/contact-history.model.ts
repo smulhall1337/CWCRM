@@ -4,10 +4,10 @@ export interface IContactHistory {
     id?: number;
     date?: Moment;
     notes?: any;
-    contactTypeName?: string;
-    contactTypeId?: number;
     participantId?: number;
     userId?: number;
+    contactTypeName?: string;
+    contactTypeId?: number;
 }
 
 export class ContactHistory implements IContactHistory {
@@ -15,9 +15,9 @@ export class ContactHistory implements IContactHistory {
         public id?: number,
         public date?: Moment,
         public notes?: any,
-        public contactTypeName?: string,
-        public contactTypeId?: number,
         public participantId?: number,
-        public userId?: number
+        public userId?: number,
+        public contactTypeName?: string,
+        public contactTypeId?: number
     ) {}
 }

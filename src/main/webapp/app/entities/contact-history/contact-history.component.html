@@ -32,9 +32,9 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="cwcrmApp.contactHistory.date">Date</span></th>
             <th><span jhiTranslate="cwcrmApp.contactHistory.notes">Notes</span></th>
-            <th><span jhiTranslate="cwcrmApp.contactHistory.contactType">Contact Type</span></th>
             <th><span jhiTranslate="cwcrmApp.contactHistory.participant">Participant</span></th>
             <th><span jhiTranslate="cwcrmApp.contactHistory.user">User</span></th>
+            <th><span jhiTranslate="cwcrmApp.contactHistory.contactType">Contact Type</span></th>
             <th></th>
             </tr>
             </thead>
@@ -44,17 +44,17 @@
                 <td>{{contactHistory.date | date:'mediumDate'}}</td>
                 <td>{{contactHistory.notes}}</td>
                 <td>
-                    <div *ngIf="contactHistory.contactTypeId">
-                        <a [routerLink]="['../contact-type', contactHistory.contactTypeId , 'view' ]" >{{contactHistory.contactTypeName}}</a>
-                    </div>
-                </td>
-                <td>
                     <div *ngIf="contactHistory.participantId">
                         <a [routerLink]="['../participant', contactHistory.participantId , 'view' ]" >{{contactHistory.participantId}}</a>
                     </div>
                 </td>
                 <td>
                     {{contactHistory.userId}}
+                </td>
+                <td>
+                    <div *ngIf="contactHistory.contactTypeId">
+                        <a [routerLink]="['../contact-type', contactHistory.contactTypeId , 'view' ]" >{{contactHistory.contactTypeName}}</a>
+                    </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

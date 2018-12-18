@@ -41,9 +41,18 @@ export class ActionUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.participantService.query().subscribe(
+        this.participantService.query({ filter: 'action-is-null' }).subscribe(
             (res: HttpResponse<IParticipant[]>) => {
-                this.participants = res.body;
+                if (!this.action.participantId) {
+                    this.participants = res.body;
+                } else {
+                    this.participantService.find(this.action.participantId).subscribe(
+                        (subRes: HttpResponse<IParticipant>) => {
+                            this.participants = [subRes.body].concat(res.body);
+                        },
+                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
+                    );
+                }
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

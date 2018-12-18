@@ -62,7 +62,8 @@ export class ParticipantService {
             registrationDate:
                 participant.registrationDate != null && participant.registrationDate.isValid()
                     ? participant.registrationDate.format(DATE_FORMAT)
-                    : null
+                    : null,
+            dob: participant.dob != null && participant.dob.isValid() ? participant.dob.format(DATE_FORMAT) : null
         });
         return copy;
     }
@@ -70,6 +71,7 @@ export class ParticipantService {
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
         if (res.body) {
             res.body.registrationDate = res.body.registrationDate != null ? moment(res.body.registrationDate) : null;
+            res.body.dob = res.body.dob != null ? moment(res.body.dob) : null;
         }
         return res;
     }
@@ -78,6 +80,7 @@ export class ParticipantService {
         if (res.body) {
             res.body.forEach((participant: IParticipant) => {
                 participant.registrationDate = participant.registrationDate != null ? moment(participant.registrationDate) : null;
+                participant.dob = participant.dob != null ? moment(participant.dob) : null;
             });
         }
         return res;

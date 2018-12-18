@@ -40,36 +40,50 @@ describe('Participant e2e test', () => {
         await participantComponentsPage.clickOnCreateButton();
         await promise.all([
             participantUpdatePage.setFirstNameInput('firstName'),
+            participantUpdatePage.setMiddleInitialInput('middleInitial'),
             participantUpdatePage.setLastNameInput('lastName'),
+            participantUpdatePage.setTitleInput('title'),
             participantUpdatePage.setRegistrationDateInput('2000-12-31'),
-            participantUpdatePage.setAddress1Input('address1'),
-            participantUpdatePage.setAddress2Input('address2'),
+            participantUpdatePage.setAddressInput('address'),
             participantUpdatePage.setCityInput('city'),
             participantUpdatePage.setStateInput('state'),
             participantUpdatePage.setCountryInput('country'),
-            participantUpdatePage.setDobInput('dob'),
-            participantUpdatePage.setPhoneInput('phone'),
+            participantUpdatePage.setDobInput('2000-12-31'),
+            participantUpdatePage.setPrimaryPhoneInput('primaryPhone'),
+            participantUpdatePage.setPrimaryPhoneTypeInput('primaryPhoneType'),
+            participantUpdatePage.setSecondaryPhoneInput('secondaryPhone'),
+            participantUpdatePage.setSecondaryPhoneTypeInput('secondaryPhoneType'),
             participantUpdatePage.setEmailInput('email'),
             participantUpdatePage.setZipInput('zip'),
-            participantUpdatePage.setMANNumberInput('5'),
+            participantUpdatePage.setMedicareIdNumberInput('medicareIdNumber'),
+            participantUpdatePage.setMedicaidIdNumberInput('medicaidIdNumber'),
+            participantUpdatePage.setGenderInput('gender'),
             participantUpdatePage.contactStatusSelectLastOption(),
             participantUpdatePage.contactSubStatusSelectLastOption(),
-            participantUpdatePage.waiverSelectLastOption(),
-            participantUpdatePage.supportCoordinatorSelectLastOption()
+            participantUpdatePage.mcoSelectLastOption(),
+            participantUpdatePage.referralTypeSelectLastOption(),
+            participantUpdatePage.referralSourceSelectLastOption(),
+            participantUpdatePage.assignedToSelectLastOption()
         ]);
         expect(await participantUpdatePage.getFirstNameInput()).to.eq('firstName');
+        expect(await participantUpdatePage.getMiddleInitialInput()).to.eq('middleInitial');
         expect(await participantUpdatePage.getLastNameInput()).to.eq('lastName');
+        expect(await participantUpdatePage.getTitleInput()).to.eq('title');
         expect(await participantUpdatePage.getRegistrationDateInput()).to.eq('2000-12-31');
-        expect(await participantUpdatePage.getAddress1Input()).to.eq('address1');
-        expect(await participantUpdatePage.getAddress2Input()).to.eq('address2');
+        expect(await participantUpdatePage.getAddressInput()).to.eq('address');
         expect(await participantUpdatePage.getCityInput()).to.eq('city');
         expect(await participantUpdatePage.getStateInput()).to.eq('state');
         expect(await participantUpdatePage.getCountryInput()).to.eq('country');
-        expect(await participantUpdatePage.getDobInput()).to.eq('dob');
-        expect(await participantUpdatePage.getPhoneInput()).to.eq('phone');
+        expect(await participantUpdatePage.getDobInput()).to.eq('2000-12-31');
+        expect(await participantUpdatePage.getPrimaryPhoneInput()).to.eq('primaryPhone');
+        expect(await participantUpdatePage.getPrimaryPhoneTypeInput()).to.eq('primaryPhoneType');
+        expect(await participantUpdatePage.getSecondaryPhoneInput()).to.eq('secondaryPhone');
+        expect(await participantUpdatePage.getSecondaryPhoneTypeInput()).to.eq('secondaryPhoneType');
         expect(await participantUpdatePage.getEmailInput()).to.eq('email');
         expect(await participantUpdatePage.getZipInput()).to.eq('zip');
-        expect(await participantUpdatePage.getMANNumberInput()).to.eq('5');
+        expect(await participantUpdatePage.getMedicareIdNumberInput()).to.eq('medicareIdNumber');
+        expect(await participantUpdatePage.getMedicaidIdNumberInput()).to.eq('medicaidIdNumber');
+        expect(await participantUpdatePage.getGenderInput()).to.eq('gender');
         await participantUpdatePage.save();
         expect(await participantUpdatePage.getSaveButton().isPresent()).to.be.false;
 

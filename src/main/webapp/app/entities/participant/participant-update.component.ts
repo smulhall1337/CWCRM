@@ -11,9 +11,17 @@ import { IContactStatus } from 'app/shared/model/contact-status.model';
 import { ContactStatusService } from 'app/entities/contact-status';
 import { IContactSubStatus } from 'app/shared/model/contact-sub-status.model';
 import { ContactSubStatusService } from 'app/entities/contact-sub-status';
-import { IWaiver } from 'app/shared/model/waiver.model';
-import { WaiverService } from 'app/entities/waiver';
+import { IMCO } from 'app/shared/model/mco.model';
+import { MCOService } from 'app/entities/mco';
+import { IReferralType } from 'app/shared/model/referral-type.model';
+import { ReferralTypeService } from 'app/entities/referral-type';
+import { IReferralSource } from 'app/shared/model/referral-source.model';
+import { ReferralSourceService } from 'app/entities/referral-source';
 import { IUser, UserService } from 'app/core';
+import { IAction } from 'app/shared/model/action.model';
+import { ActionService } from 'app/entities/action';
+import { IContactHistory } from 'app/shared/model/contact-history.model';
+import { ContactHistoryService } from 'app/entities/contact-history';
 
 @Component({
     selector: 'jhi-participant-update',
@@ -27,18 +35,31 @@ export class ParticipantUpdateComponent implements OnInit {
 
     contactsubstatuses: IContactSubStatus[];
 
-    waivers: IWaiver[];
+    mcos: IMCO[];
+
+    referraltypes: IReferralType[];
+
+    referralsources: IReferralSource[];
 
     users: IUser[];
+
+    actions: IAction[];
+
+    contacthistories: IContactHistory[];
     registrationDateDp: any;
+    dobDp: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private participantService: ParticipantService,
         private contactStatusService: ContactStatusService,
         private contactSubStatusService: ContactSubStatusService,
-        private waiverService: WaiverService,
+        private mCOService: MCOService,
+        private referralTypeService: ReferralTypeService,
+        private referralSourceService: ReferralSourceService,
         private userService: UserService,
+        private actionService: ActionService,
+        private contactHistoryService: ContactHistoryService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -77,14 +98,44 @@ export class ParticipantUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.waiverService.query({ filter: 'participant-is-null' }).subscribe(
-            (res: HttpResponse<IWaiver[]>) => {
-                if (!this.participant.waiverId) {
-                    this.waivers = res.body;
+        this.mCOService.query({ filter: 'participant-is-null' }).subscribe(
+            (res: HttpResponse<IMCO[]>) => {
+                if (!this.participant.mcoId) {
+                    this.mcos = res.body;
                 } else {
-                    this.waiverService.find(this.participant.waiverId).subscribe(
-                        (subRes: HttpResponse<IWaiver>) => {
-                            this.waivers = [subRes.body].concat(res.body);
+                    this.mCOService.find(this.participant.mcoId).subscribe(
+                        (subRes: HttpResponse<IMCO>) => {
+                            this.mcos = [subRes.body].concat(res.body);
+                        },
+                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
+                    );
+                }
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.referralTypeService.query({ filter: 'participant-is-null' }).subscribe(
+            (res: HttpResponse<IReferralType[]>) => {
+                if (!this.participant.referralTypeId) {
+                    this.referraltypes = res.body;
+                } else {
+                    this.referralTypeService.find(this.participant.referralTypeId).subscribe(
+                        (subRes: HttpResponse<IReferralType>) => {
+                            this.referraltypes = [subRes.body].concat(res.body);
+                        },
+                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
+                    );
+                }
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.referralSourceService.query({ filter: 'participant-is-null' }).subscribe(
+            (res: HttpResponse<IReferralSource[]>) => {
+                if (!this.participant.referralSourceId) {
+                    this.referralsources = res.body;
+                } else {
+                    this.referralSourceService.find(this.participant.referralSourceId).subscribe(
+                        (subRes: HttpResponse<IReferralSource>) => {
+                            this.referralsources = [subRes.body].concat(res.body);
                         },
                         (subRes: HttpErrorResponse) => this.onError(subRes.message)
                     );
@@ -95,6 +146,18 @@ export class ParticipantUpdateComponent implements OnInit {
         this.userService.query().subscribe(
             (res: HttpResponse<IUser[]>) => {
                 this.users = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.actionService.query().subscribe(
+            (res: HttpResponse<IAction[]>) => {
+                this.actions = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.contactHistoryService.query().subscribe(
+            (res: HttpResponse<IContactHistory[]>) => {
+                this.contacthistories = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -138,11 +201,27 @@ export class ParticipantUpdateComponent implements OnInit {
         return item.id;
     }
 
-    trackWaiverById(index: number, item: IWaiver) {
+    trackMCOById(index: number, item: IMCO) {
+        return item.id;
+    }
+
+    trackReferralTypeById(index: number, item: IReferralType) {
+        return item.id;
+    }
+
+    trackReferralSourceById(index: number, item: IReferralSource) {
         return item.id;
     }
 
     trackUserById(index: number, item: IUser) {
+        return item.id;
+    }
+
+    trackActionById(index: number, item: IAction) {
+        return item.id;
+    }
+
+    trackContactHistoryById(index: number, item: IContactHistory) {
         return item.id;
     }
 }

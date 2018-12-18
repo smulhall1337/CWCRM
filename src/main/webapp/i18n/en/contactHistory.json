@@ -18,9 +18,9 @@
             },
             "date": "Date",
             "notes": "Notes",
-            "contactType": "Contact Type",
             "participant": "Participant",
-            "user": "User"
+            "user": "User",
+            "contactType": "Contact Type"
         }
     }
 }

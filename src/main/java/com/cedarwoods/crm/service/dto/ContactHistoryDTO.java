@@ -17,13 +17,13 @@ public class ContactHistoryDTO implements Serializable {
     @Lob
     private String notes;
 
-    private Long contactTypeId;
-
-    private String contactTypeName;
-
     private Long participantId;
 
     private Long userId;
+
+    private Long contactTypeId;
+
+    private String contactTypeName;
 
     public Long getId() {
         return id;
@@ -49,22 +49,6 @@ public class ContactHistoryDTO implements Serializable {
         this.notes = notes;
     }
 
-    public Long getContactTypeId() {
-        return contactTypeId;
-    }
-
-    public void setContactTypeId(Long contactTypeId) {
-        this.contactTypeId = contactTypeId;
-    }
-
-    public String getContactTypeName() {
-        return contactTypeName;
-    }
-
-    public void setContactTypeName(String contactTypeName) {
-        this.contactTypeName = contactTypeName;
-    }
-
     public Long getParticipantId() {
         return participantId;
     }
@@ -79,6 +63,22 @@ public class ContactHistoryDTO implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getContactTypeId() {
+        return contactTypeId;
+    }
+
+    public void setContactTypeId(Long contactTypeId) {
+        this.contactTypeId = contactTypeId;
+    }
+
+    public String getContactTypeName() {
+        return contactTypeName;
+    }
+
+    public void setContactTypeName(String contactTypeName) {
+        this.contactTypeName = contactTypeName;
     }
 
     @Override
@@ -108,10 +108,10 @@ public class ContactHistoryDTO implements Serializable {
             "id=" + getId() +
             ", date='" + getDate() + "'" +
             ", notes='" + getNotes() + "'" +
-            ", contactType=" + getContactTypeId() +
-            ", contactType='" + getContactTypeName() + "'" +
             ", participant=" + getParticipantId() +
             ", user=" + getUserId() +
+            ", contactType=" + getContactTypeId() +
+            ", contactType='" + getContactTypeName() + "'" +
             "}";
     }
 }

@@ -41,9 +41,9 @@ describe('ContactHistory e2e test', () => {
         await promise.all([
             contactHistoryUpdatePage.setDateInput('2000-12-31'),
             contactHistoryUpdatePage.setNotesInput('notes'),
-            contactHistoryUpdatePage.contactTypeSelectLastOption(),
             contactHistoryUpdatePage.participantSelectLastOption(),
-            contactHistoryUpdatePage.userSelectLastOption()
+            contactHistoryUpdatePage.userSelectLastOption(),
+            contactHistoryUpdatePage.contactTypeSelectLastOption()
         ]);
         expect(await contactHistoryUpdatePage.getDateInput()).to.eq('2000-12-31');
         expect(await contactHistoryUpdatePage.getNotesInput()).to.eq('notes');

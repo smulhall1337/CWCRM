@@ -20,15 +20,27 @@
                                  referencedColumnNames="id"
                                  referencedTableName="contact_sub_status"/>
 
-        <addForeignKeyConstraint baseColumnNames="waiver_id"
+        <addForeignKeyConstraint baseColumnNames="mco_id"
                                  baseTableName="participant"
-                                 constraintName="fk_participant_waiver_id"
+                                 constraintName="fk_participant_mco_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="waiver"/>
+                                 referencedTableName="mco"/>
 
-        <addForeignKeyConstraint baseColumnNames="support_coordinator_id"
+        <addForeignKeyConstraint baseColumnNames="referral_type_id"
                                  baseTableName="participant"
-                                 constraintName="fk_participant_support_coordinator_id"
+                                 constraintName="fk_participant_referral_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="referral_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="referral_source_id"
+                                 baseTableName="participant"
+                                 constraintName="fk_participant_referral_source_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="referral_source"/>
+
+        <addForeignKeyConstraint baseColumnNames="assigned_to_id"
+                                 baseTableName="participant"
+                                 constraintName="fk_participant_assigned_to_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 

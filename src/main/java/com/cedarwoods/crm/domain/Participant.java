@@ -35,18 +35,21 @@ public class Participant implements Serializable {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @Column(name = "middle_initial")
+    private String middleInitial;
+
     @NotNull
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Column(name = "title")
+    private String title;
+
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-    @Column(name = "address_1")
-    private String address1;
-
-    @Column(name = "address_2")
-    private String address2;
+    @Column(name = "address")
+    private String address;
 
     @Column(name = "city")
     private String city;
@@ -58,10 +61,19 @@ public class Participant implements Serializable {
     private String country;
 
     @Column(name = "dob")
-    private String dob;
+    private LocalDate dob;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "primary_phone")
+    private String primaryPhone;
+
+    @Column(name = "primary_phone_type")
+    private String primaryPhoneType;
+
+    @Column(name = "secondary_phone")
+    private String secondaryPhone;
+
+    @Column(name = "secondary_phone_type")
+    private String secondaryPhoneType;
 
     @Column(name = "email")
     private String email;
@@ -69,8 +81,14 @@ public class Participant implements Serializable {
     @Column(name = "zip")
     private String zip;
 
-    @Column(name = "m_an_number")
-    private Long mANNumber;
+    @Column(name = "medicare_id_number")
+    private String medicareIdNumber;
+
+    @Column(name = "medicaid_id_number")
+    private String medicaidIdNumber;
+
+    @Column(name = "gender")
+    private String gender;
 
     @OneToOne    @JoinColumn(unique = true)
     private ContactStatus contactStatus;
@@ -79,21 +97,29 @@ public class Participant implements Serializable {
     private ContactSubStatus contactSubStatus;
 
     @OneToOne    @JoinColumn(unique = true)
-    private Waiver waiver;
+    private MCO mco;
+
+    @OneToOne    @JoinColumn(unique = true)
+    private ReferralType referralType;
+
+    @OneToOne    @JoinColumn(unique = true)
+    private ReferralSource referralSource;
 
     @ManyToOne
     @JsonIgnoreProperties("")
-    private User supportCoordinator;
+    private User assignedTo;
+
+    @OneToOne(mappedBy = "participant")
+    @JsonIgnore
+    private Action action;
+
+    @OneToOne(mappedBy = "participant")
+    @JsonIgnore
+    private ContactHistory contactHistory;
 
     @OneToMany(mappedBy = "participant")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ParticipantNotes> participantNotes = new HashSet<>();
-    @OneToMany(mappedBy = "participant")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ContactHistory> contactHistories = new HashSet<>();
-    @OneToMany(mappedBy = "participant")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Action> actions = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -116,6 +142,19 @@ public class Participant implements Serializable {
         this.firstName = firstName;
     }
 
+    public String getMiddleInitial() {
+        return middleInitial;
+    }
+
+    public Participant middleInitial(String middleInitial) {
+        this.middleInitial = middleInitial;
+        return this;
+    }
+
+    public void setMiddleInitial(String middleInitial) {
+        this.middleInitial = middleInitial;
+    }
+
     public String getLastName() {
         return lastName;
     }
@@ -127,6 +166,19 @@ public class Participant implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Participant title(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public LocalDate getRegistrationDate() {
@@ -142,30 +194,17 @@ public class Participant implements Serializable {
         this.registrationDate = registrationDate;
     }
 
-    public String getAddress1() {
-        return address1;
+    public String getAddress() {
+        return address;
     }
 
-    public Participant address1(String address1) {
-        this.address1 = address1;
+    public Participant address(String address) {
+        this.address = address;
         return this;
     }
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public Participant address2(String address2) {
-        this.address2 = address2;
-        return this;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
@@ -207,30 +246,69 @@ public class Participant implements Serializable {
         this.country = country;
     }
 
-    public String getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public Participant dob(String dob) {
+    public Participant dob(LocalDate dob) {
         this.dob = dob;
         return this;
     }
 
-    public void setDob(String dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPrimaryPhone() {
+        return primaryPhone;
     }
 
-    public Participant phone(String phone) {
-        this.phone = phone;
+    public Participant primaryPhone(String primaryPhone) {
+        this.primaryPhone = primaryPhone;
         return this;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPrimaryPhone(String primaryPhone) {
+        this.primaryPhone = primaryPhone;
+    }
+
+    public String getPrimaryPhoneType() {
+        return primaryPhoneType;
+    }
+
+    public Participant primaryPhoneType(String primaryPhoneType) {
+        this.primaryPhoneType = primaryPhoneType;
+        return this;
+    }
+
+    public void setPrimaryPhoneType(String primaryPhoneType) {
+        this.primaryPhoneType = primaryPhoneType;
+    }
+
+    public String getSecondaryPhone() {
+        return secondaryPhone;
+    }
+
+    public Participant secondaryPhone(String secondaryPhone) {
+        this.secondaryPhone = secondaryPhone;
+        return this;
+    }
+
+    public void setSecondaryPhone(String secondaryPhone) {
+        this.secondaryPhone = secondaryPhone;
+    }
+
+    public String getSecondaryPhoneType() {
+        return secondaryPhoneType;
+    }
+
+    public Participant secondaryPhoneType(String secondaryPhoneType) {
+        this.secondaryPhoneType = secondaryPhoneType;
+        return this;
+    }
+
+    public void setSecondaryPhoneType(String secondaryPhoneType) {
+        this.secondaryPhoneType = secondaryPhoneType;
     }
 
     public String getEmail() {
@@ -259,17 +337,43 @@ public class Participant implements Serializable {
         this.zip = zip;
     }
 
-    public Long getmANNumber() {
-        return mANNumber;
+    public String getMedicareIdNumber() {
+        return medicareIdNumber;
     }
 
-    public Participant mANNumber(Long mANNumber) {
-        this.mANNumber = mANNumber;
+    public Participant medicareIdNumber(String medicareIdNumber) {
+        this.medicareIdNumber = medicareIdNumber;
         return this;
     }
 
-    public void setmANNumber(Long mANNumber) {
-        this.mANNumber = mANNumber;
+    public void setMedicareIdNumber(String medicareIdNumber) {
+        this.medicareIdNumber = medicareIdNumber;
+    }
+
+    public String getMedicaidIdNumber() {
+        return medicaidIdNumber;
+    }
+
+    public Participant medicaidIdNumber(String medicaidIdNumber) {
+        this.medicaidIdNumber = medicaidIdNumber;
+        return this;
+    }
+
+    public void setMedicaidIdNumber(String medicaidIdNumber) {
+        this.medicaidIdNumber = medicaidIdNumber;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public Participant gender(String gender) {
+        this.gender = gender;
+        return this;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public ContactStatus getContactStatus() {
@@ -298,30 +402,82 @@ public class Participant implements Serializable {
         this.contactSubStatus = contactSubStatus;
     }
 
-    public Waiver getWaiver() {
-        return waiver;
+    public MCO getMco() {
+        return mco;
     }
 
-    public Participant waiver(Waiver waiver) {
-        this.waiver = waiver;
+    public Participant mco(MCO mCO) {
+        this.mco = mCO;
         return this;
     }
 
-    public void setWaiver(Waiver waiver) {
-        this.waiver = waiver;
+    public void setMco(MCO mCO) {
+        this.mco = mCO;
     }
 
-    public User getSupportCoordinator() {
-        return supportCoordinator;
+    public ReferralType getReferralType() {
+        return referralType;
     }
 
-    public Participant supportCoordinator(User user) {
-        this.supportCoordinator = user;
+    public Participant referralType(ReferralType referralType) {
+        this.referralType = referralType;
         return this;
     }
 
-    public void setSupportCoordinator(User user) {
-        this.supportCoordinator = user;
+    public void setReferralType(ReferralType referralType) {
+        this.referralType = referralType;
+    }
+
+    public ReferralSource getReferralSource() {
+        return referralSource;
+    }
+
+    public Participant referralSource(ReferralSource referralSource) {
+        this.referralSource = referralSource;
+        return this;
+    }
+
+    public void setReferralSource(ReferralSource referralSource) {
+        this.referralSource = referralSource;
+    }
+
+    public User getAssignedTo() {
+        return assignedTo;
+    }
+
+    public Participant assignedTo(User user) {
+        this.assignedTo = user;
+        return this;
+    }
+
+    public void setAssignedTo(User user) {
+        this.assignedTo = user;
+    }
+
+    public Action getAction() {
+        return action;
+    }
+
+    public Participant action(Action action) {
+        this.action = action;
+        return this;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
+    public ContactHistory getContactHistory() {
+        return contactHistory;
+    }
+
+    public Participant contactHistory(ContactHistory contactHistory) {
+        this.contactHistory = contactHistory;
+        return this;
+    }
+
+    public void setContactHistory(ContactHistory contactHistory) {
+        this.contactHistory = contactHistory;
     }
 
     public Set<ParticipantNotes> getParticipantNotes() {
@@ -347,56 +503,6 @@ public class Participant implements Serializable {
 
     public void setParticipantNotes(Set<ParticipantNotes> participantNotes) {
         this.participantNotes = participantNotes;
-    }
-
-    public Set<ContactHistory> getContactHistories() {
-        return contactHistories;
-    }
-
-    public Participant contactHistories(Set<ContactHistory> contactHistories) {
-        this.contactHistories = contactHistories;
-        return this;
-    }
-
-    public Participant addContactHistory(ContactHistory contactHistory) {
-        this.contactHistories.add(contactHistory);
-        contactHistory.setParticipant(this);
-        return this;
-    }
-
-    public Participant removeContactHistory(ContactHistory contactHistory) {
-        this.contactHistories.remove(contactHistory);
-        contactHistory.setParticipant(null);
-        return this;
-    }
-
-    public void setContactHistories(Set<ContactHistory> contactHistories) {
-        this.contactHistories = contactHistories;
-    }
-
-    public Set<Action> getActions() {
-        return actions;
-    }
-
-    public Participant actions(Set<Action> actions) {
-        this.actions = actions;
-        return this;
-    }
-
-    public Participant addAction(Action action) {
-        this.actions.add(action);
-        action.setParticipant(this);
-        return this;
-    }
-
-    public Participant removeAction(Action action) {
-        this.actions.remove(action);
-        action.setParticipant(null);
-        return this;
-    }
-
-    public void setActions(Set<Action> actions) {
-        this.actions = actions;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -425,18 +531,24 @@ public class Participant implements Serializable {
         return "Participant{" +
             "id=" + getId() +
             ", firstName='" + getFirstName() + "'" +
+            ", middleInitial='" + getMiddleInitial() + "'" +
             ", lastName='" + getLastName() + "'" +
+            ", title='" + getTitle() + "'" +
             ", registrationDate='" + getRegistrationDate() + "'" +
-            ", address1='" + getAddress1() + "'" +
-            ", address2='" + getAddress2() + "'" +
+            ", address='" + getAddress() + "'" +
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +
             ", country='" + getCountry() + "'" +
             ", dob='" + getDob() + "'" +
-            ", phone='" + getPhone() + "'" +
+            ", primaryPhone='" + getPrimaryPhone() + "'" +
+            ", primaryPhoneType='" + getPrimaryPhoneType() + "'" +
+            ", secondaryPhone='" + getSecondaryPhone() + "'" +
+            ", secondaryPhoneType='" + getSecondaryPhoneType() + "'" +
             ", email='" + getEmail() + "'" +
             ", zip='" + getZip() + "'" +
-            ", mANNumber=" + getmANNumber() +
+            ", medicareIdNumber='" + getMedicareIdNumber() + "'" +
+            ", medicaidIdNumber='" + getMedicaidIdNumber() + "'" +
+            ", gender='" + getGender() + "'" +
             "}";
     }
 }

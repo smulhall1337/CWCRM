@@ -9,6 +9,10 @@
             ]
         },
         {
+            "fieldName": "middleInitial",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "lastName",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -16,15 +20,15 @@
             ]
         },
         {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "registrationDate",
             "fieldType": "LocalDate"
         },
         {
-            "fieldName": "address1",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "address2",
+            "fieldName": "address",
             "fieldType": "String"
         },
         {
@@ -41,10 +45,22 @@
         },
         {
             "fieldName": "dob",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "primaryPhone",
             "fieldType": "String"
         },
         {
-            "fieldName": "phone",
+            "fieldName": "primaryPhoneType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "secondaryPhone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "secondaryPhoneType",
             "fieldType": "String"
         },
         {
@@ -56,8 +72,16 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "mANNumber",
-            "fieldType": "Long"
+            "fieldName": "medicareIdNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "medicaidIdNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "String"
         }
     ],
     "relationships": [
@@ -79,34 +103,52 @@
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "waiver",
-            "otherEntityName": "waiver",
+            "relationshipName": "mco",
+            "otherEntityName": "mCO",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "referralType",
+            "otherEntityName": "referralType",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "referralSource",
+            "otherEntityName": "referralSource",
             "otherEntityField": "name",
             "ownerSide": true,
             "otherEntityRelationshipName": "participant"
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "supportCoordinator",
+            "relationshipName": "assignedTo",
             "otherEntityName": "user",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "action",
+            "otherEntityName": "action",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "participant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "contactHistory",
+            "otherEntityName": "contactHistory",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "participant"
         },
         {
             "relationshipType": "one-to-many",
             "relationshipName": "participantNotes",
             "otherEntityName": "participantNotes",
-            "otherEntityRelationshipName": "participant"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "contactHistory",
-            "otherEntityName": "contactHistory",
-            "otherEntityRelationshipName": "participant"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "action",
-            "otherEntityName": "action",
             "otherEntityRelationshipName": "participant"
         }
     ],

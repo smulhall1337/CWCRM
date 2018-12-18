@@ -29,6 +29,13 @@ describe('Service Tests', () => {
                 0,
                 'AAAAAAA',
                 'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                currentDate,
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
                 currentDate,
                 'AAAAAAA',
                 'AAAAAAA',
@@ -38,8 +45,7 @@ describe('Service Tests', () => {
                 'AAAAAAA',
                 'AAAAAAA',
                 'AAAAAAA',
-                'AAAAAAA',
-                0
+                'AAAAAAA'
             );
         });
 
@@ -47,7 +53,8 @@ describe('Service Tests', () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        registrationDate: currentDate.format(DATE_FORMAT)
+                        registrationDate: currentDate.format(DATE_FORMAT),
+                        dob: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
@@ -64,13 +71,15 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        registrationDate: currentDate.format(DATE_FORMAT)
+                        registrationDate: currentDate.format(DATE_FORMAT),
+                        dob: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate
+                        registrationDate: currentDate,
+                        dob: currentDate
                     },
                     returnedFromService
                 );
@@ -86,25 +95,32 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         firstName: 'BBBBBB',
+                        middleInitial: 'BBBBBB',
                         lastName: 'BBBBBB',
+                        title: 'BBBBBB',
                         registrationDate: currentDate.format(DATE_FORMAT),
-                        address1: 'BBBBBB',
-                        address2: 'BBBBBB',
+                        address: 'BBBBBB',
                         city: 'BBBBBB',
                         state: 'BBBBBB',
                         country: 'BBBBBB',
-                        dob: 'BBBBBB',
-                        phone: 'BBBBBB',
+                        dob: currentDate.format(DATE_FORMAT),
+                        primaryPhone: 'BBBBBB',
+                        primaryPhoneType: 'BBBBBB',
+                        secondaryPhone: 'BBBBBB',
+                        secondaryPhoneType: 'BBBBBB',
                         email: 'BBBBBB',
                         zip: 'BBBBBB',
-                        mANNumber: 1
+                        medicareIdNumber: 'BBBBBB',
+                        medicaidIdNumber: 'BBBBBB',
+                        gender: 'BBBBBB'
                     },
                     elemDefault
                 );
 
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate
+                        registrationDate: currentDate,
+                        dob: currentDate
                     },
                     returnedFromService
                 );
@@ -120,24 +136,31 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         firstName: 'BBBBBB',
+                        middleInitial: 'BBBBBB',
                         lastName: 'BBBBBB',
+                        title: 'BBBBBB',
                         registrationDate: currentDate.format(DATE_FORMAT),
-                        address1: 'BBBBBB',
-                        address2: 'BBBBBB',
+                        address: 'BBBBBB',
                         city: 'BBBBBB',
                         state: 'BBBBBB',
                         country: 'BBBBBB',
-                        dob: 'BBBBBB',
-                        phone: 'BBBBBB',
+                        dob: currentDate.format(DATE_FORMAT),
+                        primaryPhone: 'BBBBBB',
+                        primaryPhoneType: 'BBBBBB',
+                        secondaryPhone: 'BBBBBB',
+                        secondaryPhoneType: 'BBBBBB',
                         email: 'BBBBBB',
                         zip: 'BBBBBB',
-                        mANNumber: 1
+                        medicareIdNumber: 'BBBBBB',
+                        medicaidIdNumber: 'BBBBBB',
+                        gender: 'BBBBBB'
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        registrationDate: currentDate
+                        registrationDate: currentDate,
+                        dob: currentDate
                     },
                     returnedFromService
                 );

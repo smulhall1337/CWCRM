@@ -89,11 +89,22 @@ public class ParticipantResource {
      * GET  /participants : get all the participants.
      *
      * @param pageable the pagination information
+     * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of participants in body
      */
     @GetMapping("/participants")
     @Timed
-    public ResponseEntity<List<ParticipantDTO>> getAllParticipants(Pageable pageable) {
+    public ResponseEntity<List<ParticipantDTO>> getAllParticipants(Pageable pageable, @RequestParam(required = false) String filter) {
+        if ("action-is-null".equals(filter)) {
+            log.debug("REST request to get all Participants where action is null");
+            return new ResponseEntity<>(participantService.findAllWhereActionIsNull(),
+                    HttpStatus.OK);
+        }
+        if ("contacthistory-is-null".equals(filter)) {
+            log.debug("REST request to get all Participants where contactHistory is null");
+            return new ResponseEntity<>(participantService.findAllWhereContactHistoryIsNull(),
+                    HttpStatus.OK);
+        }
         log.debug("REST request to get a page of Participants");
         Page<ParticipantDTO> page = participantService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/participants");

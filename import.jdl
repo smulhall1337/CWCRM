@@ -1,17 +1,23 @@
 entity Participant {
     firstName String required
+    middleInitial String
     lastName String required
+    title String
     registrationDate LocalDate
-    address1 String
-    address2 String
+    address String
     city String
     state String
     country String
-    dob String
-    phone String
+    dob LocalDate
+    primaryPhone String
+    primaryPhoneType String
+    secondaryPhone String
+    secondaryPhoneType String
     email String
     zip String
-    mANNumber Long
+    medicareIdNumber String
+    medicaidIdNumber String
+    gender String
 }
 
 entity ContactHistory{
@@ -37,7 +43,7 @@ entity Action {
 
 
 
-entity Waiver{
+entity MCO {
 	name String required
 }
 
@@ -60,28 +66,37 @@ entity ContactStatus{
 entity ContactSubStatus{ 
 	name String required
 }
+entity ReferralType {
+	name String required
+}
+entity ReferralSource {
+	name String required
+}
 
 relationship OneToOne {
-	Participant{contactStatus} to ContactStatus,
-	Participant{contactSubStatus(name) } to ContactSubStatus,
-	Participant{waiver(name) } to Waiver,
+	Participant{ contactStatus} to ContactStatus,
+	Participant{ contactSubStatus(name) } to ContactSubStatus,
+	Participant{ mco(name) } to MCO,
+    Participant{ referralType(name) } to ReferralType,
+    Participant{ referralSource(name) } to ReferralSource
 
 	ExtendedUser{department(name) } to Department,
 	ExtendedUser{employeeType(name) } to EmployeeType,
 	ExtendedUser{employeeSubType(name) } to EmployeeSubType,
     ExtendedUser to User
 
+    Action to User,
+	Action to Participant,
+
+    ContactHistory to Participant
+    ContactHistory to User
     ContactHistory{contactType(name)} to ContactType
 }
 
 relationship ManyToOne {
-	Participant{supportCoordinator} to User
+	Participant{assignedTo} to User
    	ParticipantNotes to Participant
     ParticipantNotes to User
-    ContactHistory to Participant
-    ContactHistory to User
-    Action to User
-	Action to Participant
 }
 
 

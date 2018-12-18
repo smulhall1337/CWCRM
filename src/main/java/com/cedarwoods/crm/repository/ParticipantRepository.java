@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface ParticipantRepository extends JpaRepository<Participant, Long> {
 
-    @Query("select participant from Participant participant where participant.supportCoordinator.login = ?#{principal.username}")
-    List<Participant> findBySupportCoordinatorIsCurrentUser();
+    @Query("select participant from Participant participant where participant.assignedTo.login = ?#{principal.username}")
+    List<Participant> findByAssignedToIsCurrentUser();
 
 }

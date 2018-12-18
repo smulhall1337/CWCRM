@@ -27,22 +27,30 @@ export class ParticipantUpdatePage {
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
     firstNameInput = element(by.id('field_firstName'));
+    middleInitialInput = element(by.id('field_middleInitial'));
     lastNameInput = element(by.id('field_lastName'));
+    titleInput = element(by.id('field_title'));
     registrationDateInput = element(by.id('field_registrationDate'));
-    address1Input = element(by.id('field_address1'));
-    address2Input = element(by.id('field_address2'));
+    addressInput = element(by.id('field_address'));
     cityInput = element(by.id('field_city'));
     stateInput = element(by.id('field_state'));
     countryInput = element(by.id('field_country'));
     dobInput = element(by.id('field_dob'));
-    phoneInput = element(by.id('field_phone'));
+    primaryPhoneInput = element(by.id('field_primaryPhone'));
+    primaryPhoneTypeInput = element(by.id('field_primaryPhoneType'));
+    secondaryPhoneInput = element(by.id('field_secondaryPhone'));
+    secondaryPhoneTypeInput = element(by.id('field_secondaryPhoneType'));
     emailInput = element(by.id('field_email'));
     zipInput = element(by.id('field_zip'));
-    mANNumberInput = element(by.id('field_mANNumber'));
+    medicareIdNumberInput = element(by.id('field_medicareIdNumber'));
+    medicaidIdNumberInput = element(by.id('field_medicaidIdNumber'));
+    genderInput = element(by.id('field_gender'));
     contactStatusSelect = element(by.id('field_contactStatus'));
     contactSubStatusSelect = element(by.id('field_contactSubStatus'));
-    waiverSelect = element(by.id('field_waiver'));
-    supportCoordinatorSelect = element(by.id('field_supportCoordinator'));
+    mcoSelect = element(by.id('field_mco'));
+    referralTypeSelect = element(by.id('field_referralType'));
+    referralSourceSelect = element(by.id('field_referralSource'));
+    assignedToSelect = element(by.id('field_assignedTo'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -56,12 +64,28 @@ export class ParticipantUpdatePage {
         return this.firstNameInput.getAttribute('value');
     }
 
+    async setMiddleInitialInput(middleInitial) {
+        await this.middleInitialInput.sendKeys(middleInitial);
+    }
+
+    async getMiddleInitialInput() {
+        return this.middleInitialInput.getAttribute('value');
+    }
+
     async setLastNameInput(lastName) {
         await this.lastNameInput.sendKeys(lastName);
     }
 
     async getLastNameInput() {
         return this.lastNameInput.getAttribute('value');
+    }
+
+    async setTitleInput(title) {
+        await this.titleInput.sendKeys(title);
+    }
+
+    async getTitleInput() {
+        return this.titleInput.getAttribute('value');
     }
 
     async setRegistrationDateInput(registrationDate) {
@@ -72,20 +96,12 @@ export class ParticipantUpdatePage {
         return this.registrationDateInput.getAttribute('value');
     }
 
-    async setAddress1Input(address1) {
-        await this.address1Input.sendKeys(address1);
+    async setAddressInput(address) {
+        await this.addressInput.sendKeys(address);
     }
 
-    async getAddress1Input() {
-        return this.address1Input.getAttribute('value');
-    }
-
-    async setAddress2Input(address2) {
-        await this.address2Input.sendKeys(address2);
-    }
-
-    async getAddress2Input() {
-        return this.address2Input.getAttribute('value');
+    async getAddressInput() {
+        return this.addressInput.getAttribute('value');
     }
 
     async setCityInput(city) {
@@ -120,12 +136,36 @@ export class ParticipantUpdatePage {
         return this.dobInput.getAttribute('value');
     }
 
-    async setPhoneInput(phone) {
-        await this.phoneInput.sendKeys(phone);
+    async setPrimaryPhoneInput(primaryPhone) {
+        await this.primaryPhoneInput.sendKeys(primaryPhone);
     }
 
-    async getPhoneInput() {
-        return this.phoneInput.getAttribute('value');
+    async getPrimaryPhoneInput() {
+        return this.primaryPhoneInput.getAttribute('value');
+    }
+
+    async setPrimaryPhoneTypeInput(primaryPhoneType) {
+        await this.primaryPhoneTypeInput.sendKeys(primaryPhoneType);
+    }
+
+    async getPrimaryPhoneTypeInput() {
+        return this.primaryPhoneTypeInput.getAttribute('value');
+    }
+
+    async setSecondaryPhoneInput(secondaryPhone) {
+        await this.secondaryPhoneInput.sendKeys(secondaryPhone);
+    }
+
+    async getSecondaryPhoneInput() {
+        return this.secondaryPhoneInput.getAttribute('value');
+    }
+
+    async setSecondaryPhoneTypeInput(secondaryPhoneType) {
+        await this.secondaryPhoneTypeInput.sendKeys(secondaryPhoneType);
+    }
+
+    async getSecondaryPhoneTypeInput() {
+        return this.secondaryPhoneTypeInput.getAttribute('value');
     }
 
     async setEmailInput(email) {
@@ -144,12 +184,28 @@ export class ParticipantUpdatePage {
         return this.zipInput.getAttribute('value');
     }
 
-    async setMANNumberInput(mANNumber) {
-        await this.mANNumberInput.sendKeys(mANNumber);
+    async setMedicareIdNumberInput(medicareIdNumber) {
+        await this.medicareIdNumberInput.sendKeys(medicareIdNumber);
     }
 
-    async getMANNumberInput() {
-        return this.mANNumberInput.getAttribute('value');
+    async getMedicareIdNumberInput() {
+        return this.medicareIdNumberInput.getAttribute('value');
+    }
+
+    async setMedicaidIdNumberInput(medicaidIdNumber) {
+        await this.medicaidIdNumberInput.sendKeys(medicaidIdNumber);
+    }
+
+    async getMedicaidIdNumberInput() {
+        return this.medicaidIdNumberInput.getAttribute('value');
+    }
+
+    async setGenderInput(gender) {
+        await this.genderInput.sendKeys(gender);
+    }
+
+    async getGenderInput() {
+        return this.genderInput.getAttribute('value');
     }
 
     async contactStatusSelectLastOption() {
@@ -190,42 +246,80 @@ export class ParticipantUpdatePage {
         return this.contactSubStatusSelect.element(by.css('option:checked')).getText();
     }
 
-    async waiverSelectLastOption() {
-        await this.waiverSelect
+    async mcoSelectLastOption() {
+        await this.mcoSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    async waiverSelectOption(option) {
-        await this.waiverSelect.sendKeys(option);
+    async mcoSelectOption(option) {
+        await this.mcoSelect.sendKeys(option);
     }
 
-    getWaiverSelect(): ElementFinder {
-        return this.waiverSelect;
+    getMcoSelect(): ElementFinder {
+        return this.mcoSelect;
     }
 
-    async getWaiverSelectedOption() {
-        return this.waiverSelect.element(by.css('option:checked')).getText();
+    async getMcoSelectedOption() {
+        return this.mcoSelect.element(by.css('option:checked')).getText();
     }
 
-    async supportCoordinatorSelectLastOption() {
-        await this.supportCoordinatorSelect
+    async referralTypeSelectLastOption() {
+        await this.referralTypeSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    async supportCoordinatorSelectOption(option) {
-        await this.supportCoordinatorSelect.sendKeys(option);
+    async referralTypeSelectOption(option) {
+        await this.referralTypeSelect.sendKeys(option);
     }
 
-    getSupportCoordinatorSelect(): ElementFinder {
-        return this.supportCoordinatorSelect;
+    getReferralTypeSelect(): ElementFinder {
+        return this.referralTypeSelect;
     }
 
-    async getSupportCoordinatorSelectedOption() {
-        return this.supportCoordinatorSelect.element(by.css('option:checked')).getText();
+    async getReferralTypeSelectedOption() {
+        return this.referralTypeSelect.element(by.css('option:checked')).getText();
+    }
+
+    async referralSourceSelectLastOption() {
+        await this.referralSourceSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async referralSourceSelectOption(option) {
+        await this.referralSourceSelect.sendKeys(option);
+    }
+
+    getReferralSourceSelect(): ElementFinder {
+        return this.referralSourceSelect;
+    }
+
+    async getReferralSourceSelectedOption() {
+        return this.referralSourceSelect.element(by.css('option:checked')).getText();
+    }
+
+    async assignedToSelectLastOption() {
+        await this.assignedToSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async assignedToSelectOption(option) {
+        await this.assignedToSelect.sendKeys(option);
+    }
+
+    getAssignedToSelect(): ElementFinder {
+        return this.assignedToSelect;
+    }
+
+    async getAssignedToSelectedOption() {
+        return this.assignedToSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

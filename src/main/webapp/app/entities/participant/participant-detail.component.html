@@ -9,21 +9,25 @@
                 <dd>
                     <span>{{participant.firstName}}</span>
                 </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.middleInitial">Middle Initial</span></dt>
+                <dd>
+                    <span>{{participant.middleInitial}}</span>
+                </dd>
                 <dt><span jhiTranslate="cwcrmApp.participant.lastName">Last Name</span></dt>
                 <dd>
                     <span>{{participant.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.title">Title</span></dt>
+                <dd>
+                    <span>{{participant.title}}</span>
                 </dd>
                 <dt><span jhiTranslate="cwcrmApp.participant.registrationDate">Registration Date</span></dt>
                 <dd>
                     <span>{{participant.registrationDate}}</span>
                 </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.address1">Address 1</span></dt>
+                <dt><span jhiTranslate="cwcrmApp.participant.address">Address</span></dt>
                 <dd>
-                    <span>{{participant.address1}}</span>
-                </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.address2">Address 2</span></dt>
-                <dd>
-                    <span>{{participant.address2}}</span>
+                    <span>{{participant.address}}</span>
                 </dd>
                 <dt><span jhiTranslate="cwcrmApp.participant.city">City</span></dt>
                 <dd>
@@ -41,9 +45,21 @@
                 <dd>
                     <span>{{participant.dob}}</span>
                 </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.phone">Phone</span></dt>
+                <dt><span jhiTranslate="cwcrmApp.participant.primaryPhone">Primary Phone</span></dt>
                 <dd>
-                    <span>{{participant.phone}}</span>
+                    <span>{{participant.primaryPhone}}</span>
+                </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.primaryPhoneType">Primary Phone Type</span></dt>
+                <dd>
+                    <span>{{participant.primaryPhoneType}}</span>
+                </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.secondaryPhone">Secondary Phone</span></dt>
+                <dd>
+                    <span>{{participant.secondaryPhone}}</span>
+                </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.secondaryPhoneType">Secondary Phone Type</span></dt>
+                <dd>
+                    <span>{{participant.secondaryPhoneType}}</span>
                 </dd>
                 <dt><span jhiTranslate="cwcrmApp.participant.email">Email</span></dt>
                 <dd>
@@ -53,9 +69,17 @@
                 <dd>
                     <span>{{participant.zip}}</span>
                 </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.mANNumber">M AN Number</span></dt>
+                <dt><span jhiTranslate="cwcrmApp.participant.medicareIdNumber">Medicare Id Number</span></dt>
                 <dd>
-                    <span>{{participant.mANNumber}}</span>
+                    <span>{{participant.medicareIdNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.medicaidIdNumber">Medicaid Id Number</span></dt>
+                <dd>
+                    <span>{{participant.medicaidIdNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.gender">Gender</span></dt>
+                <dd>
+                    <span>{{participant.gender}}</span>
                 </dd>
                 <dt><span jhiTranslate="cwcrmApp.participant.contactStatus">Contact Status</span></dt>
                 <dd>
@@ -69,15 +93,27 @@
                         <a [routerLink]="['/contact-sub-status', participant.contactSubStatusId, 'view']">{{participant.contactSubStatusName}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.waiver">Waiver</span></dt>
+                <dt><span jhiTranslate="cwcrmApp.participant.mco">Mco</span></dt>
                 <dd>
-                    <div *ngIf="participant.waiverId">
-                        <a [routerLink]="['/waiver', participant.waiverId, 'view']">{{participant.waiverName}}</a>
+                    <div *ngIf="participant.mcoId">
+                        <a [routerLink]="['/mco', participant.mcoId, 'view']">{{participant.mcoName}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="cwcrmApp.participant.supportCoordinator">Support Coordinator</span></dt>
+                <dt><span jhiTranslate="cwcrmApp.participant.referralType">Referral Type</span></dt>
                 <dd>
-                    {{participant.supportCoordinatorId}}
+                    <div *ngIf="participant.referralTypeId">
+                        <a [routerLink]="['/referral-type', participant.referralTypeId, 'view']">{{participant.referralTypeName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.referralSource">Referral Source</span></dt>
+                <dd>
+                    <div *ngIf="participant.referralSourceId">
+                        <a [routerLink]="['/referral-source', participant.referralSourceId, 'view']">{{participant.referralSourceName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="cwcrmApp.participant.assignedTo">Assigned To</span></dt>
+                <dd>
+                    {{participant.assignedToId}}
                 </dd>
             </dl>
 

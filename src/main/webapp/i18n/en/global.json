@@ -111,6 +111,8 @@
                 "participantNotes": "Participant Notes",
                 "contactType": "Contact Type",
                 "extendedUser": "Extended User",
+                "referralType": "Referral Type",
+                "referralSource": "Referral Source",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

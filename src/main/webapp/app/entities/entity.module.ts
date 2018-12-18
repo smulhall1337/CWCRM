@@ -18,6 +18,8 @@ import { CwcrmContactHistoryModule } from './contact-history/contact-history.mod
 import { CwcrmParticipantNotesModule } from './participant-notes/participant-notes.module';
 import { CwcrmContactTypeModule } from './contact-type/contact-type.module';
 import { CwcrmExtendedUserModule } from './extended-user/extended-user.module';
+import { CwcrmReferralTypeModule } from './referral-type/referral-type.module';
+import { CwcrmReferralSourceModule } from './referral-source/referral-source.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -41,6 +43,8 @@ import { CwcrmExtendedUserModule } from './extended-user/extended-user.module';
         CwcrmParticipantNotesModule,
         CwcrmContactTypeModule,
         CwcrmExtendedUserModule,
+        CwcrmReferralTypeModule,
+        CwcrmReferralSourceModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

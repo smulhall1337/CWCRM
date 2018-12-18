@@ -7,11 +7,11 @@ import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { IContactHistory } from 'app/shared/model/contact-history.model';
 import { ContactHistoryService } from './contact-history.service';
-import { IContactType } from 'app/shared/model/contact-type.model';
-import { ContactTypeService } from 'app/entities/contact-type';
 import { IParticipant } from 'app/shared/model/participant.model';
 import { ParticipantService } from 'app/entities/participant';
 import { IUser, UserService } from 'app/core';
+import { IContactType } from 'app/shared/model/contact-type.model';
+import { ContactTypeService } from 'app/entities/contact-type';
 
 @Component({
     selector: 'jhi-contact-history-update',
@@ -21,20 +21,20 @@ export class ContactHistoryUpdateComponent implements OnInit {
     contactHistory: IContactHistory;
     isSaving: boolean;
 
-    contacttypes: IContactType[];
-
     participants: IParticipant[];
 
     users: IUser[];
+
+    contacttypes: IContactType[];
     dateDp: any;
 
     constructor(
         private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
         private contactHistoryService: ContactHistoryService,
-        private contactTypeService: ContactTypeService,
         private participantService: ParticipantService,
         private userService: UserService,
+        private contactTypeService: ContactTypeService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -43,6 +43,27 @@ export class ContactHistoryUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ contactHistory }) => {
             this.contactHistory = contactHistory;
         });
+        this.participantService.query({ filter: 'contacthistory-is-null' }).subscribe(
+            (res: HttpResponse<IParticipant[]>) => {
+                if (!this.contactHistory.participantId) {
+                    this.participants = res.body;
+                } else {
+                    this.participantService.find(this.contactHistory.participantId).subscribe(
+                        (subRes: HttpResponse<IParticipant>) => {
+                            this.participants = [subRes.body].concat(res.body);
+                        },
+                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
+                    );
+                }
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.userService.query().subscribe(
+            (res: HttpResponse<IUser[]>) => {
+                this.users = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
         this.contactTypeService.query({ filter: 'contacthistory-is-null' }).subscribe(
             (res: HttpResponse<IContactType[]>) => {
                 if (!this.contactHistory.contactTypeId) {
@@ -55,18 +76,6 @@ export class ContactHistoryUpdateComponent implements OnInit {
                         (subRes: HttpErrorResponse) => this.onError(subRes.message)
                     );
                 }
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.participantService.query().subscribe(
-            (res: HttpResponse<IParticipant[]>) => {
-                this.participants = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.userService.query().subscribe(
-            (res: HttpResponse<IUser[]>) => {
-                this.users = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -114,15 +123,15 @@ export class ContactHistoryUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackContactTypeById(index: number, item: IContactType) {
-        return item.id;
-    }
-
     trackParticipantById(index: number, item: IParticipant) {
         return item.id;
     }
 
     trackUserById(index: number, item: IUser) {
+        return item.id;
+    }
+
+    trackContactTypeById(index: number, item: IContactType) {
         return item.id;
     }
 }
