@@ -16,7 +16,7 @@ export class MegaMenuDemoComponent implements OnInit {
         this.items = [
             {
                 label: 'HOME & FURNITURE',
-                icon: 'fa-home',
+                icon: 'fa fa-home',
                 items: [
                     [
                         {
@@ -42,7 +42,7 @@ export class MegaMenuDemoComponent implements OnInit {
             },
             {
                 label: 'Men',
-                icon: 'fa-male',
+                icon: 'fa fa-male',
                 items: [
                     [
                         {
@@ -78,7 +78,7 @@ export class MegaMenuDemoComponent implements OnInit {
             },
             {
                 label: 'Women',
-                icon: 'fa-female',
+                icon: 'fa fa-female',
                 items: [
                     [
                         {
@@ -104,7 +104,7 @@ export class MegaMenuDemoComponent implements OnInit {
             },
             {
                 label: 'Kids',
-                icon: 'fa-child',
+                icon: 'fa fa-child',
                 items: [
                     [
                         {

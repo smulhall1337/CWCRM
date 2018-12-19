@@ -11,16 +11,16 @@ import { MenuItem, Message } from 'primeng/components/common/api';
                 width: 25%;
             }
 
-            .ui-steps.steps-custom {
+            .ui-steps .steps-custom {
                 margin-bottom: 30px;
             }
 
-            .ui-steps.steps-custom .ui-steps-item .ui-menuitem-link {
+            .ui-steps .steps-custom .ui-steps-item .ui-menuitem-link {
                 height: 10px;
                 padding: 0 1em;
             }
 
-            .ui-steps.steps-custom .ui-steps-item .ui-steps-number {
+            .ui-steps .steps-custom .ui-steps-item .ui-steps-number {
                 background-color: #0081c2;
                 color: #ffffff;
                 display: inline-block;
@@ -30,7 +30,7 @@ import { MenuItem, Message } from 'primeng/components/common/api';
                 margin-bottom: 10px;
             }
 
-            .ui-steps.steps-custom .ui-steps-item .ui-steps-title {
+            .ui-steps .steps-custom .ui-steps-item .ui-steps-title {
                 color: #555555;
             }
         `
@@ -38,6 +38,7 @@ import { MenuItem, Message } from 'primeng/components/common/api';
     encapsulation: ViewEncapsulation.None
 })
 export class StepsDemoComponent implements OnInit {
+    activeIndexContainer = 0;
     activeIndex = 0;
     msgs: Message[] = [];
     private items: MenuItem[];

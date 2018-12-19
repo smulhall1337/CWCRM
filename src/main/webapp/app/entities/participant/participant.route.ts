@@ -11,6 +11,7 @@ import { ParticipantDetailComponent } from './participant-detail.component';
 import { ParticipantUpdateComponent } from './participant-update.component';
 import { ParticipantDeletePopupComponent } from './participant-delete-dialog.component';
 import { IParticipant } from 'app/shared/model/participant.model';
+import { ParticipantViewBaseComponent } from 'app/entities/participant/participant-view-base';
 
 @Injectable({ providedIn: 'root' })
 export class ParticipantResolve implements Resolve<IParticipant> {
@@ -64,7 +65,75 @@ export const participantRoute: Routes = [
     },
     {
         path: 'participant/:id/edit',
-        component: ParticipantUpdateComponent,
+        component: ParticipantViewBaseComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'demographics',
+                pathMatch: 'full'
+            },
+            {
+                path: 'demographics',
+                component: ParticipantUpdateComponent,
+                resolve: {
+                    participant: ParticipantResolve
+                },
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'cwcrmApp.participant.home.title'
+                },
+                canActivate: [UserRouteAccessService]
+            }
+            /*{
+                path: 'contact-history',
+                component: ContactHistoryComponent,
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'cwcrmApp.contactHistory.home.title'
+                },
+                canActivate: [UserRouteAccessService],
+                children: [
+                    {
+                        path: ':id/view',
+                        component: ContactHistoryDetailComponent,
+                        resolve: {
+                            contactHistory: ContactHistoryResolve
+                        },
+                        data: {
+                            authorities: ['ROLE_USER'],
+                            pageTitle: 'cwcrmApp.contactHistory.home.title'
+                        },
+                        canActivate: [UserRouteAccessService],
+                        outlet: 'view'
+                    },
+                    {
+                        path: 'new',
+                        component: ContactHistoryUpdateComponent,
+                        resolve: {
+                            contactHistory: ContactHistoryResolve
+                        },
+                        data: {
+                            authorities: ['ROLE_USER'],
+                            pageTitle: 'cwcrmApp.contactHistory.home.title'
+                        },
+                        canActivate: [UserRouteAccessService],
+                        outlet: 'new-outlet'
+                    },
+                    {
+                        path: ':id/edit',
+                        component: ContactHistoryUpdateComponent,
+                        resolve: {
+                            contactHistory: ContactHistoryResolve
+                        },
+                        data: {
+                            authorities: ['ROLE_USER'],
+                            pageTitle: 'cwcrmApp.contactHistory.home.title'
+                        },
+                        canActivate: [UserRouteAccessService]
+                    }
+                ]
+            }*/
+        ],
         resolve: {
             participant: ParticipantResolve
         },

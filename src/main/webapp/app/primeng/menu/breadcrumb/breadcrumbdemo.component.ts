@@ -54,7 +54,7 @@ export class BreadcrumbDemoComponent implements OnInit {
 
         this.home = {
             label: 'Home',
-            icon: 'fa-globe',
+            icon: 'pi pi-home',
             command: event => {
                 this.msgs.length = 0;
                 this.msgs.push({ severity: 'info', summary: 'Home' });

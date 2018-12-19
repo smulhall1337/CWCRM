@@ -20,7 +20,8 @@ import { Message } from 'primeng/components/common/api';
             }
 
             .custombar2 .ui-scrollpanel-wrapper {
-                border-right: 9px solid #000000;
+                border-right: 9px solid #757575;
+                border-bottom: 9px solid #757575;
             }
 
             .custombar2 .ui-scrollpanel-bar {

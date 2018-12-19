@@ -32,9 +32,8 @@ import { CwcrmRadioButtonDemoModule } from './inputs/radiobutton/radiobuttondemo
 import { CwcrmToggleButtonDemoModule } from './inputs/togglebutton/togglebuttondemo.module';
 import { CwcrmEditorDemoModule } from './inputs/editor/editordemo.module';
 
-import { CwcrmGrowlDemoModule } from './messages/growl/growldemo.module';
 import { CwcrmMessagesDemoModule } from './messages/messages/messagesdemo.module';
-/*import { CwcrmToastDemoModule } from './messages/toast/toastdemo.module';*/
+import { CwcrmToastDemoModule } from './messages/toast/toastdemo.module';
 import { CwcrmGalleriaDemoModule } from './multimedia/galleria/galleriademo.module';
 
 import { CwcrmFileUploadDemoModule } from './fileupload/fileupload/fileuploaddemo.module';
@@ -44,18 +43,15 @@ import { CwcrmPanelDemoModule } from './panel/panel/paneldemo.module';
 import { CwcrmTabViewDemoModule } from './panel/tabview/tabviewdemo.module';
 import { CwcrmFieldsetDemoModule } from './panel/fieldset/fieldsetdemo.module';
 import { CwcrmToolbarDemoModule } from './panel/toolbar/toolbardemo.module';
-import { CwcrmGridDemoModule } from './panel/grid/griddemo.module';
 import { CwcrmScrollPanelDemoModule } from './panel/scrollpanel/scrollpaneldemo.module';
 import { CwcrmCardDemoModule } from './panel/card/carddemo.module';
+import { CwcrmFlexGridDemoModule } from './panel/flexgrid/flexgriddemo.module';
 
-import { CwcrmDataTableDemoModule } from './data/datatable/datatabledemo.module';
 import { CwcrmTableDemoModule } from './data/table/tabledemo.module';
-import { CwcrmDataGridDemoModule } from './data/datagrid/datagriddemo.module';
-import { CwcrmDataListDemoModule } from './data/datalist/datalistdemo.module';
-import { CwcrmDataScrollerDemoModule } from './data/datascroller/datascrollerdemo.module';
+import { CwcrmVirtualScrollerDemoModule } from './data/virtualscroller/virtualscrollerdemo.module';
 import { CwcrmPickListDemoModule } from './data/picklist/picklistdemo.module';
 import { CwcrmOrderListDemoModule } from './data/orderlist/orderlistdemo.module';
-import { CwcrmScheduleDemoModule } from './data/schedule/scheduledemo.module';
+import { CwcrmFullCalendarDemoModule } from './data/fullcalendar/fullcalendardemo.module';
 import { CwcrmTreeDemoModule } from './data/tree/treedemo.module';
 import { CwcrmTreeTableDemoModule } from './data/treetable/treetabledemo.module';
 import { CwcrmPaginatorDemoModule } from './data/paginator/paginatordemo.module';
@@ -142,9 +138,8 @@ import { CwcrmProgressSpinnerDemoModule } from './misc/progressspinner/progresss
         CwcrmCheckboxDemoModule,
         CwcrmKeyFilterDemoModule,
 
-        CwcrmGrowlDemoModule,
         CwcrmMessagesDemoModule,
-        /*CwcrmToastDemoModule,*/
+        CwcrmToastDemoModule,
         CwcrmGalleriaDemoModule,
 
         CwcrmFileUploadDemoModule,
@@ -154,9 +149,9 @@ import { CwcrmProgressSpinnerDemoModule } from './misc/progressspinner/progresss
         CwcrmTabViewDemoModule,
         CwcrmFieldsetDemoModule,
         CwcrmToolbarDemoModule,
-        CwcrmGridDemoModule,
         CwcrmScrollPanelDemoModule,
         CwcrmCardDemoModule,
+        CwcrmFlexGridDemoModule,
 
         CwcrmBarchartDemoModule,
         CwcrmDoughnutchartDemoModule,
@@ -174,13 +169,10 @@ import { CwcrmProgressSpinnerDemoModule } from './misc/progressspinner/progresss
         CwcrmOverlayPanelDemoModule,
         CwcrmSideBarDemoModule,
 
-        CwcrmDataTableDemoModule,
         CwcrmTableDemoModule,
-        CwcrmDataGridDemoModule,
-        CwcrmDataListDemoModule,
         CwcrmDataViewDemoModule,
-        CwcrmDataScrollerDemoModule,
-        CwcrmScheduleDemoModule,
+        CwcrmVirtualScrollerDemoModule,
+        CwcrmFullCalendarDemoModule,
         CwcrmOrderListDemoModule,
         CwcrmPickListDemoModule,
         CwcrmTreeDemoModule,

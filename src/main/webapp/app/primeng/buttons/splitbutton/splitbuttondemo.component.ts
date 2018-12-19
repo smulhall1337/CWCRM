@@ -35,19 +35,19 @@ export class SplitbuttonDemoComponent implements OnInit {
         this.itemsIcons = [
             {
                 label: 'Update',
-                icon: 'fa-refresh',
+                icon: 'pi pi-refresh',
                 command: () => {
                     this.update();
                 }
             },
             {
                 label: 'Delete',
-                icon: 'fa-close',
+                icon: 'pi pi-times',
                 command: () => {
                     this.delete();
                 }
             },
-            { label: 'AngularConnect', icon: 'fa-link', url: 'https://www.angularconnect.com' }
+            { label: 'AngularConnect', icon: 'pi pi-info', url: 'https://www.angularconnect.com' }
         ];
     }
 

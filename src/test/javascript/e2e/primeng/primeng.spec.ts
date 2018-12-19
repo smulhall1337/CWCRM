@@ -336,30 +336,6 @@ describe('administration', () => {
             });
     });
 
-    it('should load DataTable', () => {
-        element(by.css('[routerLink="datatable"]')).click();
-        const expect1 = /primeng.data.datatable.title/;
-        element
-            .all(by.css('h2 span'))
-            .first()
-            .getAttribute('jhiTranslate')
-            .then(value => {
-                expect(value).toMatch(expect1);
-            });
-    });
-
-    it('should load DataGrid', () => {
-        element(by.css('[routerLink="datagrid"]')).click();
-        const expect1 = /primeng.data.datagrid.title/;
-        element
-            .all(by.css('h2 span'))
-            .first()
-            .getAttribute('jhiTranslate')
-            .then(value => {
-                expect(value).toMatch(expect1);
-            });
-    });
-
     it('should load Carousel', () => {
         element(by.css('[routerLink="carousel"]')).click();
         const expect1 = /primeng.data.carousel.title/;
@@ -384,18 +360,6 @@ describe('administration', () => {
             });
     });
 
-    it('should load DataList', () => {
-        element(by.css('[routerLink="datalist"]')).click();
-        const expect1 = /primeng.data.datalist.title/;
-        element
-            .all(by.css('h2 span'))
-            .first()
-            .getAttribute('jhiTranslate')
-            .then(value => {
-                expect(value).toMatch(expect1);
-            });
-    });
-
     it('should load Paginator', () => {
         element(by.css('[routerLink="paginator"]')).click();
         const expect1 = /primeng.data.paginator.title/;
@@ -408,9 +372,9 @@ describe('administration', () => {
             });
     });
 
-    it('should load Schedule', () => {
-        element(by.css('[routerLink="schedule"]')).click();
-        const expect1 = /primeng.data.schedule.title/;
+    it('should load FullCalendar', () => {
+        element(by.css('[routerLink="fullcalendar"]')).click();
+        const expect1 = /primeng.data.fullcalendar.title/;
         element
             .all(by.css('h2 span'))
             .first()
@@ -432,9 +396,9 @@ describe('administration', () => {
             });
     });
 
-    it('should load DataScroller', () => {
-        element(by.css('[routerLink="datascroller"]')).click();
-        const expect1 = /primeng.data.datascroller.title/;
+    it('should load VirtualScroller', () => {
+        element(by.css('[routerLink="virtualscroller"]')).click();
+        const expect1 = /primeng.data.virtualscroller.title/;
         element
             .all(by.css('h2 span'))
             .first()
@@ -495,6 +459,18 @@ describe('administration', () => {
     it('should load Accordion', () => {
         element(by.css('[routerLink="accordion"]')).click();
         const expect1 = /primeng.panel.accordion.title/;
+        element
+            .all(by.css('h2 span'))
+            .first()
+            .getAttribute('jhiTranslate')
+            .then(value => {
+                expect(value).toMatch(expect1);
+            });
+    });
+
+    it('should load FlexGrid', () => {
+        element(by.css('[routerLink="flexgrid"]')).click();
+        const expect1 = /primeng.panel.flexgrid.title/;
         element
             .all(by.css('h2 span'))
             .first()
@@ -771,18 +747,6 @@ describe('administration', () => {
     it('should load Messages', () => {
         element(by.css('[routerLink="messages"]')).click();
         const expect1 = /primeng.messages.messages.title/;
-        element
-            .all(by.css('h2 span'))
-            .first()
-            .getAttribute('jhiTranslate')
-            .then(value => {
-                expect(value).toMatch(expect1);
-            });
-    });
-
-    it('should load Growl', () => {
-        element(by.css('[routerLink="growl"]')).click();
-        const expect1 = /primeng.messages.growl.title/;
         element
             .all(by.css('h2 span'))
             .first()

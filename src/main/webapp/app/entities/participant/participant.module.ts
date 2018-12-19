@@ -12,16 +12,20 @@ import {
     participantRoute,
     participantPopupRoute
 } from './';
+import { ParticipantViewBaseComponent } from 'app/entities/participant/participant-view-base';
+import { TextMaskModule } from 'angular2-text-mask';
+import { FormsModule } from '@angular/forms';
 
 const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
 
 @NgModule({
-    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES), FormsModule, TextMaskModule],
     declarations: [
         ParticipantComponent,
         ParticipantDetailComponent,
         ParticipantUpdateComponent,
         ParticipantDeleteDialogComponent,
+        ParticipantViewBaseComponent,
         ParticipantDeletePopupComponent
     ],
     entryComponents: [ParticipantComponent, ParticipantUpdateComponent, ParticipantDeleteDialogComponent, ParticipantDeletePopupComponent],

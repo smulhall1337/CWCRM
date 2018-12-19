@@ -8,7 +8,7 @@ import Country from './country';
 export class CountryService {
     constructor(private http: HttpClient) {}
 
-    getCountries(): Observable<Country[]> {
-        return this.http.get('content/primeng/assets/data/json/countries/countries.json').map(response => response as Country[]);
+    getCountries(): Observable<any> {
+        return this.http.get('content/primeng/assets/data/json/countries/countries.json').map(response => response);
     }
 }

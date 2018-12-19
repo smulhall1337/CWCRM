@@ -74,14 +74,8 @@
             }
         },
         "data": {
-            "datatable": {
-                "title": "DataTable"
-            },
             "table": {
                 "title": "Table"
-            },
-            "datagrid": {
-                "title": "DataGrid"
             },
             "carousel": {
                 "title": "Carousel"
@@ -89,20 +83,17 @@
             "orderlist": {
                 "title": "OrderList"
             },
-            "datalist": {
-                "title": "DataList"
-            },
             "paginator": {
                 "title": "Paginator"
             },
-            "schedule": {
-                "title": "Schedule"
+            "fullcalendar": {
+                "title": "FullCalendar"
             },
             "treetable": {
                 "title": "TreeTable"
             },
-            "datascroller": {
-                "title": "DataScroller"
+            "virtualscroller": {
+                "title": "VirtualScroller"
             },
             "orgchart": {
                 "title": "OrgChart"
@@ -211,9 +202,6 @@
             "fieldset": {
                 "title": "Fieldset"
             },
-            "grid": {
-                "title": "Grid"
-            },
             "toolbar": {
                 "title": "Toolbar"
             },
@@ -222,6 +210,9 @@
             },
             "card": {
                 "title": "Card"
+            },
+            "flexgrid": {
+                "title": "FlexGrid"
             }
         },
         "charts": {

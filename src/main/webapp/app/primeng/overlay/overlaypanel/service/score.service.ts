@@ -8,7 +8,7 @@ import Score from './score';
 export class ScoreService {
     constructor(private http: HttpClient) {}
 
-    getScores(): Observable<Score[]> {
-        return this.http.get('/content/primeng/assets/data/json/scores/scores.json').map(response => response as Score[]);
+    getScores(): Observable<any> {
+        return this.http.get('/content/primeng/assets/data/json/scores/scores.json').map(response => response);
     }
 }

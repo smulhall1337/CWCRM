@@ -45,6 +45,14 @@ export class ParticipantUpdateComponent implements OnInit {
 
     actions: IAction[];
 
+    titles = ['Mr.', 'Mrs.', 'Miss.', 'Ms.'];
+
+    phoneTypes = ['Home', 'Cell', 'Work'];
+
+    genders = ['M', 'F', 'N/A'];
+
+    public phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
     contacthistories: IContactHistory[];
     registrationDateDp: any;
     dobDp: any;
@@ -65,7 +73,7 @@ export class ParticipantUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ participant }) => {
+        this.activatedRoute.parent.data.subscribe(({ participant }) => {
             this.participant = participant;
         });
         this.contactStatusService.query({ filter: 'participant-is-null' }).subscribe(

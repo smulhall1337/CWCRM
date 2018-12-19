@@ -56,7 +56,7 @@ export class TreeDemoComponent implements OnInit {
             this.horizontalTree = [
                 {
                     label: 'Root',
-                    children: places
+                    children: places.data
                 }
             ];
         });
@@ -66,14 +66,14 @@ export class TreeDemoComponent implements OnInit {
             {
                 label: 'Selection',
                 data: 'Selected tourist package',
-                expandedIcon: 'fa-folder-open',
-                collapsedIcon: 'fa-folder'
+                expandedIcon: 'fa fa-folder-open',
+                collapsedIcon: 'fa fa-folder'
             }
         ];
 
         this.items = [
-            { label: 'View', icon: 'fa-search', command: (event: any) => this.viewFile(this.selectedTouristPlace) },
-            { label: 'Unselect', icon: 'fa-close', command: (event: any) => this.unselectFile() }
+            { label: 'View', icon: 'fa fa-search', command: (event: any) => this.viewFile(this.selectedTouristPlace) },
+            { label: 'Unselect', icon: 'fa fa-close', command: (event: any) => this.unselectFile() }
         ];
     }
 
