@@ -10,7 +10,7 @@ import { IWaiver } from 'app/shared/model/waiver.model';
 export class WaiverDetailComponent implements OnInit {
     waiver: IWaiver;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ waiver }) => {

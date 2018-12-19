@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { IExtendedUser } from 'app/shared/model/extended-user.model';
-import { Principal } from 'app/core';
+import { AccountService } from 'app/core';
 import { ExtendedUserService } from './extended-user.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class ExtendedUserComponent implements OnInit, OnDestroy {
     currentSearch: string;
 
     constructor(
-        private extendedUserService: ExtendedUserService,
-        private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        protected extendedUserService: ExtendedUserService,
+        protected jhiAlertService: JhiAlertService,
+        protected eventManager: JhiEventManager,
+        protected activatedRoute: ActivatedRoute,
+        protected accountService: AccountService
     ) {
         this.currentSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
@@ -67,7 +67,7 @@ export class ExtendedUserComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then(account => {
+        this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInExtendedUsers();
@@ -85,7 +85,7 @@ export class ExtendedUserComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.eventManager.subscribe('extendedUserListModification', response => this.loadAll());
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 }

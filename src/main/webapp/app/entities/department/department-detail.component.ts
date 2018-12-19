@@ -10,7 +10,7 @@ import { IDepartment } from 'app/shared/model/department.model';
 export class DepartmentDetailComponent implements OnInit {
     department: IDepartment;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ department }) => {

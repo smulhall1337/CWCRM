@@ -10,7 +10,7 @@ import { IExtendedUser } from 'app/shared/model/extended-user.model';
 export class ExtendedUserDetailComponent implements OnInit {
     extendedUser: IExtendedUser;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ extendedUser }) => {

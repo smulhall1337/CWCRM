@@ -14,7 +14,7 @@ export class ActionService {
     public resourceUrl = SERVER_API_URL + 'api/actions';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/actions';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(action: IAction): Observable<EntityResponseType> {
         return this.http.post<IAction>(this.resourceUrl, action, { observe: 'response' });

@@ -17,7 +17,7 @@ export class ParticipantService {
     public resourceUrl = SERVER_API_URL + 'api/participants';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/participants';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(participant: IParticipant): Observable<EntityResponseType> {
         const copy = this.convertDateFromClient(participant);

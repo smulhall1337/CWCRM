@@ -14,7 +14,11 @@ import { DepartmentService } from './department.service';
 export class DepartmentDeleteDialogComponent {
     department: IDepartment;
 
-    constructor(private departmentService: DepartmentService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager) {}
+    constructor(
+        protected departmentService: DepartmentService,
+        public activeModal: NgbActiveModal,
+        protected eventManager: JhiEventManager
+    ) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -36,9 +40,9 @@ export class DepartmentDeleteDialogComponent {
     template: ''
 })
 export class DepartmentDeletePopupComponent implements OnInit, OnDestroy {
-    private ngbModalRef: NgbModalRef;
+    protected ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+    constructor(protected activatedRoute: ActivatedRoute, protected router: Router, protected modalService: NgbModal) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ department }) => {

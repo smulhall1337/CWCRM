@@ -10,7 +10,7 @@ import { IEnrollmentAgency } from 'app/shared/model/enrollment-agency.model';
 export class EnrollmentAgencyDetailComponent implements OnInit {
     enrollmentAgency: IEnrollmentAgency;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ enrollmentAgency }) => {

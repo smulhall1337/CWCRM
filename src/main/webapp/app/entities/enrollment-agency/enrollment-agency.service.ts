@@ -14,7 +14,7 @@ export class EnrollmentAgencyService {
     public resourceUrl = SERVER_API_URL + 'api/enrollment-agencies';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/enrollment-agencies';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(enrollmentAgency: IEnrollmentAgency): Observable<EntityResponseType> {
         return this.http.post<IEnrollmentAgency>(this.resourceUrl, enrollmentAgency, { observe: 'response' });

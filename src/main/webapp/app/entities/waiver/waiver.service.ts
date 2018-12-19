@@ -14,7 +14,7 @@ export class WaiverService {
     public resourceUrl = SERVER_API_URL + 'api/waivers';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/waivers';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(waiver: IWaiver): Observable<EntityResponseType> {
         return this.http.post<IWaiver>(this.resourceUrl, waiver, { observe: 'response' });

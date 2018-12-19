@@ -20,10 +20,10 @@ export class ReferralUpdateComponent implements OnInit {
     participants: IParticipant[];
 
     constructor(
-        private jhiAlertService: JhiAlertService,
-        private referralService: ReferralService,
-        private participantService: ParticipantService,
-        private activatedRoute: ActivatedRoute
+        protected jhiAlertService: JhiAlertService,
+        protected referralService: ReferralService,
+        protected participantService: ParticipantService,
+        protected activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -52,20 +52,20 @@ export class ReferralUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IReferral>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IReferral>>) {
         result.subscribe((res: HttpResponse<IReferral>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 

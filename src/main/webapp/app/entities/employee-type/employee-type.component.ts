@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { IEmployeeType } from 'app/shared/model/employee-type.model';
-import { Principal } from 'app/core';
+import { AccountService } from 'app/core';
 import { EmployeeTypeService } from './employee-type.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class EmployeeTypeComponent implements OnInit, OnDestroy {
     currentSearch: string;
 
     constructor(
-        private employeeTypeService: EmployeeTypeService,
-        private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        protected employeeTypeService: EmployeeTypeService,
+        protected jhiAlertService: JhiAlertService,
+        protected eventManager: JhiEventManager,
+        protected activatedRoute: ActivatedRoute,
+        protected accountService: AccountService
     ) {
         this.currentSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
@@ -67,7 +67,7 @@ export class EmployeeTypeComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then(account => {
+        this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInEmployeeTypes();
@@ -85,7 +85,7 @@ export class EmployeeTypeComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.eventManager.subscribe('employeeTypeListModification', response => this.loadAll());
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 }

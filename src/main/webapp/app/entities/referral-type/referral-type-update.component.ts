@@ -14,7 +14,7 @@ export class ReferralTypeUpdateComponent implements OnInit {
     referralType: IReferralType;
     isSaving: boolean;
 
-    constructor(private referralTypeService: ReferralTypeService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected referralTypeService: ReferralTypeService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class ReferralTypeUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IReferralType>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IReferralType>>) {
         result.subscribe((res: HttpResponse<IReferralType>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

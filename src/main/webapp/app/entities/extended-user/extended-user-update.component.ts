@@ -31,13 +31,13 @@ export class ExtendedUserUpdateComponent implements OnInit {
     users: IUser[];
 
     constructor(
-        private jhiAlertService: JhiAlertService,
-        private extendedUserService: ExtendedUserService,
-        private departmentService: DepartmentService,
-        private employeeTypeService: EmployeeTypeService,
-        private employeeSubTypeService: EmployeeSubTypeService,
-        private userService: UserService,
-        private activatedRoute: ActivatedRoute
+        protected jhiAlertService: JhiAlertService,
+        protected extendedUserService: ExtendedUserService,
+        protected departmentService: DepartmentService,
+        protected employeeTypeService: EmployeeTypeService,
+        protected employeeSubTypeService: EmployeeSubTypeService,
+        protected userService: UserService,
+        protected activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -111,20 +111,20 @@ export class ExtendedUserUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IExtendedUser>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IExtendedUser>>) {
         result.subscribe((res: HttpResponse<IExtendedUser>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 

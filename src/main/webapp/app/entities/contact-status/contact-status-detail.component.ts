@@ -10,7 +10,7 @@ import { IContactStatus } from 'app/shared/model/contact-status.model';
 export class ContactStatusDetailComponent implements OnInit {
     contactStatus: IContactStatus;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ contactStatus }) => {

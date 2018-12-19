@@ -10,7 +10,7 @@ import { ISupportCoordinator } from 'app/shared/model/support-coordinator.model'
 export class SupportCoordinatorDetailComponent implements OnInit {
     supportCoordinator: ISupportCoordinator;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ supportCoordinator }) => {

@@ -14,7 +14,7 @@ export class ContactTypeService {
     public resourceUrl = SERVER_API_URL + 'api/contact-types';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/contact-types';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(contactType: IContactType): Observable<EntityResponseType> {
         return this.http.post<IContactType>(this.resourceUrl, contactType, { observe: 'response' });

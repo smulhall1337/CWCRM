@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { IContactHistory } from 'app/shared/model/contact-history.model';
-import { Principal } from 'app/core';
+import { AccountService } from 'app/core';
 import { ContactHistoryService } from './contact-history.service';
 
 @Component({
@@ -19,12 +19,12 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
     currentSearch: string;
 
     constructor(
-        private contactHistoryService: ContactHistoryService,
-        private jhiAlertService: JhiAlertService,
-        private dataUtils: JhiDataUtils,
-        private eventManager: JhiEventManager,
-        private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        protected contactHistoryService: ContactHistoryService,
+        protected jhiAlertService: JhiAlertService,
+        protected dataUtils: JhiDataUtils,
+        protected eventManager: JhiEventManager,
+        protected activatedRoute: ActivatedRoute,
+        protected accountService: AccountService
     ) {
         this.currentSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
@@ -68,7 +68,7 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then(account => {
+        this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInContactHistories();
@@ -94,7 +94,7 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.eventManager.subscribe('contactHistoryListModification', response => this.loadAll());
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 }

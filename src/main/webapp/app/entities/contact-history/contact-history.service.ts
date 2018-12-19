@@ -17,7 +17,7 @@ export class ContactHistoryService {
     public resourceUrl = SERVER_API_URL + 'api/contact-histories';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/contact-histories';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(contactHistory: IContactHistory): Observable<EntityResponseType> {
         const copy = this.convertDateFromClient(contactHistory);

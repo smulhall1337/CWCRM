@@ -14,7 +14,7 @@ import { PriorityService } from './priority.service';
 export class PriorityDeleteDialogComponent {
     priority: IPriority;
 
-    constructor(private priorityService: PriorityService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager) {}
+    constructor(protected priorityService: PriorityService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -36,9 +36,9 @@ export class PriorityDeleteDialogComponent {
     template: ''
 })
 export class PriorityDeletePopupComponent implements OnInit, OnDestroy {
-    private ngbModalRef: NgbModalRef;
+    protected ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+    constructor(protected activatedRoute: ActivatedRoute, protected router: Router, protected modalService: NgbModal) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ priority }) => {

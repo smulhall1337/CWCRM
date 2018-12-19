@@ -14,7 +14,7 @@ export class MCOService {
     public resourceUrl = SERVER_API_URL + 'api/mcos';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/mcos';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(mCO: IMCO): Observable<EntityResponseType> {
         return this.http.post<IMCO>(this.resourceUrl, mCO, { observe: 'response' });

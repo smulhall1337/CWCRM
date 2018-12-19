@@ -14,7 +14,7 @@ export class EmployeeSubTypeService {
     public resourceUrl = SERVER_API_URL + 'api/employee-sub-types';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/employee-sub-types';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(employeeSubType: IEmployeeSubType): Observable<EntityResponseType> {
         return this.http.post<IEmployeeSubType>(this.resourceUrl, employeeSubType, { observe: 'response' });

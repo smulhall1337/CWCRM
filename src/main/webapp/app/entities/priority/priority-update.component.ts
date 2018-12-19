@@ -14,7 +14,7 @@ export class PriorityUpdateComponent implements OnInit {
     priority: IPriority;
     isSaving: boolean;
 
-    constructor(private priorityService: PriorityService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected priorityService: PriorityService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class PriorityUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IPriority>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IPriority>>) {
         result.subscribe((res: HttpResponse<IPriority>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

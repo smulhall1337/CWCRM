@@ -29,13 +29,13 @@ export class ContactHistoryUpdateComponent implements OnInit {
     dateDp: any;
 
     constructor(
-        private dataUtils: JhiDataUtils,
-        private jhiAlertService: JhiAlertService,
-        private contactHistoryService: ContactHistoryService,
-        private participantService: ParticipantService,
-        private userService: UserService,
-        private contactTypeService: ContactTypeService,
-        private activatedRoute: ActivatedRoute
+        protected dataUtils: JhiDataUtils,
+        protected jhiAlertService: JhiAlertService,
+        protected contactHistoryService: ContactHistoryService,
+        protected participantService: ParticipantService,
+        protected userService: UserService,
+        protected contactTypeService: ContactTypeService,
+        protected activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -106,20 +106,20 @@ export class ContactHistoryUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IContactHistory>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IContactHistory>>) {
         result.subscribe((res: HttpResponse<IContactHistory>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 

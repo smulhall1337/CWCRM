@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { ISupportCoordinator } from 'app/shared/model/support-coordinator.model';
-import { Principal } from 'app/core';
+import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { SupportCoordinatorService } from './support-coordinator.service';
@@ -28,12 +28,12 @@ export class SupportCoordinatorComponent implements OnInit, OnDestroy {
     currentSearch: string;
 
     constructor(
-        private supportCoordinatorService: SupportCoordinatorService,
-        private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private parseLinks: JhiParseLinks,
-        private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        protected supportCoordinatorService: SupportCoordinatorService,
+        protected jhiAlertService: JhiAlertService,
+        protected eventManager: JhiEventManager,
+        protected parseLinks: JhiParseLinks,
+        protected activatedRoute: ActivatedRoute,
+        protected accountService: AccountService
     ) {
         this.supportCoordinators = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -116,7 +116,7 @@ export class SupportCoordinatorComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then(account => {
+        this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInSupportCoordinators();
@@ -142,7 +142,7 @@ export class SupportCoordinatorComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    private paginateSupportCoordinators(data: ISupportCoordinator[], headers: HttpHeaders) {
+    protected paginateSupportCoordinators(data: ISupportCoordinator[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         for (let i = 0; i < data.length; i++) {
@@ -150,7 +150,7 @@ export class SupportCoordinatorComponent implements OnInit, OnDestroy {
         }
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 }

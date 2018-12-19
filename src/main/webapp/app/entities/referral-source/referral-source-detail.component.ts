@@ -10,7 +10,7 @@ import { IReferralSource } from 'app/shared/model/referral-source.model';
 export class ReferralSourceDetailComponent implements OnInit {
     referralSource: IReferralSource;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ referralSource }) => {

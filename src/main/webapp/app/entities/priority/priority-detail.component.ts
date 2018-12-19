@@ -10,7 +10,7 @@ import { IPriority } from 'app/shared/model/priority.model';
 export class PriorityDetailComponent implements OnInit {
     priority: IPriority;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ priority }) => {

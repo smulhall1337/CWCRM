@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IParticipant } from 'app/shared/model/participant.model';
-import { Principal } from 'app/core';
+import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { ParticipantService } from './participant.service';
@@ -28,12 +28,12 @@ export class ParticipantComponent implements OnInit, OnDestroy {
     currentSearch: string;
 
     constructor(
-        private participantService: ParticipantService,
-        private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private parseLinks: JhiParseLinks,
-        private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        protected participantService: ParticipantService,
+        protected jhiAlertService: JhiAlertService,
+        protected eventManager: JhiEventManager,
+        protected parseLinks: JhiParseLinks,
+        protected activatedRoute: ActivatedRoute,
+        protected accountService: AccountService
     ) {
         this.participants = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -116,7 +116,7 @@ export class ParticipantComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then(account => {
+        this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInParticipants();
@@ -142,7 +142,7 @@ export class ParticipantComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    private paginateParticipants(data: IParticipant[], headers: HttpHeaders) {
+    protected paginateParticipants(data: IParticipant[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         for (let i = 0; i < data.length; i++) {
@@ -150,7 +150,7 @@ export class ParticipantComponent implements OnInit, OnDestroy {
         }
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 }

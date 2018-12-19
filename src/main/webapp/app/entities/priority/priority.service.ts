@@ -14,7 +14,7 @@ export class PriorityService {
     public resourceUrl = SERVER_API_URL + 'api/priorities';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/priorities';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(priority: IPriority): Observable<EntityResponseType> {
         return this.http.post<IPriority>(this.resourceUrl, priority, { observe: 'response' });

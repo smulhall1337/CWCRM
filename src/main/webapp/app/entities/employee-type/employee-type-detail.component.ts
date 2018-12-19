@@ -10,7 +10,7 @@ import { IEmployeeType } from 'app/shared/model/employee-type.model';
 export class EmployeeTypeDetailComponent implements OnInit {
     employeeType: IEmployeeType;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ employeeType }) => {

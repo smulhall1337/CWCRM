@@ -14,7 +14,7 @@ import { MCOService } from './mco.service';
 export class MCODeleteDialogComponent {
     mCO: IMCO;
 
-    constructor(private mCOService: MCOService, public activeModal: NgbActiveModal, private eventManager: JhiEventManager) {}
+    constructor(protected mCOService: MCOService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
     clear() {
         this.activeModal.dismiss('cancel');
@@ -36,9 +36,9 @@ export class MCODeleteDialogComponent {
     template: ''
 })
 export class MCODeletePopupComponent implements OnInit, OnDestroy {
-    private ngbModalRef: NgbModalRef;
+    protected ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+    constructor(protected activatedRoute: ActivatedRoute, protected router: Router, protected modalService: NgbModal) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ mCO }) => {

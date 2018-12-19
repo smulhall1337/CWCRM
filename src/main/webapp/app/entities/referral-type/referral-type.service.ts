@@ -14,7 +14,7 @@ export class ReferralTypeService {
     public resourceUrl = SERVER_API_URL + 'api/referral-types';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/referral-types';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(referralType: IReferralType): Observable<EntityResponseType> {
         return this.http.post<IReferralType>(this.resourceUrl, referralType, { observe: 'response' });

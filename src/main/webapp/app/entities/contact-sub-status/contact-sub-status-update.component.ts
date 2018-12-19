@@ -14,7 +14,7 @@ export class ContactSubStatusUpdateComponent implements OnInit {
     contactSubStatus: IContactSubStatus;
     isSaving: boolean;
 
-    constructor(private contactSubStatusService: ContactSubStatusService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected contactSubStatusService: ContactSubStatusService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class ContactSubStatusUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IContactSubStatus>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IContactSubStatus>>) {
         result.subscribe((res: HttpResponse<IContactSubStatus>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }
