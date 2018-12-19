@@ -1,0 +1,85 @@
+{
+    "name": "SupportCoordinator",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "emailId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateHired",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "department",
+            "otherEntityName": "department",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "supportCoordinator"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "employeeType",
+            "otherEntityName": "employeeType",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "supportCoordinator"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "employeeSubType",
+            "otherEntityName": "employeeSubType",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "supportCoordinator"
+        }
+    ],
+    "changelogDate": "20181107220302",
+    "entityTableName": "support_coordinator",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

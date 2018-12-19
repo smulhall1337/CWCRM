@@ -1,0 +1,47 @@
+{
+    "name": "ExtendedUser",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "department",
+            "otherEntityName": "department",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "extendedUser"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "employeeType",
+            "otherEntityName": "employeeType",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "extendedUser"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "employeeSubType",
+            "otherEntityName": "employeeSubType",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "extendedUser"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "extendedUser"
+        }
+    ],
+    "changelogDate": "20181127160223",
+    "entityTableName": "extended_user",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
