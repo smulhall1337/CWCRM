@@ -10,7 +10,7 @@ import { IMCO } from 'app/shared/model/mco.model';
 export class MCODetailComponent implements OnInit {
     mCO: IMCO;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ mCO }) => {

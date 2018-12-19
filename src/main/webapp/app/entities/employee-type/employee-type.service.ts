@@ -14,7 +14,7 @@ export class EmployeeTypeService {
     public resourceUrl = SERVER_API_URL + 'api/employee-types';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/employee-types';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(employeeType: IEmployeeType): Observable<EntityResponseType> {
         return this.http.post<IEmployeeType>(this.resourceUrl, employeeType, { observe: 'response' });

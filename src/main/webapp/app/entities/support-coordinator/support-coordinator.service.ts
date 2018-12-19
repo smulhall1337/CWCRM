@@ -17,7 +17,7 @@ export class SupportCoordinatorService {
     public resourceUrl = SERVER_API_URL + 'api/support-coordinators';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/support-coordinators';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(supportCoordinator: ISupportCoordinator): Observable<EntityResponseType> {
         const copy = this.convertDateFromClient(supportCoordinator);

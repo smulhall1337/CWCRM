@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { IReferral } from 'app/shared/model/referral.model';
-import { Principal } from 'app/core';
+import { AccountService } from 'app/core';
 import { ReferralService } from './referral.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class ReferralComponent implements OnInit, OnDestroy {
     currentSearch: string;
 
     constructor(
-        private referralService: ReferralService,
-        private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        protected referralService: ReferralService,
+        protected jhiAlertService: JhiAlertService,
+        protected eventManager: JhiEventManager,
+        protected activatedRoute: ActivatedRoute,
+        protected accountService: AccountService
     ) {
         this.currentSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
@@ -67,7 +67,7 @@ export class ReferralComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then(account => {
+        this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInReferrals();
@@ -85,7 +85,7 @@ export class ReferralComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.eventManager.subscribe('referralListModification', response => this.loadAll());
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 }

@@ -14,7 +14,7 @@ export class ParticipantNotesService {
     public resourceUrl = SERVER_API_URL + 'api/participant-notes';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/participant-notes';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(participantNotes: IParticipantNotes): Observable<EntityResponseType> {
         return this.http.post<IParticipantNotes>(this.resourceUrl, participantNotes, { observe: 'response' });

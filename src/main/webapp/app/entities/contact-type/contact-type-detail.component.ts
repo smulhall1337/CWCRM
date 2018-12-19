@@ -10,7 +10,7 @@ import { IContactType } from 'app/shared/model/contact-type.model';
 export class ContactTypeDetailComponent implements OnInit {
     contactType: IContactType;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ contactType }) => {

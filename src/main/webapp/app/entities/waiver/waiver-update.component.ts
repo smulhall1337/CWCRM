@@ -14,7 +14,7 @@ export class WaiverUpdateComponent implements OnInit {
     waiver: IWaiver;
     isSaving: boolean;
 
-    constructor(private waiverService: WaiverService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected waiverService: WaiverService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class WaiverUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IWaiver>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IWaiver>>) {
         result.subscribe((res: HttpResponse<IWaiver>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

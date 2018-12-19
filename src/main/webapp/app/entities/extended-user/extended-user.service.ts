@@ -14,7 +14,7 @@ export class ExtendedUserService {
     public resourceUrl = SERVER_API_URL + 'api/extended-users';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/extended-users';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(extendedUser: IExtendedUser): Observable<EntityResponseType> {
         return this.http.post<IExtendedUser>(this.resourceUrl, extendedUser, { observe: 'response' });

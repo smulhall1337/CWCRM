@@ -15,7 +15,11 @@ export class PhysicianUpdateComponent implements OnInit {
     physician: IPhysician;
     isSaving: boolean;
 
-    constructor(private dataUtils: JhiDataUtils, private physicianService: PhysicianService, private activatedRoute: ActivatedRoute) {}
+    constructor(
+        protected dataUtils: JhiDataUtils,
+        protected physicianService: PhysicianService,
+        protected activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -49,16 +53,16 @@ export class PhysicianUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IPhysician>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IPhysician>>) {
         result.subscribe((res: HttpResponse<IPhysician>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

@@ -10,7 +10,7 @@ import { IAction } from 'app/shared/model/action.model';
 export class ActionDetailComponent implements OnInit {
     action: IAction;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ action }) => {

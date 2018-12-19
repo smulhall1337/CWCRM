@@ -14,7 +14,7 @@ export class MCOUpdateComponent implements OnInit {
     mCO: IMCO;
     isSaving: boolean;
 
-    constructor(private mCOService: MCOService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected mCOService: MCOService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class MCOUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IMCO>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IMCO>>) {
         result.subscribe((res: HttpResponse<IMCO>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

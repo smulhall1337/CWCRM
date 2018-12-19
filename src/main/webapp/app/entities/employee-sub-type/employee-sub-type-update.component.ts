@@ -14,7 +14,7 @@ export class EmployeeSubTypeUpdateComponent implements OnInit {
     employeeSubType: IEmployeeSubType;
     isSaving: boolean;
 
-    constructor(private employeeSubTypeService: EmployeeSubTypeService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected employeeSubTypeService: EmployeeSubTypeService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class EmployeeSubTypeUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IEmployeeSubType>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IEmployeeSubType>>) {
         result.subscribe((res: HttpResponse<IEmployeeSubType>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

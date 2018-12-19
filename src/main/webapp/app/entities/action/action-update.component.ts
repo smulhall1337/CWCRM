@@ -23,11 +23,11 @@ export class ActionUpdateComponent implements OnInit {
     participants: IParticipant[];
 
     constructor(
-        private jhiAlertService: JhiAlertService,
-        private actionService: ActionService,
-        private userService: UserService,
-        private participantService: ParticipantService,
-        private activatedRoute: ActivatedRoute
+        protected jhiAlertService: JhiAlertService,
+        protected actionService: ActionService,
+        protected userService: UserService,
+        protected participantService: ParticipantService,
+        protected activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -71,20 +71,20 @@ export class ActionUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IAction>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IAction>>) {
         result.subscribe((res: HttpResponse<IAction>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 

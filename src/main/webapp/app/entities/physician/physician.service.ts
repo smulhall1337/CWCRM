@@ -14,7 +14,7 @@ export class PhysicianService {
     public resourceUrl = SERVER_API_URL + 'api/physicians';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/physicians';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(physician: IPhysician): Observable<EntityResponseType> {
         return this.http.post<IPhysician>(this.resourceUrl, physician, { observe: 'response' });

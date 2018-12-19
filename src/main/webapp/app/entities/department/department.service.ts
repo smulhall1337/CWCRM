@@ -14,7 +14,7 @@ export class DepartmentService {
     public resourceUrl = SERVER_API_URL + 'api/departments';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/departments';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(department: IDepartment): Observable<EntityResponseType> {
         return this.http.post<IDepartment>(this.resourceUrl, department, { observe: 'response' });

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { IDepartment } from 'app/shared/model/department.model';
-import { Principal } from 'app/core';
+import { AccountService } from 'app/core';
 import { DepartmentService } from './department.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class DepartmentComponent implements OnInit, OnDestroy {
     currentSearch: string;
 
     constructor(
-        private departmentService: DepartmentService,
-        private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        protected departmentService: DepartmentService,
+        protected jhiAlertService: JhiAlertService,
+        protected eventManager: JhiEventManager,
+        protected activatedRoute: ActivatedRoute,
+        protected accountService: AccountService
     ) {
         this.currentSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
@@ -67,7 +67,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then(account => {
+        this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
         this.registerChangeInDepartments();
@@ -85,7 +85,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.eventManager.subscribe('departmentListModification', response => this.loadAll());
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 }

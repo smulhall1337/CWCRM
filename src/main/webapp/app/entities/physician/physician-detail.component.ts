@@ -11,7 +11,7 @@ import { IPhysician } from 'app/shared/model/physician.model';
 export class PhysicianDetailComponent implements OnInit {
     physician: IPhysician;
 
-    constructor(private dataUtils: JhiDataUtils, private activatedRoute: ActivatedRoute) {}
+    constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ physician }) => {

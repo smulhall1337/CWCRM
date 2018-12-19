@@ -14,7 +14,7 @@ export class ContactStatusService {
     public resourceUrl = SERVER_API_URL + 'api/contact-statuses';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/contact-statuses';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(contactStatus: IContactStatus): Observable<EntityResponseType> {
         return this.http.post<IContactStatus>(this.resourceUrl, contactStatus, { observe: 'response' });

@@ -14,7 +14,7 @@ export class ContactTypeUpdateComponent implements OnInit {
     contactType: IContactType;
     isSaving: boolean;
 
-    constructor(private contactTypeService: ContactTypeService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected contactTypeService: ContactTypeService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class ContactTypeUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IContactType>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IContactType>>) {
         result.subscribe((res: HttpResponse<IContactType>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

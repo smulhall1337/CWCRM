@@ -12,4 +12,10 @@ import { CwcrmSharedLibsModule, CwcrmSharedCommonModule, JhiLoginModalComponent,
     exports: [CwcrmSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CwcrmSharedModule {}
+export class CwcrmSharedModule {
+    static forRoot() {
+        return {
+            ngModule: CwcrmSharedModule
+        };
+    }
+}

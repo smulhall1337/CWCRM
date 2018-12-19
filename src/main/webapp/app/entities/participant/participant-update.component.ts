@@ -50,17 +50,17 @@ export class ParticipantUpdateComponent implements OnInit {
     dobDp: any;
 
     constructor(
-        private jhiAlertService: JhiAlertService,
-        private participantService: ParticipantService,
-        private contactStatusService: ContactStatusService,
-        private contactSubStatusService: ContactSubStatusService,
-        private mCOService: MCOService,
-        private referralTypeService: ReferralTypeService,
-        private referralSourceService: ReferralSourceService,
-        private userService: UserService,
-        private actionService: ActionService,
-        private contactHistoryService: ContactHistoryService,
-        private activatedRoute: ActivatedRoute
+        protected jhiAlertService: JhiAlertService,
+        protected participantService: ParticipantService,
+        protected contactStatusService: ContactStatusService,
+        protected contactSubStatusService: ContactSubStatusService,
+        protected mCOService: MCOService,
+        protected referralTypeService: ReferralTypeService,
+        protected referralSourceService: ReferralSourceService,
+        protected userService: UserService,
+        protected actionService: ActionService,
+        protected contactHistoryService: ContactHistoryService,
+        protected activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -176,20 +176,20 @@ export class ParticipantUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IParticipant>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IParticipant>>) {
         result.subscribe((res: HttpResponse<IParticipant>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 
-    private onError(errorMessage: string) {
+    protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 

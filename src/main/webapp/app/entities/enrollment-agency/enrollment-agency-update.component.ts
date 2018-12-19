@@ -14,7 +14,7 @@ export class EnrollmentAgencyUpdateComponent implements OnInit {
     enrollmentAgency: IEnrollmentAgency;
     isSaving: boolean;
 
-    constructor(private enrollmentAgencyService: EnrollmentAgencyService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected enrollmentAgencyService: EnrollmentAgencyService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class EnrollmentAgencyUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IEnrollmentAgency>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IEnrollmentAgency>>) {
         result.subscribe((res: HttpResponse<IEnrollmentAgency>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

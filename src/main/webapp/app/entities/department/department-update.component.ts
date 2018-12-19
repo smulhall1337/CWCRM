@@ -14,7 +14,7 @@ export class DepartmentUpdateComponent implements OnInit {
     department: IDepartment;
     isSaving: boolean;
 
-    constructor(private departmentService: DepartmentService, private activatedRoute: ActivatedRoute) {}
+    constructor(protected departmentService: DepartmentService, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -36,16 +36,16 @@ export class DepartmentUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IDepartment>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IDepartment>>) {
         result.subscribe((res: HttpResponse<IDepartment>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

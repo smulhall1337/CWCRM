@@ -11,7 +11,7 @@ import { IContactHistory } from 'app/shared/model/contact-history.model';
 export class ContactHistoryDetailComponent implements OnInit {
     contactHistory: IContactHistory;
 
-    constructor(private dataUtils: JhiDataUtils, private activatedRoute: ActivatedRoute) {}
+    constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ contactHistory }) => {

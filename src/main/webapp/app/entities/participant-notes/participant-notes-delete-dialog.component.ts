@@ -15,9 +15,9 @@ export class ParticipantNotesDeleteDialogComponent {
     participantNotes: IParticipantNotes;
 
     constructor(
-        private participantNotesService: ParticipantNotesService,
+        protected participantNotesService: ParticipantNotesService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        protected eventManager: JhiEventManager
     ) {}
 
     clear() {
@@ -40,9 +40,9 @@ export class ParticipantNotesDeleteDialogComponent {
     template: ''
 })
 export class ParticipantNotesDeletePopupComponent implements OnInit, OnDestroy {
-    private ngbModalRef: NgbModalRef;
+    protected ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+    constructor(protected activatedRoute: ActivatedRoute, protected router: Router, protected modalService: NgbModal) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ participantNotes }) => {
