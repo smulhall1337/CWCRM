@@ -1,0 +1,49 @@
+{
+    "name": "ContactHistory",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "notes",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "participant",
+            "otherEntityName": "participant",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "contactHistory"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "contactHistory"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "contactType",
+            "otherEntityName": "contactType",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "contactHistory"
+        }
+    ],
+    "changelogDate": "20181127160220",
+    "entityTableName": "contact_history",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

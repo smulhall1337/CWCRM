@@ -1,0 +1,139 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cwcrmApp.participant.home.title">Participants</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-participant" [routerLink]="['/participant/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="cwcrmApp.participant.home.createLabel">
+            Create new Participant
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'cwcrmApp.participant.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="participants">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="cwcrmApp.participant.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="middleInitial"><span jhiTranslate="cwcrmApp.participant.middleInitial">Middle Initial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="cwcrmApp.participant.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="title"><span jhiTranslate="cwcrmApp.participant.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="registrationDate"><span jhiTranslate="cwcrmApp.participant.registrationDate">Registration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="address"><span jhiTranslate="cwcrmApp.participant.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="city"><span jhiTranslate="cwcrmApp.participant.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="state"><span jhiTranslate="cwcrmApp.participant.state">State</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="country"><span jhiTranslate="cwcrmApp.participant.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dob"><span jhiTranslate="cwcrmApp.participant.dob">Dob</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="primaryPhone"><span jhiTranslate="cwcrmApp.participant.primaryPhone">Primary Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="primaryPhoneType"><span jhiTranslate="cwcrmApp.participant.primaryPhoneType">Primary Phone Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="secondaryPhone"><span jhiTranslate="cwcrmApp.participant.secondaryPhone">Secondary Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="secondaryPhoneType"><span jhiTranslate="cwcrmApp.participant.secondaryPhoneType">Secondary Phone Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="cwcrmApp.participant.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="zip"><span jhiTranslate="cwcrmApp.participant.zip">Zip</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="medicareIdNumber"><span jhiTranslate="cwcrmApp.participant.medicareIdNumber">Medicare Id Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="medicaidIdNumber"><span jhiTranslate="cwcrmApp.participant.medicaidIdNumber">Medicaid Id Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="gender"><span jhiTranslate="cwcrmApp.participant.gender">Gender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contactStatusId"><span jhiTranslate="cwcrmApp.participant.contactStatus">Contact Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contactSubStatusName"><span jhiTranslate="cwcrmApp.participant.contactSubStatus">Contact Sub Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mcoName"><span jhiTranslate="cwcrmApp.participant.mco">Mco</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="referralTypeName"><span jhiTranslate="cwcrmApp.participant.referralType">Referral Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="referralSourceName"><span jhiTranslate="cwcrmApp.participant.referralSource">Referral Source</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assignedToId"><span jhiTranslate="cwcrmApp.participant.assignedTo">Assigned To</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let participant of participants ;trackBy: trackId">
+                <td><a [routerLink]="['/participant', participant.id, 'view' ]">{{participant.id}}</a></td>
+                <td>{{participant.firstName}}</td>
+                <td>{{participant.middleInitial}}</td>
+                <td>{{participant.lastName}}</td>
+                <td>{{participant.title}}</td>
+                <td>{{participant.registrationDate | date:'mediumDate'}}</td>
+                <td>{{participant.address}}</td>
+                <td>{{participant.city}}</td>
+                <td>{{participant.state}}</td>
+                <td>{{participant.country}}</td>
+                <td>{{participant.dob | date:'mediumDate'}}</td>
+                <td>{{participant.primaryPhone}}</td>
+                <td>{{participant.primaryPhoneType}}</td>
+                <td>{{participant.secondaryPhone}}</td>
+                <td>{{participant.secondaryPhoneType}}</td>
+                <td>{{participant.email}}</td>
+                <td>{{participant.zip}}</td>
+                <td>{{participant.medicareIdNumber}}</td>
+                <td>{{participant.medicaidIdNumber}}</td>
+                <td>{{participant.gender}}</td>
+                <td>
+                    <div *ngIf="participant.contactStatusId">
+                        <a [routerLink]="['../contact-status', participant.contactStatusId , 'view' ]" >{{participant.contactStatusId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.contactSubStatusId">
+                        <a [routerLink]="['../contact-sub-status', participant.contactSubStatusId , 'view' ]" >{{participant.contactSubStatusName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.mcoId">
+                        <a [routerLink]="['../mco', participant.mcoId , 'view' ]" >{{participant.mcoName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.referralTypeId">
+                        <a [routerLink]="['../referral-type', participant.referralTypeId , 'view' ]" >{{participant.referralTypeName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="participant.referralSourceId">
+                        <a [routerLink]="['../referral-source', participant.referralSourceId , 'view' ]" >{{participant.referralSourceName}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{participant.assignedToId}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/participant', participant.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/participant', participant.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'participant/'+ participant.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
