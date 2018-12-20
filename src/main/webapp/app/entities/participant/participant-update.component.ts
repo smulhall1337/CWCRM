@@ -22,6 +22,9 @@ import { IAction } from 'app/shared/model/action.model';
 import { ActionService } from 'app/entities/action';
 import { IContactHistory } from 'app/shared/model/contact-history.model';
 import { ContactHistoryService } from 'app/entities/contact-history';
+import Country from 'app/primeng/inputs/autocomplete/service/country';
+import { CountryService } from 'app/primeng/inputs/autocomplete/service/country.service';
+import { Message, SelectItem } from 'primeng/api';
 
 @Component({
     selector: 'jhi-participant-update',
@@ -57,6 +60,18 @@ export class ParticipantUpdateComponent implements OnInit {
     registrationDateDp: any;
     dobDp: any;
 
+    country: Country;
+    countries: Country[];
+    filteredCountries: Country[];
+    filteredCountriesMultiple: Country[];
+    filteredTopAsiaCountries: any[];
+    filteredCountryInstances: Country[];
+    filteredCustomCountries: Country[];
+    selectedType = 'readonly';
+    types: SelectItem[];
+    msgs: Message[] = [];
+    activeIndex = 0;
+
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected participantService: ParticipantService,
@@ -69,7 +84,8 @@ export class ParticipantUpdateComponent implements OnInit {
         protected actionService: ActionService,
         protected contactHistoryService: ContactHistoryService,
         protected activatedRoute: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private countryService: CountryService
     ) {}
 
     ngOnInit() {
@@ -239,5 +255,29 @@ export class ParticipantUpdateComponent implements OnInit {
 
     trackContactHistoryById(index: number, item: IContactHistory) {
         return item.id;
+    }
+
+    filterCountry(query: any, countries: Country[]): Country[] {
+        const filtered: any[] = [];
+        for (const country of countries) {
+            if (country.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                filtered.push(country);
+            }
+        }
+        return filtered;
+    }
+
+    filterCountryInstances(event: any) {
+        const query = event.query;
+        this.countryService.getCountries().subscribe((countries: any) => {
+            this.filteredCountryInstances = this.filterCountry(query, countries.data);
+        });
+    }
+
+    filterCountries(event: any) {
+        const query = event.query;
+        this.countryService.getCountries().subscribe((countries: any) => {
+            this.filteredCountries = this.filterCountry(query, countries.data);
+        });
     }
 }
