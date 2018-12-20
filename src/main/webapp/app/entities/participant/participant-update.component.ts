@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
@@ -68,14 +68,22 @@ export class ParticipantUpdateComponent implements OnInit {
         protected userService: UserService,
         protected actionService: ActionService,
         protected contactHistoryService: ContactHistoryService,
-        protected activatedRoute: ActivatedRoute
+        protected activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
+        console.log(this.router.url);
         this.isSaving = false;
-        this.activatedRoute.parent.data.subscribe(({ participant }) => {
-            this.participant = participant;
-        });
+        if (this.router.url === '/participant/new') {
+            this.activatedRoute.data.subscribe(({ participant }) => {
+                this.participant = participant;
+            });
+        } else {
+            this.activatedRoute.parent.data.subscribe(({ participant }) => {
+                this.participant = participant;
+            });
+        }
         this.contactStatusService.query({ filter: 'participant-is-null' }).subscribe(
             (res: HttpResponse<IContactStatus[]>) => {
                 if (!this.participant.contactStatusId) {
