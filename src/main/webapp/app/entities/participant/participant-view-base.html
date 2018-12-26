@@ -14,7 +14,7 @@
                         <a [routerLink]="['demographics']">
                             Demographics
                         </a>
-                         <a [routerLink]="['contact-history']">
+                         <a routerLink="contact-history" routerLinkActive="active">
                             Contact History
                         </a>
 
@@ -22,6 +22,7 @@
                 </div>
             </nav>
             <router-outlet></router-outlet>
+            <router-outlet name='contact-history'></router-outlet>
         </form>
         <!--        <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

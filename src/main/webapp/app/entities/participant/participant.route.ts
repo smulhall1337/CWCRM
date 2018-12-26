@@ -12,13 +12,19 @@ import { ParticipantUpdateComponent } from './participant-update.component';
 import { ParticipantDeletePopupComponent } from './participant-delete-dialog.component';
 import { IParticipant } from 'app/shared/model/participant.model';
 import { ParticipantViewBaseComponent } from 'app/entities/participant/participant-view-base';
-import {
+/*import {
     ContactHistoryComponent,
     ContactHistoryDetailComponent,
     ContactHistoryService,
     ContactHistoryUpdateComponent
-} from 'app/entities/contact-history';
+} from 'app/entities/contact-history';*/
 import { ContactHistory, IContactHistory } from 'app/shared/model/contact-history.model';
+import {
+    ContactHistoryComponent,
+    ContactHistoryDetailComponent,
+    ContactHistoryResolve,
+    ContactHistoryUpdateComponent
+} from 'app/entities/contact-history';
 
 @Injectable({ providedIn: 'root' })
 export class ParticipantResolve implements Resolve<IParticipant> {
@@ -36,7 +42,7 @@ export class ParticipantResolve implements Resolve<IParticipant> {
     }
 }
 
-@Injectable({ providedIn: 'root' })
+/*@Injectable({ providedIn: 'root' })
 export class ContactHistoryResolve implements Resolve<IContactHistory> {
     constructor(private service: ContactHistoryService) {}
 
@@ -50,7 +56,7 @@ export class ContactHistoryResolve implements Resolve<IContactHistory> {
         }
         return of(new ContactHistory());
     }
-}
+}*/
 
 export const participantRoute: Routes = [
     {
@@ -109,15 +115,20 @@ export const participantRoute: Routes = [
             },
             {
                 path: 'contact-history',
-                component: ContactHistoryComponent,
-                data: {
-                    authorities: ['ROLE_USER'],
-                    pageTitle: 'cwcrmApp.contactHistory.home.title'
-                },
-                canActivate: [UserRouteAccessService],
-                children: [
+                loadChildren: '../contact-history/contact-history.module#CwcrmContactHistoryModule'
+                // component: ContactHistoryComponent,
+                /*children: [
                     {
-                        path: ':id/view',
+                        path: 'contact-history',
+                        component: ContactHistoryComponent,
+                        data: {
+                            authorities: ['ROLE_USER'],
+                            pageTitle: 'cwcrmApp.contactHistory.home.title'
+                        },
+                        canActivate: [UserRouteAccessService]
+                    },
+                    {
+                        path: 'contact-history/:id/view',
                         component: ContactHistoryDetailComponent,
                         resolve: {
                             contactHistory: ContactHistoryResolve
@@ -127,10 +138,9 @@ export const participantRoute: Routes = [
                             pageTitle: 'cwcrmApp.contactHistory.home.title'
                         },
                         canActivate: [UserRouteAccessService]
-                        // outlet: 'view'
                     },
                     {
-                        path: 'new',
+                        path: 'contact-history/new',
                         component: ContactHistoryUpdateComponent,
                         resolve: {
                             contactHistory: ContactHistoryResolve
@@ -140,10 +150,9 @@ export const participantRoute: Routes = [
                             pageTitle: 'cwcrmApp.contactHistory.home.title'
                         },
                         canActivate: [UserRouteAccessService]
-                        // outlet: 'new-outlet'
                     },
                     {
-                        path: ':id/edit',
+                        path: 'contact-history/:id/edit',
                         component: ContactHistoryUpdateComponent,
                         resolve: {
                             contactHistory: ContactHistoryResolve
@@ -154,7 +163,7 @@ export const participantRoute: Routes = [
                         },
                         canActivate: [UserRouteAccessService]
                     }
-                ]
+                ]*/
             }
         ],
         resolve: {

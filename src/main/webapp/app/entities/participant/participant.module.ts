@@ -24,11 +24,13 @@ import {
     participantPopupRoute
 } from './';
 import { RouterModule } from '@angular/router';
+import { CwcrmContactHistoryModule } from 'app/entities/contact-history/contact-history.module';
 
 const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
 
 @NgModule({
     imports: [
+        CwcrmContactHistoryModule,
         CwcrmSharedModule,
         CwcrmAdminModule,
         RouterModule.forChild(ENTITY_STATES),
@@ -43,11 +45,6 @@ const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
         ParticipantUpdateComponent,
         ParticipantDeleteDialogComponent,
         ParticipantViewBaseComponent,
-        ContactHistoryComponent,
-        ContactHistoryDetailComponent,
-        ContactHistoryUpdateComponent,
-        ContactHistoryDeleteDialogComponent,
-        ContactHistoryDeletePopupComponent,
         ParticipantDeletePopupComponent
     ],
     entryComponents: [ParticipantComponent, ParticipantUpdateComponent, ParticipantDeleteDialogComponent, ParticipantDeletePopupComponent],

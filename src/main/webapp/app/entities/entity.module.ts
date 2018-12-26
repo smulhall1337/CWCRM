@@ -14,7 +14,7 @@ import { CwcrmPriorityModule } from './priority/priority.module';
 import { CwcrmMCOModule } from './mco/mco.module';
 import { CwcrmPhysicianModule } from './physician/physician.module';
 import { CwcrmEnrollmentAgencyModule } from './enrollment-agency/enrollment-agency.module';
-// import { CwcrmContactHistoryModule } from './contact-history/contact-history.module';
+//import { CwcrmContactHistoryModule } from './contact-history/contact-history.module';
 import { CwcrmParticipantNotesModule } from './participant-notes/participant-notes.module';
 import { CwcrmContactTypeModule } from './contact-type/contact-type.module';
 import { CwcrmExtendedUserModule } from './extended-user/extended-user.module';
@@ -25,6 +25,7 @@ import { CwcrmReferralSourceModule } from './referral-source/referral-source.mod
 @NgModule({
     // prettier-ignore
     imports: [
+        //CwcrmContactHistoryModule,
         CwcrmParticipantModule,
         CwcrmReferralModule,
         CwcrmActionModule,
