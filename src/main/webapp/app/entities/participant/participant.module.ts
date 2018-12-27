@@ -8,13 +8,6 @@ import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CountryService } from 'app/primeng/inputs/autocomplete/service/country.service';
 import { AutoCompleteModule } from 'primeng/primeng';
 import {
-    ContactHistoryComponent,
-    ContactHistoryDeleteDialogComponent,
-    ContactHistoryDeletePopupComponent,
-    ContactHistoryDetailComponent,
-    ContactHistoryUpdateComponent
-} from 'app/entities/contact-history';
-import {
     ParticipantComponent,
     ParticipantDetailComponent,
     ParticipantUpdateComponent,

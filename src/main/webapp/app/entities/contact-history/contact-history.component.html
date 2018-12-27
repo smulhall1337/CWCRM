@@ -59,19 +59,19 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['/contact-history', contactHistory.id, 'view' ]"
+                                [routerLink]="['./contact-history', contactHistory.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/contact-history', contactHistory.id, 'edit']"
+                                [routerLink]="['./contact-history', contactHistory.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'contact-history/'+ contactHistory.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'participant/:partId/edit/contact-history/'+ contactHistory.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

@@ -30,61 +30,46 @@ export class ContactHistoryResolve implements Resolve<IContactHistory> {
 
 export const contactHistoryRoute: Routes = [
     {
-        path: '',
-        component: ContactHistoryComponent,
-        children: [
-            {
-                path: 'contact-history',
-                component: ContactHistoryComponent,
-                data: {
-                    authorities: ['ROLE_USER'],
-                    pageTitle: 'cwcrmApp.contactHistory.home.title'
-                },
-                canActivate: [UserRouteAccessService]
-            },
-            {
-                path: 'contact-history/:id/view',
-                component: ContactHistoryDetailComponent,
-                resolve: {
-                    contactHistory: ContactHistoryResolve
-                },
-                data: {
-                    authorities: ['ROLE_USER'],
-                    pageTitle: 'cwcrmApp.contactHistory.home.title'
-                },
-                canActivate: [UserRouteAccessService]
-            },
-            {
-                path: 'contact-history/new',
-                component: ContactHistoryUpdateComponent,
-                resolve: {
-                    contactHistory: ContactHistoryResolve
-                },
-                data: {
-                    authorities: ['ROLE_USER'],
-                    pageTitle: 'cwcrmApp.contactHistory.home.title'
-                },
-                canActivate: [UserRouteAccessService]
-            },
-            {
-                path: 'contact-history/:id/edit',
-                component: ContactHistoryUpdateComponent,
-                resolve: {
-                    contactHistory: ContactHistoryResolve
-                },
-                data: {
-                    authorities: ['ROLE_USER'],
-                    pageTitle: 'cwcrmApp.contactHistory.home.title'
-                },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
+        path: 'participant/:partId/edit/contact-history/contact-history/:id/view',
+        component: ContactHistoryDetailComponent,
+        resolve: {
+            contactHistory: ContactHistoryResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'cwcrmApp.contactHistory.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'participant/:partId/edit/contact-history/new',
+        component: ContactHistoryUpdateComponent,
+        resolve: {
+            contactHistory: ContactHistoryResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'cwcrmApp.contactHistory.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'participant/:partId/edit/contact-history/contact-history/:id/edit',
+        component: ContactHistoryUpdateComponent,
+        resolve: {
+            contactHistory: ContactHistoryResolve
+        },
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'cwcrmApp.contactHistory.home.title'
+        },
+        canActivate: [UserRouteAccessService]
     }
 ];
 
 export const contactHistoryPopupRoute: Routes = [
     {
-        path: 'contact-history/:id/delete',
+        path: 'participant/:partId/edit/contact-history/:id/delete',
         component: ContactHistoryDeletePopupComponent,
         resolve: {
             contactHistory: ContactHistoryResolve
