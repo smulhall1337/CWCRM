@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -7,6 +7,7 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IContactHistory } from 'app/shared/model/contact-history.model';
 import { AccountService } from 'app/core';
 import { ContactHistoryService } from './contact-history.service';
+import { IParticipant } from 'app/shared/model/participant.model';
 
 @Component({
     selector: 'jhi-contact-history',

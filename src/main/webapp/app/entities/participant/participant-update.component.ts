@@ -25,6 +25,7 @@ import { ContactHistoryService } from 'app/entities/contact-history';
 import Country from 'app/primeng/inputs/autocomplete/service/country';
 import { CountryService } from 'app/primeng/inputs/autocomplete/service/country.service';
 import { Message, SelectItem } from 'primeng/api';
+import { ParticipantInfoService } from 'app/shared/util/participant-info.service';
 
 @Component({
     selector: 'jhi-participant-update',
@@ -85,7 +86,8 @@ export class ParticipantUpdateComponent implements OnInit {
         protected contactHistoryService: ContactHistoryService,
         protected activatedRoute: ActivatedRoute,
         private router: Router,
-        private countryService: CountryService
+        private countryService: CountryService,
+        private participantInfoService: ParticipantInfoService
     ) {}
 
     ngOnInit() {
@@ -98,6 +100,7 @@ export class ParticipantUpdateComponent implements OnInit {
         } else {
             this.activatedRoute.parent.data.subscribe(({ participant }) => {
                 this.participant = participant;
+                this.participantInfoService.storedParticipant = this.participant;
             });
         }
         this.contactStatusService.query({ filter: 'participant-is-null' }).subscribe(

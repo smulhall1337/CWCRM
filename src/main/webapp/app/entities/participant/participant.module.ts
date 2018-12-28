@@ -18,6 +18,7 @@ import {
 } from './';
 import { RouterModule } from '@angular/router';
 import { CwcrmContactHistoryModule } from 'app/entities/contact-history/contact-history.module';
+import { ParticipantInfoService } from 'app/shared/util/participant-info.service';
 
 const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
 
@@ -47,7 +48,8 @@ const ENTITY_STATES = [...participantRoute, ...participantPopupRoute];
             provide: NG_VALUE_ACCESSOR,
             multi: true,
             useExisting: forwardRef(() => CountryService)
-        }
+        },
+        ParticipantInfoService
     ]
 })
 export class CwcrmParticipantModule {}
