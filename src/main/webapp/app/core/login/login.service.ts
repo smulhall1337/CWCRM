@@ -8,6 +8,7 @@ export class LoginService {
     constructor(private accountService: AccountService, private authServerProvider: AuthServerProvider) {}
 
     login(credentials, callback?) {
+        console.log('login');
         const cb = callback || function() {};
 
         return new Promise((resolve, reject) => {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { concat, Observable } from 'rxjs';
 import * as moment from 'moment';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
@@ -12,6 +12,8 @@ import { ParticipantService } from 'app/entities/participant';
 import { IUser, UserService } from 'app/core';
 import { IContactType } from 'app/shared/model/contact-type.model';
 import { ContactTypeService } from 'app/entities/contact-type';
+import { ParticipantInfoService } from 'app/shared/util/participant-info.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'jhi-contact-history-update',
@@ -20,6 +22,9 @@ import { ContactTypeService } from 'app/entities/contact-type';
 export class ContactHistoryUpdateComponent implements OnInit {
     contactHistory: IContactHistory;
     isSaving: boolean;
+    // Material auto complete
+    autoCompleteControl = new FormControl();
+    filteredOptions: Observable<string[]>;
 
     participants: IParticipant[];
 
@@ -40,13 +45,23 @@ export class ContactHistoryUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        const partId = this.activatedRoute.snapshot.paramMap.get('partId');
         this.activatedRoute.data.subscribe(({ contactHistory }) => {
             this.contactHistory = contactHistory;
         });
         this.participantService.query({ filter: 'contacthistory-is-null' }).subscribe(
             (res: HttpResponse<IParticipant[]>) => {
                 if (!this.contactHistory.participantId) {
-                    this.participants = res.body;
+                    //new contact record
+                    // this.participants = res.body;
+                    console.log(partId);
+                    this.participantService.find(parseInt(partId)).subscribe(
+                        (subRes: HttpResponse<IParticipant>) => {
+                            this.participants = [subRes.body].concat(res.body);
+                            this.contactHistory.participantId = parseInt(partId);
+                        },
+                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
+                    );
                 } else {
                     this.participantService.find(this.contactHistory.participantId).subscribe(
                         (subRes: HttpResponse<IParticipant>) => {
@@ -133,5 +148,11 @@ export class ContactHistoryUpdateComponent implements OnInit {
 
     trackContactTypeById(index: number, item: IContactType) {
         return item.id;
+    }
+
+    private _filter(value: string): IUser[] {
+        const filterValue = value.toLowerCase();
+
+        return this.users.filter(users => (users.firstName + ' ' + users.lastName).toLowerCase().includes(filterValue));
     }
 }

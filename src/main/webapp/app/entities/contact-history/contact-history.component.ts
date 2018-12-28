@@ -8,6 +8,7 @@ import { IContactHistory } from 'app/shared/model/contact-history.model';
 import { AccountService } from 'app/core';
 import { ContactHistoryService } from './contact-history.service';
 import { IParticipant } from 'app/shared/model/participant.model';
+import { ParticipantInfoService } from 'app/shared/util/participant-info.service';
 
 @Component({
     selector: 'jhi-contact-history',
@@ -25,7 +26,8 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
         protected dataUtils: JhiDataUtils,
         protected eventManager: JhiEventManager,
         protected activatedRoute: ActivatedRoute,
-        protected accountService: AccountService
+        protected accountService: AccountService,
+        protected participantInfoService: ParticipantInfoService
     ) {
         this.currentSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
@@ -68,6 +70,7 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        console.log(this.participantInfoService.storedParticipant);
         this.loadAll();
         this.accountService.identity().then(account => {
             this.currentAccount = account;
