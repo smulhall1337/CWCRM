@@ -12,11 +12,12 @@ import {
     contactHistoryRoute,
     contactHistoryPopupRoute
 } from './';
+import { MatAutocompleteModule } from '@angular/material';
 
 const ENTITY_STATES = [...contactHistoryRoute, ...contactHistoryPopupRoute];
 
 @NgModule({
-    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [CwcrmSharedModule, CwcrmAdminModule, RouterModule.forChild(ENTITY_STATES), MatAutocompleteModule],
     declarations: [
         ContactHistoryComponent,
         ContactHistoryDetailComponent,
