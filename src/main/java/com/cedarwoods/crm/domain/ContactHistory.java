@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -33,7 +34,8 @@ public class ContactHistory implements Serializable {
     @Column(name = "notes")
     private String notes;
 
-    @OneToOne    @JoinColumn(unique = true)
+    @OneToOne(optional = false)    @NotNull
+    @JoinColumn(unique = true)
     private Participant participant;
 
     @OneToOne    @JoinColumn(unique = true)

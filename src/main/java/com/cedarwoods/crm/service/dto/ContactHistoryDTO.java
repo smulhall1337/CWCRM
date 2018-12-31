@@ -1,6 +1,7 @@
 package com.cedarwoods.crm.service.dto;
 
 import java.time.LocalDate;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Lob;
@@ -19,7 +20,13 @@ public class ContactHistoryDTO implements Serializable {
 
     private Long participantId;
 
+    private String participantFirstName;
+
+    private String participantLastName;
+
     private Long userId;
+
+    private String userFirstName;
 
     private Long contactTypeId;
 
@@ -57,12 +64,36 @@ public class ContactHistoryDTO implements Serializable {
         this.participantId = participantId;
     }
 
+    public String getParticipantFirstName() {
+        return participantFirstName;
+    }
+
+    public String getParticipantLastName() {
+        return participantLastName;
+    }
+
+    public void setParticipantLastName(String participantLastName) {
+        this.participantLastName = participantLastName;
+    }
+
+    public void setParticipantFirstName(String participantFirstName) {
+        this.participantFirstName = participantFirstName;
+    }
+
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
     }
 
     public Long getContactTypeId() {
@@ -109,7 +140,9 @@ public class ContactHistoryDTO implements Serializable {
             ", date='" + getDate() + "'" +
             ", notes='" + getNotes() + "'" +
             ", participant=" + getParticipantId() +
+            ", participant='" + getParticipantFirstName() + "'" +
             ", user=" + getUserId() +
+            ", user='" + getUserFirstName() + "'" +
             ", contactType=" + getContactTypeId() +
             ", contactType='" + getContactTypeName() + "'" +
             "}";

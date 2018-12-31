@@ -16,12 +16,12 @@
                 <dt><span jhiTranslate="cwcrmApp.contactHistory.participant">Participant</span></dt>
                 <dd>
                     <div *ngIf="contactHistory.participantId">
-                        <a [routerLink]="['/participant', contactHistory.participantId, 'view']">{{contactHistory.participantId}}</a>
+                        <a [routerLink]="['/participant', contactHistory.participantId, 'view']">{{contactHistory.participantFirstName}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="cwcrmApp.contactHistory.user">User</span></dt>
                 <dd>
-                    {{contactHistory.userId}}
+                    {{contactHistory.userFirstName}}
                 </dd>
                 <dt><span jhiTranslate="cwcrmApp.contactHistory.contactType">Contact Type</span></dt>
                 <dd>

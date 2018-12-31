@@ -16,15 +16,18 @@
             "relationshipType": "one-to-one",
             "relationshipName": "participant",
             "otherEntityName": "participant",
-            "otherEntityField": "id",
+            "otherEntityField": "firstName+lastName",
             "ownerSide": true,
-            "otherEntityRelationshipName": "contactHistory"
+            "otherEntityRelationshipName": "contactHistory",
+	    "relationshipValidateRules": [
+            	"required"
+            ]
         },
         {
             "relationshipType": "one-to-one",
             "relationshipName": "user",
             "otherEntityName": "user",
-            "otherEntityField": "id",
+            "otherEntityField": "firstName",
             "ownerSide": true,
             "otherEntityRelationshipName": "contactHistory"
         },

@@ -36,7 +36,7 @@
                         </option>
                     </select>
                 </div>
-                <mat-form-field>
+                <!--<mat-form-field>
                     <label class="form-control-label" jhiTranslate="cwcrmApp.contactHistory.user" for="field_user">User</label>
                     <input matInput type="text"
                            placeholder="Select User"
@@ -50,8 +50,8 @@
                             {{userOption.firstName}} {{userOption.lastName}}
                         </mat-option>
                     </mat-autocomplete>
-                </mat-form-field>
-                <!--<div class="form-group">
+                </mat-form-field>-->
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.contactHistory.user" for="field_user">User</label>
                     <select class="form-control" id="field_user" name="user" [(ngModel)]="contactHistory.userId" >
                         <option [ngValue]="null"></option>
@@ -59,7 +59,7 @@
                             {{userOption.firstName}} {{userOption.lastName}}
                         </option>
                     </select>
-                </div>-->
+                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cwcrmApp.contactHistory.contactType" for="field_contactType">Contact Type</label>
                     <select class="form-control" id="field_contactType" name="contactType" [(ngModel)]="contactHistory.contactTypeId">

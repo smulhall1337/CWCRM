@@ -12,7 +12,10 @@ import org.mapstruct.*;
 public interface ContactHistoryMapper extends EntityMapper<ContactHistoryDTO, ContactHistory> {
 
     @Mapping(source = "participant.id", target = "participantId")
+    @Mapping(source = "participant.firstName", target = "participantFirstName")
+    @Mapping(source = "participant.lastName", target = "participantLastName")
     @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.firstName", target = "userFirstName")
     @Mapping(source = "contactType.id", target = "contactTypeId")
     @Mapping(source = "contactType.name", target = "contactTypeName")
     ContactHistoryDTO toDto(ContactHistory contactHistory);

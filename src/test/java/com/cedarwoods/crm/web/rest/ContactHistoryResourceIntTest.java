@@ -3,6 +3,7 @@ package com.cedarwoods.crm.web.rest;
 import com.cedarwoods.crm.CwcrmApp;
 
 import com.cedarwoods.crm.domain.ContactHistory;
+import com.cedarwoods.crm.domain.Participant;
 import com.cedarwoods.crm.repository.ContactHistoryRepository;
 import com.cedarwoods.crm.repository.search.ContactHistorySearchRepository;
 import com.cedarwoods.crm.service.ContactHistoryService;
@@ -114,6 +115,11 @@ public class ContactHistoryResourceIntTest {
         ContactHistory contactHistory = new ContactHistory()
             .date(DEFAULT_DATE)
             .notes(DEFAULT_NOTES);
+        // Add required entity
+        Participant participant = ParticipantResourceIntTest.createEntity(em);
+        em.persist(participant);
+        em.flush();
+        contactHistory.setParticipant(participant);
         return contactHistory;
     }
 
