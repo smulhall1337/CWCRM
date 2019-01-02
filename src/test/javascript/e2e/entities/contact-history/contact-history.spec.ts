@@ -11,7 +11,7 @@ describe('ContactHistory e2e test', () => {
     let signInPage: SignInPage;
     let contactHistoryUpdatePage: ContactHistoryUpdatePage;
     let contactHistoryComponentsPage: ContactHistoryComponentsPage;
-    /*let contactHistoryDeleteDialog: ContactHistoryDeleteDialog;*/
+    let contactHistoryDeleteDialog: ContactHistoryDeleteDialog;
 
     before(async () => {
         await browser.get('/');
@@ -34,7 +34,7 @@ describe('ContactHistory e2e test', () => {
         await contactHistoryUpdatePage.cancel();
     });
 
-    /* it('should create and save ContactHistories', async () => {
+    it('should create and save ContactHistories', async () => {
         const nbButtonsBeforeCreate = await contactHistoryComponentsPage.countDeleteButtons();
 
         await contactHistoryComponentsPage.clickOnCreateButton();
@@ -42,8 +42,10 @@ describe('ContactHistory e2e test', () => {
             contactHistoryUpdatePage.setDateInput('2000-12-31'),
             contactHistoryUpdatePage.setNotesInput('notes'),
             contactHistoryUpdatePage.participantSelectLastOption(),
+            contactHistoryUpdatePage.participantSelectLastOption(),
             contactHistoryUpdatePage.userSelectLastOption(),
-            contactHistoryUpdatePage.contactTypeSelectLastOption(),
+            contactHistoryUpdatePage.userSelectLastOption(),
+            contactHistoryUpdatePage.contactTypeSelectLastOption()
         ]);
         expect(await contactHistoryUpdatePage.getDateInput()).to.eq('2000-12-31');
         expect(await contactHistoryUpdatePage.getNotesInput()).to.eq('notes');
@@ -51,19 +53,18 @@ describe('ContactHistory e2e test', () => {
         expect(await contactHistoryUpdatePage.getSaveButton().isPresent()).to.be.false;
 
         expect(await contactHistoryComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1);
-    });*/
+    });
 
-    /* it('should delete last ContactHistory', async () => {
+    it('should delete last ContactHistory', async () => {
         const nbButtonsBeforeDelete = await contactHistoryComponentsPage.countDeleteButtons();
         await contactHistoryComponentsPage.clickOnLastDeleteButton();
 
         contactHistoryDeleteDialog = new ContactHistoryDeleteDialog();
-        expect(await contactHistoryDeleteDialog.getDialogTitle())
-            .to.eq('cwcrmApp.contactHistory.delete.question');
+        expect(await contactHistoryDeleteDialog.getDialogTitle()).to.eq('cwcrmApp.contactHistory.delete.question');
         await contactHistoryDeleteDialog.clickOnConfirmButton();
 
         expect(await contactHistoryComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-    });*/
+    });
 
     after(async () => {
         await navBarPage.autoSignOut();

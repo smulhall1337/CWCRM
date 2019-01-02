@@ -16,12 +16,17 @@
             "relationshipType": "one-to-one",
             "relationshipName": "participant",
             "otherEntityName": "participant",
-            "otherEntityField": "firstName+lastName",
+            "otherEntityField": "firstName",
             "ownerSide": true,
-            "otherEntityRelationshipName": "contactHistory",
-	    "relationshipValidateRules": [
-            	"required"
-            ]
+            "otherEntityRelationshipName": "contactHistory"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "participant",
+            "otherEntityName": "participant",
+            "otherEntityField": "lastName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "contactHistory" 
         },
         {
             "relationshipType": "one-to-one",
@@ -31,6 +36,15 @@
             "ownerSide": true,
             "otherEntityRelationshipName": "contactHistory"
         },
+	{
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "lastName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "contactHistory"
+
+	},
         {
             "relationshipType": "one-to-one",
             "relationshipName": "contactType",

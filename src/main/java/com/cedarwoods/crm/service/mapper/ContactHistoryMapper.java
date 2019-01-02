@@ -16,6 +16,7 @@ public interface ContactHistoryMapper extends EntityMapper<ContactHistoryDTO, Co
     @Mapping(source = "participant.lastName", target = "participantLastName")
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "user.firstName", target = "userFirstName")
+    @Mapping(source = "user.lastName", target = "userLastName")
     @Mapping(source = "contactType.id", target = "contactTypeId")
     @Mapping(source = "contactType.name", target = "contactTypeName")
     ContactHistoryDTO toDto(ContactHistory contactHistory);

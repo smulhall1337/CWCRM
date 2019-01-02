@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -47,7 +46,7 @@ public class ContactHistoryResource {
      */
     @PostMapping("/contact-histories")
     @Timed
-    public ResponseEntity<ContactHistoryDTO> createContactHistory(@Valid @RequestBody ContactHistoryDTO contactHistoryDTO) throws URISyntaxException {
+    public ResponseEntity<ContactHistoryDTO> createContactHistory(@RequestBody ContactHistoryDTO contactHistoryDTO) throws URISyntaxException {
         log.debug("REST request to save ContactHistory : {}", contactHistoryDTO);
         if (contactHistoryDTO.getId() != null) {
             throw new BadRequestAlertException("A new contactHistory cannot already have an ID", ENTITY_NAME, "idexists");
@@ -69,7 +68,7 @@ public class ContactHistoryResource {
      */
     @PutMapping("/contact-histories")
     @Timed
-    public ResponseEntity<ContactHistoryDTO> updateContactHistory(@Valid @RequestBody ContactHistoryDTO contactHistoryDTO) throws URISyntaxException {
+    public ResponseEntity<ContactHistoryDTO> updateContactHistory(@RequestBody ContactHistoryDTO contactHistoryDTO) throws URISyntaxException {
         log.debug("REST request to update ContactHistory : {}", contactHistoryDTO);
         if (contactHistoryDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

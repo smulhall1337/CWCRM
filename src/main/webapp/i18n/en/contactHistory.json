@@ -19,6 +19,8 @@
             "date": "Date",
             "notes": "Notes",
             "participant": "Participant",
+            "participant": "Participant",
+            "user": "User",
             "user": "User",
             "contactType": "Contact Type"
         }

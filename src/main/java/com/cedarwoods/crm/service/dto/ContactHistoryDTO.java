@@ -1,7 +1,6 @@
 package com.cedarwoods.crm.service.dto;
 
 import java.time.LocalDate;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Lob;
@@ -27,6 +26,8 @@ public class ContactHistoryDTO implements Serializable {
     private Long userId;
 
     private String userFirstName;
+
+    private String userLastName;
 
     private Long contactTypeId;
 
@@ -68,6 +69,10 @@ public class ContactHistoryDTO implements Serializable {
         return participantFirstName;
     }
 
+    public void setParticipantFirstName(String participantFirstName) {
+        this.participantFirstName = participantFirstName;
+    }
+
     public String getParticipantLastName() {
         return participantLastName;
     }
@@ -76,8 +81,12 @@ public class ContactHistoryDTO implements Serializable {
         this.participantLastName = participantLastName;
     }
 
-    public void setParticipantFirstName(String participantFirstName) {
-        this.participantFirstName = participantFirstName;
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
     }
 
     public Long getUserId() {
@@ -88,12 +97,12 @@ public class ContactHistoryDTO implements Serializable {
         this.userId = userId;
     }
 
-    public String getUserFirstName() {
-        return userFirstName;
+    public String getUserLastName() {
+        return userLastName;
     }
 
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
     }
 
     public Long getContactTypeId() {
@@ -141,8 +150,12 @@ public class ContactHistoryDTO implements Serializable {
             ", notes='" + getNotes() + "'" +
             ", participant=" + getParticipantId() +
             ", participant='" + getParticipantFirstName() + "'" +
+            ", participant=" + getParticipantId() +
+            ", participant='" + getParticipantLastName() + "'" +
             ", user=" + getUserId() +
             ", user='" + getUserFirstName() + "'" +
+            ", user=" + getUserId() +
+            ", user='" + getUserLastName() + "'" +
             ", contactType=" + getContactTypeId() +
             ", contactType='" + getContactTypeName() + "'" +
             "}";

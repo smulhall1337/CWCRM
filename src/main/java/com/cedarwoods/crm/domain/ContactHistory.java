@@ -4,7 +4,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -34,12 +33,12 @@ public class ContactHistory implements Serializable {
     @Column(name = "notes")
     private String notes;
 
-    @OneToOne(optional = false)    @NotNull
-    @JoinColumn(unique = true)
+    @OneToOne    @JoinColumn(unique = true)
     private Participant participant;
 
     @OneToOne    @JoinColumn(unique = true)
     private User user;
+
 
     @OneToOne    @JoinColumn(unique = true)
     private ContactType contactType;
@@ -100,7 +99,6 @@ public class ContactHistory implements Serializable {
         this.user = user;
         return this;
     }
-
     public void setUser(User user) {
         this.user = user;
     }

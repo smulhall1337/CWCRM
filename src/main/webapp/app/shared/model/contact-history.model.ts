@@ -5,9 +5,10 @@ export interface IContactHistory {
     date?: Moment;
     notes?: any;
     participantFirstName?: string;
-    participantLastName?: string;
     participantId?: number;
+    participantLastName?: string;
     userFirstName?: string;
+    userLastName?: string;
     userId?: number;
     contactTypeName?: string;
     contactTypeId?: number;
@@ -22,6 +23,7 @@ export class ContactHistory implements IContactHistory {
         public participantLastName?: string,
         public participantId?: number,
         public userFirstName?: string,
+        public userLastName?: string,
         public userId?: number,
         public contactTypeName?: string,
         public contactTypeId?: number
