@@ -49,4 +49,6 @@ public interface ContactHistoryService {
      * @return the list of entities
      */
     List<ContactHistoryDTO> search(String query);
+
+    List<ContactHistoryDTO> findAllByParticipantId(Long partId);
 }

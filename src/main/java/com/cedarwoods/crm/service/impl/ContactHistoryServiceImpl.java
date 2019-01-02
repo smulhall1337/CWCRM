@@ -1,5 +1,6 @@
 package com.cedarwoods.crm.service.impl;
 
+import com.cedarwoods.crm.domain.Participant;
 import com.cedarwoods.crm.service.ContactHistoryService;
 import com.cedarwoods.crm.domain.ContactHistory;
 import com.cedarwoods.crm.repository.ContactHistoryRepository;
@@ -113,5 +114,14 @@ public class ContactHistoryServiceImpl implements ContactHistoryService {
             .stream(contactHistorySearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .map(contactHistoryMapper::toDto)
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ContactHistoryDTO> findAllByParticipantId(Long partId) {
+        log.debug("Request to get all ContactHistories By Participant Ids");
+        System.out.println("PartID: "+partId);
+        return contactHistoryRepository.findAllByParticipantId(partId).stream()
+            .map(contactHistoryMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 }

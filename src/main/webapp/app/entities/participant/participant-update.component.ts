@@ -91,7 +91,6 @@ export class ParticipantUpdateComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log(this.router.url);
         this.isSaving = false;
         if (this.router.url === '/participant/new') {
             this.activatedRoute.data.subscribe(({ participant }) => {
@@ -190,12 +189,12 @@ export class ParticipantUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-        this.contactHistoryService.query().subscribe(
+        /*this.contactHistoryService.query().subscribe(
             (res: HttpResponse<IContactHistory[]>) => {
                 this.contacthistories = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        );*/
     }
 
     previousState() {

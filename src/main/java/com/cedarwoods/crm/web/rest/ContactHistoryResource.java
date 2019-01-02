@@ -6,6 +6,7 @@ import com.cedarwoods.crm.web.rest.errors.BadRequestAlertException;
 import com.cedarwoods.crm.web.rest.util.HeaderUtil;
 import com.cedarwoods.crm.service.dto.ContactHistoryDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.omg.CORBA.LongHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -84,11 +85,30 @@ public class ContactHistoryResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of contactHistories in body
      */
-    @GetMapping("/contact-histories")
+    /*@GetMapping("/contact-histories")
     @Timed
     public List<ContactHistoryDTO> getAllContactHistories() {
         log.debug("REST request to get all ContactHistories");
         return contactHistoryService.findAll();
+    }*/
+
+    /**
+     * GET  /contact-histories : get all the contactHistories.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of contactHistories in body
+     */
+    //@GetMapping("/contact-histories/{partId}")
+    @GetMapping("/contact-histories-participantid/{partId}")
+    @Timed
+    public List<ContactHistoryDTO> getAllContactHistoriesByParticipantId(@PathVariable String partId) {
+        // HACK
+        // I hate the way this works. I need to delare this partID as a string so java doesnt get confused
+        // with the getContactHistory, which has the same url in terms of structure.
+        // TODO: figure out a better way to do this
+        System.out.println("*********************************["+partId+"]*************************************");
+        long temp = Long.parseLong(partId);
+        log.debug("REST request to get all ContactHistories");
+        return contactHistoryService.findAllByParticipantId(temp);
     }
 
     /**

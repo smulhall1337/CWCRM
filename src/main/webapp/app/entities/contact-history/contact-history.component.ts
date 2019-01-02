@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
@@ -19,6 +19,7 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
+    private currParticipant: any;
 
     constructor(
         protected contactHistoryService: ContactHistoryService,
@@ -27,7 +28,8 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
         protected eventManager: JhiEventManager,
         protected activatedRoute: ActivatedRoute,
         protected accountService: AccountService,
-        protected participantInfoService: ParticipantInfoService
+        protected participantInfoService: ParticipantInfoService,
+        private router: Router
     ) {
         this.currentSearch =
             this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
@@ -47,7 +49,7 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
                 );
             return;
         }
-        this.contactHistoryService.query().subscribe(
+        this.contactHistoryService.query(this.currParticipant).subscribe(
             (res: HttpResponse<IContactHistory[]>) => {
                 this.contactHistories = res.body;
                 this.currentSearch = '';
@@ -70,7 +72,13 @@ export class ContactHistoryComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        console.log(this.participantInfoService.storedParticipant);
+        // console.log(this.router.url);
+        // I dont like how this is grabbing the partiicipant ID from the URL
+        // TODO: Find a better way to do this.
+        const temp = this.router.url.toString().match(/\d+/);
+        // console.log(temp);
+        this.currParticipant = temp[0];
+        console.log(this.currParticipant);
         this.loadAll();
         this.accountService.identity().then(account => {
             this.currentAccount = account;

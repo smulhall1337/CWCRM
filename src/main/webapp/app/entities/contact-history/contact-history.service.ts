@@ -39,11 +39,20 @@ export class ContactHistoryService {
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
-    query(req?: any): Observable<EntityArrayResponseType> {
+    /*    query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http
             .get<IContactHistory[]>(this.resourceUrl, { params: options, observe: 'response' })
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    }*/
+    query(partId: number): Observable<EntityArrayResponseType> {
+        return this.http
+            .get<IContactHistory[]>(`${this.resourceUrl}-participantid/${partId}`, { observe: 'response' })
+            .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+        // const options = createRequestOption(req);
+        /* return this.http
+            .get<IContactHistory[]>(this.resourceUrl, { params: options, observe: 'response' })
+            .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));*/
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
