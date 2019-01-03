@@ -1,4 +1,5 @@
-/* tslint:disable no-unused-expression */
+/*
+/!* tslint:disable no-unused-expression *!/
 import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
@@ -70,3 +71,4 @@ describe('ContactHistory e2e test', () => {
         await navBarPage.autoSignOut();
     });
 });
+*/
