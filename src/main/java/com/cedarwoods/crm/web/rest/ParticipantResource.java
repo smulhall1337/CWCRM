@@ -100,11 +100,6 @@ public class ParticipantResource {
             return new ResponseEntity<>(participantService.findAllWhereActionIsNull(),
                     HttpStatus.OK);
         }
-        if ("contacthistory-is-null".equals(filter)) {
-            log.debug("REST request to get all Participants where contactHistory is null");
-            return new ResponseEntity<>(participantService.findAllWhereContactHistoryIsNull(),
-                    HttpStatus.OK);
-        }
         log.debug("REST request to get a page of Participants");
         Page<ParticipantDTO> page = participantService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/participants");

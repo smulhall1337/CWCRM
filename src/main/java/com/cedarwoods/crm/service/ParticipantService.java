@@ -34,12 +34,6 @@ public interface ParticipantService {
      * @return the list of entities
      */
     List<ParticipantDTO> findAllWhereActionIsNull();
-    /**
-     * Get all the ParticipantDTO where ContactHistory is null.
-     *
-     * @return the list of entities
-     */
-    List<ParticipantDTO> findAllWhereContactHistoryIsNull();
 
 
     /**

@@ -30,10 +30,6 @@
             </column>
             <column name="participant_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_contact_history_participant_id" />
-            </column>            <column name="participant_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_contact_history_participant_id" />
-            </column>            <column name="user_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_contact_history_user_id" />
             </column>            <column name="user_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_contact_history_user_id" />
             </column>            <column name="contact_type_id" type="bigint">

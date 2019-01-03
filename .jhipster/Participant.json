@@ -126,6 +126,12 @@
             "otherEntityRelationshipName": "participant"
         },
         {
+            "relationshipType": "one-to-many",
+            "relationshipName": "participantNotes",
+            "otherEntityName": "participantNotes",
+            "otherEntityRelationshipName": "participant"
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipName": "assignedTo",
             "otherEntityName": "user",
@@ -136,19 +142,6 @@
             "relationshipName": "action",
             "otherEntityName": "action",
             "ownerSide": false,
-            "otherEntityRelationshipName": "participant"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "contactHistory",
-            "otherEntityName": "contactHistory",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "participant"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "participantNotes",
-            "otherEntityName": "participantNotes",
             "otherEntityRelationshipName": "participant"
         }
     ],

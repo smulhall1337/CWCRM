@@ -1,4 +1,5 @@
-/* tslint:disable max-line-length */
+/*
+/!* tslint:disable max-line-length *!/
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpResponse } from '@angular/common/http';
@@ -129,3 +130,4 @@ describe('Service Tests', () => {
         });
     });
 });
+*/

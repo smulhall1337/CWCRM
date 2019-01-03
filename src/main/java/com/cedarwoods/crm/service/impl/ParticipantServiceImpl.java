@@ -90,21 +90,6 @@ public class ParticipantServiceImpl implements ParticipantService {
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
-
-    /**
-     *  get all the participants where ContactHistory is null.
-     *  @return the list of entities
-     */
-    @Transactional(readOnly = true) 
-    public List<ParticipantDTO> findAllWhereContactHistoryIsNull() {
-        log.debug("Request to get all participants where ContactHistory is null");
-        return StreamSupport
-            .stream(participantRepository.findAll().spliterator(), false)
-            .filter(participant -> participant.getContactHistory() == null)
-            .map(participantMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
-    }
-
     /**
      * Get one participant by id.
      *

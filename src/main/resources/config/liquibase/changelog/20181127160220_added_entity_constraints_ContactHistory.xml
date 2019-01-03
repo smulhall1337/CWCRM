@@ -14,18 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="participant"/>
 
-        <addForeignKeyConstraint baseColumnNames="participant_id"
-                                 baseTableName="contact_history"
-                                 constraintName="fk_contact_history_participant_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="participant"/>
-
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="contact_history"
-                                 constraintName="fk_contact_history_user_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
-
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="contact_history"
                                  constraintName="fk_contact_history_user_id"

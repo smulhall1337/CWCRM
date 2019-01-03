@@ -10,14 +10,14 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "participant",
-            "otherEntityName": "participant",
+            "relationshipName": "user",
+            "otherEntityName": "user",
             "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "user",
-            "otherEntityName": "user",
+            "relationshipName": "participant",
+            "otherEntityName": "participant",
             "otherEntityField": "id"
         }
     ],
