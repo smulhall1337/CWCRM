@@ -1,7 +1,6 @@
 package com.cedarwoods.crm.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -11,8 +10,6 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -105,11 +102,7 @@ public class Participant implements Serializable {
     @OneToOne    @JoinColumn(unique = true)
     private ReferralSource referralSource;
 
-    @OneToMany(mappedBy = "participant")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ParticipantNotes> participantNotes = new HashSet<>();
-    @ManyToOne
-    @JsonIgnoreProperties("")
+    @OneToOne    @JoinColumn(unique = true)
     private User assignedTo;
 
     @OneToOne(mappedBy = "participant")
@@ -435,31 +428,6 @@ public class Participant implements Serializable {
 
     public void setReferralSource(ReferralSource referralSource) {
         this.referralSource = referralSource;
-    }
-
-    public Set<ParticipantNotes> getParticipantNotes() {
-        return participantNotes;
-    }
-
-    public Participant participantNotes(Set<ParticipantNotes> participantNotes) {
-        this.participantNotes = participantNotes;
-        return this;
-    }
-
-    public Participant addParticipantNotes(ParticipantNotes participantNotes) {
-        this.participantNotes.add(participantNotes);
-        participantNotes.setParticipant(this);
-        return this;
-    }
-
-    public Participant removeParticipantNotes(ParticipantNotes participantNotes) {
-        this.participantNotes.remove(participantNotes);
-        participantNotes.setParticipant(null);
-        return this;
-    }
-
-    public void setParticipantNotes(Set<ParticipantNotes> participantNotes) {
-        this.participantNotes = participantNotes;
     }
 
     public User getAssignedTo() {

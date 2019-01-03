@@ -72,6 +72,8 @@ public class ParticipantDTO implements Serializable {
 
     private Long assignedToId;
 
+    private String assignedToFirstName;
+
     public Long getId() {
         return id;
     }
@@ -312,6 +314,14 @@ public class ParticipantDTO implements Serializable {
         this.assignedToId = userId;
     }
 
+    public String getAssignedToFirstName() {
+        return assignedToFirstName;
+    }
+
+    public void setAssignedToFirstName(String userFirstName) {
+        this.assignedToFirstName = userFirstName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -366,6 +376,7 @@ public class ParticipantDTO implements Serializable {
             ", referralSource=" + getReferralSourceId() +
             ", referralSource='" + getReferralSourceName() + "'" +
             ", assignedTo=" + getAssignedToId() +
+            ", assignedTo='" + getAssignedToFirstName() + "'" +
             "}";
     }
 }

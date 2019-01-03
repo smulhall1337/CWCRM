@@ -106,11 +106,9 @@
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_referral_type_id" />
             </column>            <column name="referral_source_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_referral_source_id" />
+            </column>            <column name="assigned_to_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_participant_assigned_to_id" />
             </column>
-            <column name="assigned_to_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

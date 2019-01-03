@@ -126,16 +126,12 @@
             "otherEntityRelationshipName": "participant"
         },
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "participantNotes",
-            "otherEntityName": "participantNotes",
-            "otherEntityRelationshipName": "participant"
-        },
-        {
-            "relationshipType": "many-to-one",
+            "relationshipType": "one-to-one",
             "relationshipName": "assignedTo",
             "otherEntityName": "user",
-            "otherEntityField": "id"
+            "otherEntityField": "firstName",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "participant"
         },
         {
             "relationshipType": "one-to-one",

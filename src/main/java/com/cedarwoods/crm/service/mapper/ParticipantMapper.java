@@ -21,6 +21,7 @@ public interface ParticipantMapper extends EntityMapper<ParticipantDTO, Particip
     @Mapping(source = "referralSource.id", target = "referralSourceId")
     @Mapping(source = "referralSource.name", target = "referralSourceName")
     @Mapping(source = "assignedTo.id", target = "assignedToId")
+    @Mapping(source = "assignedTo.firstName", target = "assignedToFirstName")
     ParticipantDTO toDto(Participant participant);
 
     @Mapping(source = "contactStatusId", target = "contactStatus")
@@ -28,7 +29,6 @@ public interface ParticipantMapper extends EntityMapper<ParticipantDTO, Particip
     @Mapping(source = "mcoId", target = "mco")
     @Mapping(source = "referralTypeId", target = "referralType")
     @Mapping(source = "referralSourceId", target = "referralSource")
-    @Mapping(target = "participantNotes", ignore = true)
     @Mapping(source = "assignedToId", target = "assignedTo")
     @Mapping(target = "action", ignore = true)
     Participant toEntity(ParticipantDTO participantDTO);

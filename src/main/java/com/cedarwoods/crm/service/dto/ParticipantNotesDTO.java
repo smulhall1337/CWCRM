@@ -16,7 +16,11 @@ public class ParticipantNotesDTO implements Serializable {
 
     private Long participantId;
 
+    private String participantFirstName;
+
     private Long userId;
+
+    private String userFirstName;
 
     public Long getId() {
         return id;
@@ -42,12 +46,28 @@ public class ParticipantNotesDTO implements Serializable {
         this.participantId = participantId;
     }
 
+    public String getParticipantFirstName() {
+        return participantFirstName;
+    }
+
+    public void setParticipantFirstName(String participantFirstName) {
+        this.participantFirstName = participantFirstName;
+    }
+
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
     }
 
     @Override
@@ -77,7 +97,9 @@ public class ParticipantNotesDTO implements Serializable {
             "id=" + getId() +
             ", notes='" + getNotes() + "'" +
             ", participant=" + getParticipantId() +
+            ", participant='" + getParticipantFirstName() + "'" +
             ", user=" + getUserId() +
+            ", user='" + getUserFirstName() + "'" +
             "}";
     }
 }

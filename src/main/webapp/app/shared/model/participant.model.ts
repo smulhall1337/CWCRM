@@ -1,5 +1,4 @@
 import { Moment } from 'moment';
-import { IParticipantNotes } from 'app/shared/model//participant-notes.model';
 
 export interface IParticipant {
     id?: number;
@@ -31,10 +30,9 @@ export interface IParticipant {
     referralTypeId?: number;
     referralSourceName?: string;
     referralSourceId?: number;
+    assignedToFirstName?: string;
     assignedToId?: number;
     actionId?: number;
-    contactHistoryId?: number;
-    participantNotes?: IParticipantNotes[];
 }
 
 export class Participant implements IParticipant {
@@ -68,9 +66,8 @@ export class Participant implements IParticipant {
         public referralTypeId?: number,
         public referralSourceName?: string,
         public referralSourceId?: number,
+        public assignedToFirstName?: string,
         public assignedToId?: number,
-        public actionId?: number,
-        public contactHistoryId?: number,
-        public participantNotes?: IParticipantNotes[]
+        public actionId?: number
     ) {}
 }

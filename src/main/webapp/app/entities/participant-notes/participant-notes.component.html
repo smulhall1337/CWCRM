@@ -42,11 +42,11 @@
                 <td>{{participantNotes.notes}}</td>
                 <td>
                     <div *ngIf="participantNotes.participantId">
-                        <a [routerLink]="['../participant', participantNotes.participantId , 'view' ]" >{{participantNotes.participantId}}</a>
+                        <a [routerLink]="['../participant', participantNotes.participantId , 'view' ]" >{{participantNotes.participantFirstName}}</a>
                     </div>
                 </td>
                 <td>
-                    {{participantNotes.userId}}
+                    {{participantNotes.userFirstName}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
